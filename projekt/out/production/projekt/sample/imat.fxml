@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <AnchorPane prefHeight="120.0" prefWidth="1440.0" styleClass="Header" stylesheets="@CSS/Header.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="1440.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/produce-grocery-vegetables.jpg" />
+                     </image>
+                  </ImageView>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" opacity="0.65" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #555555;" width="1440.0" />
+                  <ToggleButton fx:id="chartButton" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#openChart" prefHeight="120.0" prefWidth="150.0" styleClass="button1" stylesheets="@CSS/VarukorgButton.css" text="Varukorg">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/noun_cart_1231954.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="group" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="categoryButton" contentDisplay="TOP" layoutX="150.0" mnemonicParsing="false" onMouseClicked="#openCategories" prefHeight="120.0" prefWidth="150.0" styleClass="button1" stylesheets="@CSS/KategorierButton.css" text="Kategorier" toggleGroup="$group">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/noun_Category_2426193.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <TextField fx:id="searchBar" layoutX="520.0" layoutY="35.0" prefHeight="50.0" prefWidth="400.0" promptText="Sök vara" styleClass="text-field" stylesheets="@CSS/Search_bar.css" />
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <StackPane prefHeight="800.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="chartScrollPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@CSS/scroll_pane.css">
+                     <content>
+                        <FlowPane prefHeight="800.0" prefWidth="300.0" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane fx:id="categoryScrollPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@CSS/scroll_pane.css">
+                     <content>
+                        <FlowPane fx:id="categoryFlowPane" prefHeight="800.0" prefWidth="300.0" styleClass="main" stylesheets="@CSS/main_theme.css" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </StackPane>
+         </left>
+         <center>
+            <ScrollPane stylesheets="@CSS/scroll_pane.css" BorderPane.alignment="CENTER">
+               <content>
+                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" prefHeight="780.0" prefWidth="1140.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css" />
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

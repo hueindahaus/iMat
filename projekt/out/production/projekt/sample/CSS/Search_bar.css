@@ -1,0 +1,23 @@
+.text-field {
+    -fx-font-family: "Helvetica Neue";
+    -fx-font-size: 18px;
+    -fx-border-width: 3px;
+    -fx-border-color: #e7e7e7;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-background-image: url("css_icons/noun_search_2430406.png");
+    -fx-background-size: 24px;
+    -fx-background-position: 13px 13px;
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 0 0 0 40;
+
+}
+
+
+.text-field:focused {
+    -fx-border-color: #555555;
+}
+
+.text-field:hover {
+    -fx-border-color: #555555;
+}
