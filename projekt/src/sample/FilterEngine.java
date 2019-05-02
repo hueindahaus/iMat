@@ -28,36 +28,29 @@ public class FilterEngine { //filterEngine är till för att sortera/filtrera pr
         }
         return singleton;
     }
+    
 
-    public List<Product> regularSearch(){
+    public List<Product> filter(){                          //Detta är huvudmetoden i FilterEngine. Den returnerar en lista med produkter som är filtrerad utifrån vad man söker på/kategori mm
         List<Product> productList = new ArrayList<>();
-        for(Product product: database.getProducts()){
-            if(product.getName().equals(searchString) || product.getCategory().toString().equals(searchString)) {   //om namnet/kategorin som man söker på matchar en product, så add:ar den till listan
-                productList.add(product);
-            }
+        for(Product product: database.getProducts()){   //loopar genom
+            findMatches(productList,product);
         }
         return productList;
     }
 
-    public List<Product> filterByCategory(ProductCategory category){
-        return database.getProducts(category);  //dataHandlern hade en färdig metod som hämtar produkter ur en given kategori
-    }
 
-    public List<Product> filter(){                          //Detta är huvudmetoden i FilterEngine. Den returnerar en lista med produkter som är filtrerad utifrån vad man söker på/kategori mm
-        List<Product> productList = new ArrayList<>();
-        for(Product product: database.getProducts()){
-            if(product.getCategory().equals(searchCategory) || searchCategory == null) {    //om kategorin matchar eller om kategorin inte är vald så går produkten vidare till nästa if-sats
-                if (searchIsEcological == product.isEcological() || searchIsEcological == false) {
-                    if (searchPriceMax == 0 || isInSearchPriceRange(product)) {     //om maxpris = 0 eller om produkten är inom sökningen på prisintervallet så ska den gå vidare till nästa if-sats
-                        if(searchString == null || product.getName().toLowerCase().contains(searchString.toLowerCase()) || product.getCategory().toString().toLowerCase().contains(searchString)){    //om sökrutan inte är skriven i eller om det som står i sökrutan matchar antingen kategori eller produktnamn så blir if-satsen true. Vi gör alla strings till lower case, för att enklare hitta produkter
-                            productList.add(product);
-                        }
+    private void findMatches(List<Product> productList, Product product){
+        if(product.getCategory().equals(searchCategory) || searchCategory == null) {    //om kategorin matchar eller om kategorin inte är vald så går produkten vidare till nästa if-sats
+            if (searchIsEcological == product.isEcological() || searchIsEcological == false) {
+                if (searchPriceMax == 0 || isInSearchPriceRange(product)) {     //om maxpris = 0 eller om produkten är inom sökningen på prisintervallet så ska den gå vidare till nästa if-sats
+                    if (searchString == null || product.getName().toLowerCase().contains(searchString.toLowerCase()) || product.getCategory().toString().toLowerCase().contains(searchString.toLowerCase())) {    //om sökrutan inte är skriven i eller om det som står i sökrutan matchar antingen kategori eller produktnamn så blir if-satsen true. Vi gör alla strings till lower case, för att enklare hitta produkter
+                        productList.add(product);
                     }
                 }
             }
         }
-        return productList;
     }
+
 
     private boolean isInSearchPriceRange(Product product){
         return (searchPriceMin >= product.getPrice() && product.getPrice() <= searchPriceMax);
