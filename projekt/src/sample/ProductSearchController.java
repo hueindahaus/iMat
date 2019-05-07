@@ -6,10 +6,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
@@ -40,6 +43,9 @@ public class ProductSearchController implements Initializable {
     private ScrollPane chartScrollPane; //ScrollPane för varukorgen
     @FXML
     private TextField searchBar;        //Själva textrutan(sökrutan)
+
+    double x,y;
+
 
 
 
@@ -122,6 +128,21 @@ public class ProductSearchController implements Initializable {
         filterEngine.setSearchCategory(category);
         update();
     }
+
+    @FXML
+    public void dragHeader(MouseEvent event){   // Om man drar i whitespace i den övre panelen där sökrutan finns så sla hela fönstret också dras med
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
+    }
+
+    @FXML
+    public void pressHeader(MouseEvent event){  // denna metoden behövs för att kunna dra runt rutan genom att dra runt den övre panelen
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+
 
 
 

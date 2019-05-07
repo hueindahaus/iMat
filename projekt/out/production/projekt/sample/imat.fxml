@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -15,16 +16,19 @@
 
 <StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
             <ScrollPane layoutX="260.0" layoutY="120.0" prefHeight="780.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
                <content>
-                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css" />
+                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding></FlowPane>
                </content>
             </ScrollPane>
             <ScrollPane fx:id="chartScrollPane" layoutX="1180.0" prefHeight="900.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css">
                <content>
-                  <FlowPane prefHeight="900.0" prefWidth="300.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                  <FlowPane prefHeight="900.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
                </content>
             </ScrollPane>
             <AnchorPane layoutX="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="920.0" styleClass="Header" stylesheets="@CSS/Header.css">
@@ -34,26 +38,29 @@
                         <Image url="@CSS/css_backgrounds/produce-grocery-vegetables.jpg" />
                      </image>
                   </ImageView>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #555555;" width="920.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.7" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #555555;" width="920.0" />
                   <TextField fx:id="searchBar" layoutX="35.0" layoutY="35.0" prefHeight="50.0" prefWidth="600.0" promptText="Sök vara" styleClass="text-field" stylesheets="@CSS/Search_bar.css" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="900.0" prefWidth="260.0" styleClass="main" stylesheets="@CSS/main_theme.css">
+            <AnchorPane prefHeight="880.0" prefWidth="260.0" styleClass="main" stylesheets="@CSS/main_theme.css">
                <children>
-                  <ScrollPane fx:id="categoryScrollPane" layoutY="296.0" prefHeight="600.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
+                  <ScrollPane fx:id="categoryScrollPane" layoutY="290.0" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
                      <content>
-                        <FlowPane fx:id="categoryFlowPane" prefHeight="900.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                        <FlowPane fx:id="categoryFlowPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="610.0" prefWidth="255.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
                      </content>
                   </ScrollPane>
-                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="250.0" styleClass="biglabel" stylesheets="@CSS/main_theme.css" text="Kategorier">
+                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="240.0" styleClass="biglabel" stylesheets="@CSS/main_theme.css" text="Kategorier">
                      <font>
                         <Font name="Bodoni 72 Oldstyle Book" size="36.0" />
                      </font>
                   </Label>
-                  <Label layoutX="20.0" layoutY="20.0" styleClass="biglabel" text="Personligt" />
-                  <Line endX="220.0" endY="64.0" startY="64.0" stroke="#555555" strokeWidth="2.0" />
-                  <Line endX="220.0" endY="294.0" startY="294.0" stroke="#555555" strokeWidth="2.0" />
-                  <Button alignment="TOP_LEFT" layoutY="65.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter" />
+                  <Label layoutX="20.0" layoutY="12.0" styleClass="biglabel" text="Personligt" />
+                  <Line endX="220.0" endY="56.0" opacity="0.3" startY="56.0" stroke="#555555" />
+                  <Line endX="220.0" endY="284.0" opacity="0.3" startY="284.0" stroke="#555555" />
+                  <Button alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik" />
+                  <Button alignment="BASELINE_LEFT" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter" />
+                  <Button alignment="BASELINE_LEFT" layoutY="137.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor" />
+                  <Button alignment="BASELINE_LEFT" layoutY="177.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter" />
                </children>
             </AnchorPane>
          </children>

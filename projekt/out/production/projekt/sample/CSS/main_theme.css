@@ -38,6 +38,4 @@
 .sidebutton:hover{
     -fx-border-radius: 0px;
     -fx-border-color: #555555;
-    -fx-background-color: #555555;
-    -fx-opacity: 0.5;
 }

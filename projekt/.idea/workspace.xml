@@ -2,33 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7335f063-dc53-4277-a9de-82c4cb13c7d8" name="Default Changelist" comment="Test">
-      <change afterPath="$PROJECT_DIR$/src/sample/CSS/css_backgrounds/produce-grocery-vegetables.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/images/produce-grocery-vegetables.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/KategorierButton.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/Search_bar.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/CSS/Search_bar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/VarukorgButton.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/imat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/CSS/imat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/imat.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/main_theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/CSS/main_theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/scroll_pane.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/CSS/scroll_pane.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/FilterEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/FilterEngine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/ProductSearchController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CSS/product_listitem.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/CategoryListItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/CategoryListItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/category_listitem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/category_listitem.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projekt/sample/imat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projekt/sample/imat.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/produce-grocery-vegetables.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/KategorierButton.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/Search_bar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/Search_bar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/VarukorgButton.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/imat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/imat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CSS/imat.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/CSS/main_theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/main_theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/scroll_pane.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/scroll_pane.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/FilterEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FilterEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CSS/product_listitem.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CategoryListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CategoryListItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ProductSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ProductSearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/category_listitem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/category_listitem.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/imat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/imat.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -42,10 +29,11 @@
     <session id="14823069">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.46" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.47" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -53,7 +41,7 @@
           <entry key="class" value="1" />
           <entry key="css" value="4" />
           <entry key="fxml" value="2" />
-          <entry key="java" value="5" />
+          <entry key="java" value="6" />
           <entry key="ttf" value="1" />
         </counts>
       </usages-collector>
@@ -62,21 +50,21 @@
           <entry key="CLASS" value="1" />
           <entry key="CSS" value="4" />
           <entry key="Font" value="1" />
-          <entry key="JAVA" value="5" />
+          <entry key="JAVA" value="6" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="1114" />
-          <entry key="java" value="493" />
+          <entry key="java" value="1435" />
           <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1114" />
-          <entry key="JAVA" value="493" />
+          <entry key="JAVA" value="1435" />
           <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
@@ -87,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/FilterEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
+            <state relative-caret-position="562">
               <caret line="46" column="49" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
             </state>
           </provider>
@@ -96,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/CategoryListItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+            <state relative-caret-position="335">
+              <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -106,16 +94,19 @@
         <entry file="file://$PROJECT_DIR$/src/sample/ProductListItem.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/ProductSearchController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1560">
-              <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
+            <state relative-caret-position="419">
+              <caret line="139" column="136" selection-start-line="139" selection-start-column="136" selection-end-line="139" selection-end-column="136" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/src/sample/CSS/Search_bar.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="10" column="37" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="37" />
+              <caret line="10" column="37" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -141,17 +132,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/CSS/main_theme.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/CSS/Header.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+            <state relative-caret-position="444">
+              <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -159,17 +141,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="jar://$PROJECT_DIR$/lib/projectbackend.jar!/se/chalmers/cse/dat216/project/IMatDataHandler.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6135">
-              <caret line="461" column="13" lean-forward="true" selection-start-line="461" selection-start-column="13" selection-end-line="461" selection-end-column="13" />
+            <state relative-caret-position="225">
+              <caret line="21" column="136" selection-start-line="21" selection-start-column="136" selection-end-line="21" selection-end-column="136" />
             </state>
           </provider>
         </entry>
@@ -183,12 +156,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/sample/FilterEngine.java" />
-        <option value="$PROJECT_DIR$/src/sample/ProductSearchController.java" />
         <option value="$PROJECT_DIR$/src/sample/CSS/scroll_pane.css" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/CSS/Search_bar.css" />
         <option value="$PROJECT_DIR$/src/sample/CSS/Header.css" />
         <option value="$PROJECT_DIR$/src/sample/CSS/main_theme.css" />
+        <option value="$PROJECT_DIR$/src/sample/CategoryListItem.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/sample/ProductSearchController.java" />
       </list>
     </option>
   </component>
@@ -204,6 +178,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,16 +222,29 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="projekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projekt" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="CSS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projekt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projekt" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="CSS" type="462c0819:PsiDirectoryNode" />
+              <item name="css_icons" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557255319916" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557271182205" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -317,9 +306,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="14" y="24" width="1405" height="876" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18195158" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1841526" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -363,41 +351,55 @@
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/FilterEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="46" column="49" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CategoryListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ProductSearchController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1560">
-          <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fonts/Roboto-Regular.ttf">
       <provider selected="true" editor-type-id="fontseditor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Search_bar.css">
+    <entry file="jar://$PROJECT_DIR$/lib/projectbackend.jar!/se/chalmers/cse/dat216/project/IMatDataHandler.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="37" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="37" />
+        <state relative-caret-position="707">
+          <caret line="461" column="13" selection-start-line="461" selection-start-column="13" selection-end-line="461" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/CSS/Header.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/main_theme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ProductListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CategoryListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/FilterEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="46" column="49" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="136" selection-start-line="21" selection-start-column="136" selection-end-line="21" selection-end-column="136" />
         </state>
       </provider>
     </entry>
@@ -408,31 +410,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/main_theme.css">
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Search_bar.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+        <state relative-caret-position="150">
+          <caret line="10" column="37" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ProductListItem.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/ProductSearchController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/projectbackend.jar!/se/chalmers/cse/dat216/project/IMatDataHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6135">
-          <caret line="461" column="13" lean-forward="true" selection-start-line="461" selection-start-column="13" selection-end-line="461" selection-end-column="13" />
+        <state relative-caret-position="419">
+          <caret line="139" column="136" selection-start-line="139" selection-start-column="136" selection-end-line="139" selection-end-column="136" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

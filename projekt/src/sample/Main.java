@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -13,10 +14,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("imat.fxml"));
         primaryStage.setTitle("IMat");
+        primaryStage.initStyle(StageStyle.TRANSPARENT);                     //gör titlebar (header) osynlig
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
-        Font.loadFont(getClass().getResourceAsStream("src/fonts/Roboto-Regular.ttf") , 14);
+
+        Font.loadFont(getClass().getResourceAsStream("src/fonts/Roboto-Regular.ttf") , 14);     //loadar font som finns i mappen "fonts"
     }
 
 
