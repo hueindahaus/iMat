@@ -1,3 +1,43 @@
+.biglabel{
+    -fx-font-family: 'Roboto-Regular';
+    -fx-font-size: 34px;
+    -fx-text-fill: #555555;
+}
+
+.mediumlabel{
+    -fx-font-family: 'Roboto-Regular';
+    -fx-font-size: 18px;
+    -fx-text-fill: #555555;
+}
+
+.smalllabel{
+    -fx-font-family: 'Roboto-Regular';
+    -fx-font-size: 12px;
+    -fx-text-fill: #555555;
+}
+
 .main{
     -fx-background-color: white;
+}
+
+.borderless{
+    -fx-background-color: white;
+    -fx-border-width: 0;
+}
+
+.sidebutton{
+    -fx-font-family: 'Roboto-Regular';
+    -fx-border-radius: 0px;
+    -fx-font-size: 18px;
+    -fx-text-fill: #555555;
+    -fx-background-color: white;
+    -fx-border-width: 0 0 0 3px;
+    -fx-border-color: white;
+}
+
+.sidebutton:hover{
+    -fx-border-radius: 0px;
+    -fx-border-color: #555555;
+    -fx-background-color: #555555;
+    -fx-opacity: 0.5;
 }

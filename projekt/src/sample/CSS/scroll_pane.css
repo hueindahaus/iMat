@@ -1,6 +1,6 @@
 .scroll-pane {
     -fx-border-width: 0 1 0 0;
-    -fx-border-color: #555555;
+    -fx-border-color: #white;
 }
 
 .scroll-pane .scroll-bar:vertical {
@@ -46,4 +46,5 @@
 .scroll-pane:hover .scroll-bar .thumb{
     -fx-background-color: #555555;
 }
+
 

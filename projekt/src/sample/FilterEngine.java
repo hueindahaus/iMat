@@ -28,18 +28,18 @@ public class FilterEngine { //filterEngine är till för att sortera/filtrera pr
         }
         return singleton;
     }
-    
+
 
     public List<Product> filter(){                          //Detta är huvudmetoden i FilterEngine. Den returnerar en lista med produkter som är filtrerad utifrån vad man söker på/kategori mm
         List<Product> productList = new ArrayList<>();
-        for(Product product: database.getProducts()){   //loopar genom
-            findMatches(productList,product);
+        for(Product product: database.getProducts()){   //loopar genom listan med alla produkter som finns i database
+            findMatches(productList,product);           //vi kallar på en metod som kollar om specifika förhållanden matchas dvs vilka produkter som ska filtreras bort och vilka som ska vara kvar
         }
         return productList;
     }
 
 
-    private void findMatches(List<Product> productList, Product product){
+    private void findMatches(List<Product> productList, Product product){               //metoden ser till så att
         if(product.getCategory().equals(searchCategory) || searchCategory == null) {    //om kategorin matchar eller om kategorin inte är vald så går produkten vidare till nästa if-sats
             if (searchIsEcological == product.isEcological() || searchIsEcological == false) {
                 if (searchPriceMax == 0 || isInSearchPriceRange(product)) {     //om maxpris = 0 eller om produkten är inom sökningen på prisintervallet så ska den gå vidare till nästa if-sats

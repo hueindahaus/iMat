@@ -39,10 +39,6 @@ public class ProductSearchController implements Initializable {
     @FXML
     private ScrollPane chartScrollPane; //ScrollPane för varukorgen
     @FXML
-    private ToggleButton chartButton;    //Toggle-knappen som visar varukorgen
-    @FXML
-    private ToggleButton categoryButton;  //Toggle-knappen som visar kategorifilterna
-    @FXML
     private TextField searchBar;        //Själva textrutan(sökrutan)
 
 
@@ -118,24 +114,8 @@ public class ProductSearchController implements Initializable {
             CategoryListItem categoryListItem = new CategoryListItem(category, this);
             categoryFlowPane.getChildren().add(categoryListItem);
         }
-        categoryButton.setSelected(true);
     }
 
-    @FXML
-    public void openChart(Event event){          //metod som visar varukorgen på vänstra sidan genom att sätta den framför kategorierna
-        chartScrollPane.toFront();
-        categoryScrollPane.toBack();
-        chartButton.setSelected(true);
-        categoryButton.setSelected(false);       //katogriknappen ska inte förbli selected
-    }
-
-    @FXML
-    public void openCategories(Event event){    //metod som visar kategorier på vänstra sidan genom att sätta den framför varukorgen
-        categoryScrollPane.toFront();
-        chartScrollPane.toBack();
-        categoryButton.setSelected(true);
-        chartButton.setSelected(false);      //varukorgknappen ska inte förbli selected
-    }
 
     public void filterByCategoryAndUpdate(ProductCategory category){
         searchBar.clear();                          //om man har text i sökrutan och trycker på en kategori ska texten i sökrutan försvinna och vi filtrerar endast utifrån vilken kategori som vi tryckt på
