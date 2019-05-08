@@ -20,6 +20,8 @@ public class ProductListItem extends AnchorPane {
     private Label listItemTitle;
     @FXML
     private ImageView listItemImage;
+    @FXML
+    private Label priceAndUnit;
 
 
     public ProductListItem(Product product, ProductSearchController parentController) {
@@ -35,8 +37,10 @@ public class ProductListItem extends AnchorPane {
 
         this.product = product;
         listItemImage.setImage(dataHandler.getFXImage(this.product));
-        listItemTitle.setText(this.product.getName());
+        listItemTitle.setText(product.getName());
+        priceAndUnit.setText(product.getPrice() + " " + product.getUnit());
         this.parentController=parentController;
+
     }
 
 

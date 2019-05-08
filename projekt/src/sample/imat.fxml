@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -49,7 +49,7 @@
                         <FlowPane fx:id="categoryFlowPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="610.0" prefWidth="255.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
                      </content>
                   </ScrollPane>
-                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="240.0" styleClass="biglabel" stylesheets="@CSS/main_theme.css" text="Kategorier">
+                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="240.0" styleClass="biglabel" stylesheets="@CSS/main_theme.css" text="Sortiment">
                      <font>
                         <Font name="Bodoni 72 Oldstyle Book" size="36.0" />
                      </font>
@@ -57,10 +57,42 @@
                   <Label layoutX="20.0" layoutY="12.0" styleClass="biglabel" text="Personligt" />
                   <Line endX="220.0" endY="56.0" opacity="0.3" startY="56.0" stroke="#555555" />
                   <Line endX="220.0" endY="284.0" opacity="0.3" startY="284.0" stroke="#555555" />
-                  <Button alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik" />
-                  <Button alignment="BASELINE_LEFT" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter" />
-                  <Button alignment="BASELINE_LEFT" layoutY="137.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor" />
-                  <Button alignment="BASELINE_LEFT" layoutY="177.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter" />
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_person_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_access_time_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="137.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_list_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="177.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_favorite_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
                </children>
             </AnchorPane>
          </children>

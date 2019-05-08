@@ -1,0 +1,35 @@
+.cardbase{
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
+.cardbase:hover{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.image{
+    -fx-border-radius: 4px;
+    -fx-background: 4px;
+}
+
+.label1{
+    -fx-font-family: "roboto";
+    -fx-font-size: 18px;
+}
+
+.label2{
+    -fx-font-family: "roboto";
+    -fx-font-size: 14px;
+}
+
+.chartButton{
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
+.chartButton:hover{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 6, 0, 0, 0);
+}

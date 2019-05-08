@@ -3,13 +3,13 @@ package sample;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -33,6 +33,8 @@ public class ProductSearchController implements Initializable {
     FilterEngine filterEngine = FilterEngine.getInstance();
     Map<String,ProductListItem> productListItemMap = new HashMap<String,ProductListItem>();
 
+    ToggleGroup toggleGroup = new ToggleGroup();    //togglegroup för knapparna på vänstra sidan
+
     @FXML
     private FlowPane mainFlowPane;      //Detta är huvudrutan i mitten, där varor tar plats
     @FXML
@@ -54,7 +56,8 @@ public class ProductSearchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb){
 
-
+        mainFlowPane.setHgap(28);
+        mainFlowPane.setVgap(28);
 
         for(Product product : database.getProducts()){                           //loopar igenom samtliga produkter som finns i appen
             ProductListItem productListItem = new ProductListItem(product, this);     //skapar ett listitem för varje produkt

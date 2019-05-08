@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickCategory" prefHeight="35.0" prefWidth="250.0" stylesheets="@CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickCategory" prefHeight="40.0" prefWidth="250.0" stylesheets="@CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="categoryButton" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#onClickCategory" prefHeight="35.0" prefWidth="250.0" styleClass="sidebutton" text="Title" />
+      <RadioButton fx:id="categoryButton" alignment="CENTER_LEFT" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onMouseClicked="#onClickCategory" prefHeight="40.0" prefWidth="250.0" styleClass="sidebutton" text="RadioButton" />
    </children>
 </fx:root>

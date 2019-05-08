@@ -2,8 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -17,7 +16,7 @@ public class CategoryListItem extends AnchorPane {
     IMatDataHandler dataHandler = IMatDataHandler.getInstance();
 
     @FXML
-    public Button categoryButton;
+    public RadioButton categoryButton;
 
 
 
@@ -37,6 +36,11 @@ public class CategoryListItem extends AnchorPane {
         categoryButton.setText(category.name());
 
         this.category = category;
+        categoryButton.setToggleGroup(parentController.toggleGroup);        //Lägger till varje kategoriknapp i en och samma togglegroup
+
+        categoryButton.getStyleClass().remove("radio-button");
+        categoryButton.getStyleClass().add("toggle-button");        //Gör så att det inte ser ut som en radiobutton, istället ser det ut som en togglebutton
+
     }
 
     public ProductCategory getCategory(){
@@ -48,5 +52,8 @@ public class CategoryListItem extends AnchorPane {
         parentController.filterByCategoryAndUpdate(category);
     }   //när man trycker på en kategori i listan så ska uppdatera produktrutan
 
+    public ToggleButton getCategoryButton(){
+        return categoryButton;
+    }
 
 }
