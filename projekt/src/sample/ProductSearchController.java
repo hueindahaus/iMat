@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -11,6 +12,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -40,9 +42,13 @@ public class ProductSearchController implements Initializable {
     @FXML
     private FlowPane categoryFlowPane;      //Detta är rutan till vänster där man filtrerar varor utifrån kategorier
     @FXML
+    private FlowPane cartFlowPane;          //Detta är varukorgens flowpane
+    @FXML
     private ScrollPane categoryScrollPane;  //ScrollPane för categoruFlowPane
     @FXML
-    private ScrollPane chartScrollPane; //ScrollPane för varukorgen
+    private ScrollPane cartScrollPane; //ScrollPane för varukorgen
+    @FXML
+    private ScrollPane mainScrollPane; //ScrollPane för huvudfönstret
     @FXML
     private TextField searchBar;        //Själva textrutan(sökrutan)
 
@@ -55,9 +61,36 @@ public class ProductSearchController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
-
         mainFlowPane.setHgap(28);
         mainFlowPane.setVgap(28);
+
+        categoryScrollPane.addEventFilter(ScrollEvent.SCROLL,new EventHandler<ScrollEvent>() {      //disablar horizontell scroll
+            @Override
+            public void handle(ScrollEvent event) {     //scrollevent
+                if (event.getDeltaX() != 0) {           //om eventets hastighet i x-led inte är 0
+                    event.consume();                    //så ska eventet consumas
+                }
+            }
+        });
+
+        cartScrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {         //disablar horizontell scroll
+            @Override
+            public void handle(ScrollEvent event) {     //scrollevent
+                if(event.getDeltaX() != 0){             //om eventets hastighet i x-led inte är 0
+                    event.consume();                    //så ska eventet consumas
+                }
+            }
+        });
+
+        mainScrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {         //disablar horizontell scroll
+            @Override
+            public void handle(ScrollEvent event) {     //scrollevent
+                if(event.getDeltaX() != 0){             //om eventets hastighet i x-led inte är 0
+                    event.consume();                    //så ska eventet consumas
+                }
+            }
+        });
+
 
         for(Product product : database.getProducts()){                           //loopar igenom samtliga produkter som finns i appen
             ProductListItem productListItem = new ProductListItem(product, this);     //skapar ett listitem för varje produkt
@@ -145,7 +178,9 @@ public class ProductSearchController implements Initializable {
         y = event.getSceneY();
     }
 
-
+    public void addToCartFlowPane(CartListItem item){
+        cartFlowPane.getChildren().add(item);
+    }
 
 
 

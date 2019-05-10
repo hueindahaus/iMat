@@ -13,7 +13,6 @@ import java.io.IOException;
 public class CategoryListItem extends AnchorPane {
 
     ProductSearchController parentController;
-    IMatDataHandler dataHandler = IMatDataHandler.getInstance();
 
     @FXML
     public RadioButton categoryButton;

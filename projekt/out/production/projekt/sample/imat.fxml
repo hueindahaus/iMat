@@ -18,7 +18,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <ScrollPane layoutX="260.0" layoutY="120.0" prefHeight="780.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
+            <ScrollPane fx:id="mainScrollPane" layoutX="260.0" layoutY="120.0" prefHeight="780.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
                <content>
                   <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css">
                      <padding>
@@ -26,19 +26,19 @@
                      </padding></FlowPane>
                </content>
             </ScrollPane>
-            <ScrollPane fx:id="chartScrollPane" layoutX="1180.0" prefHeight="900.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css">
+            <ScrollPane fx:id="cartScrollPane" layoutX="1180.0" layoutY="120.0" prefHeight="780.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css">
                <content>
-                  <FlowPane prefHeight="900.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                  <FlowPane fx:id="cartFlowPane" prefHeight="780.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
                </content>
             </ScrollPane>
-            <AnchorPane layoutX="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="920.0" styleClass="Header" stylesheets="@CSS/Header.css">
+            <AnchorPane layoutX="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="1180.0" styleClass="Header" stylesheets="@CSS/Header.css">
                <children>
-                  <ImageView fitHeight="120.0" fitWidth="920.0" pickOnBounds="true">
+                  <ImageView fitHeight="120.0" fitWidth="1180.0" pickOnBounds="true">
                      <image>
-                        <Image url="@CSS/css_backgrounds/produce-grocery-vegetables.jpg" />
+                        <Image url="@../images/good-food-box.jpg" />
                      </image>
                   </ImageView>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.7" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #555555;" width="920.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.7" stroke="#8d8d8d" strokeType="INSIDE" style="-fx-fill: #555555;" width="1180.0" />
                   <TextField fx:id="searchBar" layoutX="35.0" layoutY="35.0" prefHeight="50.0" prefWidth="600.0" promptText="Sök vara" styleClass="text-field" stylesheets="@CSS/Search_bar.css" />
                </children>
             </AnchorPane>
@@ -46,7 +46,7 @@
                <children>
                   <ScrollPane fx:id="categoryScrollPane" layoutY="290.0" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
                      <content>
-                        <FlowPane fx:id="categoryFlowPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="610.0" prefWidth="255.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                        <FlowPane fx:id="categoryFlowPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
                      </content>
                   </ScrollPane>
                   <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="240.0" styleClass="biglabel" stylesheets="@CSS/main_theme.css" text="Sortiment">

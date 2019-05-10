@@ -33,3 +33,8 @@
 .chartButton:hover{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 6, 0, 0, 0);
 }
+
+.inputTextField{
+    -fx-font-family: "roboto";
+    -fx-font-size: 14px
+}
