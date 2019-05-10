@@ -8,9 +8,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
@@ -22,6 +25,10 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     Product product;
     ProductSearchController parentController;
 
+    @FXML
+    private TabPane cardBack;
+    @FXML
+    private AnchorPane cardFront;
 
     @FXML
     private Label listItemTitle;
@@ -80,6 +87,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
             }
         });
 
+        listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
     }
 
     private int extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en int
@@ -116,5 +124,16 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     private void addToCart(){                   //metod som skapar ett nytt Cart-listitem och sedan använder parentcontrollerns metod "addToCartFlowPane" för att lägga det nyskapta objektet i flowpane
         CartListItem item = new CartListItem(product,currentAmount,parentController);
         parentController.addToCartFlowPane(item);
+    }
+
+    @FXML
+    private void flipCardToBack(){
+        cardBack.toFront();
+        System.out.println("Hello");
+    }
+
+    @FXML
+    private void flipCardToFront(){
+        cardFront.toFront();
     }
 }
