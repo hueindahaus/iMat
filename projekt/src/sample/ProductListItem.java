@@ -16,14 +16,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 
 public class ProductListItem extends AnchorPane {       //TODO att fixa så att om man redan har produkten i varukorgen så ska inte ett nytt CartListItem skapas, utan istället ska amount bara adderas
 
 
-    Product product;
+    ShoppingItem shoppingItem;
     ProductSearchController parentController;
+    int currentAmount = 1;
 
     @FXML
     private TabPane cardBack;
@@ -39,10 +41,9 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     @FXML
     private TextField inputAmount;
 
-    private int currentAmount = 1;
 
 
-    public ProductListItem(Product product, ProductSearchController parentController) {
+    public ProductListItem(ShoppingItem shoppingItem, ProductSearchController parentController) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -53,10 +54,10 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
             throw new RuntimeException(exception);
         }
 
-        this.product = product;
-        listItemImage.setImage(IMatDataHandler.getInstance().getFXImage(this.product));               //produktens bild hittas genom IMatDataHandler
-        listItemTitle.setText(product.getName());                                   //produktens titel
-        priceAndUnit.setText(product.getPrice() + " " + product.getUnit());         //exempelvis  34 kr/kg
+        this.shoppingItem = shoppingItem;
+        listItemImage.setImage(IMatDataHandler.getInstance().getFXImage(this.shoppingItem.getProduct()));               //produktens bild hittas genom IMatDataHandler
+        listItemTitle.setText(shoppingItem.getProduct().getName());                                   //produktens titel
+        priceAndUnit.setText(shoppingItem.getProduct().getPrice() + " " + shoppingItem.getProduct().getUnit());         //exempelvis  34 kr/kg
         displayToTextField();
         this.parentController=parentController;
 
@@ -117,23 +118,21 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     }
 
     private void displayToTextField(){
-        inputAmount.textProperty().setValue(String.valueOf(currentAmount) + " " + product.getUnitSuffix()); //sätter texten i inputrutan till t.ex. "1 kg"
+        inputAmount.textProperty().setValue(String.valueOf(currentAmount) + " " + shoppingItem.getProduct().getUnitSuffix()); //sätter texten i inputrutan till t.ex. "1 kg"
     }
 
     @FXML
-    private void addToCart(){                   //metod som skapar ett nytt Cart-listitem och sedan använder parentcontrollerns metod "addToCartFlowPane" för att lägga det nyskapta objektet i flowpane
-        CartListItem item = new CartListItem(product,currentAmount,parentController);
-        parentController.addToCartFlowPane(item);
+    private void onClickAddToCart(){      //när man trycker på varukorgsknappen i ett ProductListItem
+        parentController.getCart().addToCart(shoppingItem,currentAmount);
     }
 
     @FXML
-    private void flipCardToBack(){
+    private void flipCardToBack(){  //metod som flippar kort
         cardBack.toFront();
-        System.out.println("Hello");
     }
 
     @FXML
-    private void flipCardToFront(){
+    private void flipCardToFront(){  //metd som flippar tillbaka
         cardFront.toFront();
     }
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane prefHeight="280.0" prefWidth="240.0">
          <children>
@@ -54,7 +54,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#addToCart" prefHeight="34.0" prefWidth="68.0" styleClass="chartButton">
+                  <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="chartButton">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>

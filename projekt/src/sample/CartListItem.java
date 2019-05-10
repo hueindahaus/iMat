@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -20,9 +21,11 @@ public class CartListItem extends AnchorPane {
     ImageView image;
     @FXML
     Label title;
+    @FXML
+    TextField textField;
 
 
-    public CartListItem(Product product, int amount, ProductSearchController parentController){
+    public CartListItem(Product product, ProductSearchController parentController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -34,9 +37,16 @@ public class CartListItem extends AnchorPane {
         }
 
         this.parentController = parentController;
-        shoppingItem = new ShoppingItem(product,amount);
+        shoppingItem = new ShoppingItem(product);
         image.setImage(IMatDataHandler.getInstance().getFXImage(product));
         title.setText(product.getName());
+    }
 
+    public ShoppingItem getShoppingItem(){
+        return shoppingItem;
+    }
+
+    public void writeToTextField(String string){
+        textField.textProperty().setValue(string);
     }
 }

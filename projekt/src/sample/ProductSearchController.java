@@ -13,11 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.awt.*;
 import java.net.URL;
@@ -34,6 +36,7 @@ public class ProductSearchController implements Initializable {
     IMatDataHandler database = IMatDataHandler.getInstance();
     FilterEngine filterEngine = FilterEngine.getInstance();
     Map<String,ProductListItem> productListItemMap = new HashMap<String,ProductListItem>();
+    Cart cart = Cart.getInstance(this);
 
     ToggleGroup toggleGroup = new ToggleGroup();    //togglegroup för knapparna på vänstra sidan
 
@@ -42,11 +45,9 @@ public class ProductSearchController implements Initializable {
     @FXML
     private FlowPane categoryFlowPane;      //Detta är rutan till vänster där man filtrerar varor utifrån kategorier
     @FXML
-    private FlowPane cartFlowPane;          //Detta är varukorgens flowpane
+    private AnchorPane cartAnchorPane;
     @FXML
     private ScrollPane categoryScrollPane;  //ScrollPane för categoruFlowPane
-    @FXML
-    private ScrollPane cartScrollPane; //ScrollPane för varukorgen
     @FXML
     private ScrollPane mainScrollPane; //ScrollPane för huvudfönstret
     @FXML
@@ -61,6 +62,8 @@ public class ProductSearchController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        cartAnchorPane.getChildren().add(cart);
+
         mainFlowPane.setHgap(28);
         mainFlowPane.setVgap(28);
 
@@ -73,14 +76,6 @@ public class ProductSearchController implements Initializable {
             }
         });
 
-        cartScrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {         //disablar horizontell scroll
-            @Override
-            public void handle(ScrollEvent event) {     //scrollevent
-                if(event.getDeltaX() != 0){             //om eventets hastighet i x-led inte är 0
-                    event.consume();                    //så ska eventet consumas
-                }
-            }
-        });
 
         mainScrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {         //disablar horizontell scroll
             @Override
@@ -93,7 +88,7 @@ public class ProductSearchController implements Initializable {
 
 
         for(Product product : database.getProducts()){                           //loopar igenom samtliga produkter som finns i appen
-            ProductListItem productListItem = new ProductListItem(product, this);     //skapar ett listitem för varje produkt
+            ProductListItem productListItem = new ProductListItem(new ShoppingItem(product,1), this);     //skapar ett listitem för varje produkt
             productListItemMap.put(product.getName(),productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
         }
         update();
@@ -178,10 +173,9 @@ public class ProductSearchController implements Initializable {
         y = event.getSceneY();
     }
 
-    public void addToCartFlowPane(CartListItem item){
-        cartFlowPane.getChildren().add(item);
+    public Cart getCart(){
+        return cart;
     }
-
 
 
 

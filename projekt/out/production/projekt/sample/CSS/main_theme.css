@@ -18,6 +18,7 @@
 
 .main{
     -fx-background-color: white;
+    -fx-border-width: 1px;
 }
 
 .borderless{
