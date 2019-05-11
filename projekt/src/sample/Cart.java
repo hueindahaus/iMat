@@ -23,7 +23,7 @@ public class Cart extends AnchorPane {
     private static Cart singleton;
     ProductSearchController parentController;
     ShoppingCart shoppingCart = IMatDataHandler.getInstance().getShoppingCart();    //ShoppingCart är en singleton
-    Map<String,CartListItem> map = new HashMap<String,CartListItem>();
+    Map<String,CartListItem> cartListItemMap = new HashMap<String,CartListItem>();
 
     public static Cart getInstance(ProductSearchController parentController){      //Cart är en singleton (detta är som en constructor)
         if(singleton == null){
@@ -55,10 +55,6 @@ public class Cart extends AnchorPane {
             }
         });
 
-        for(Product product: IMatDataHandler.getInstance().getProducts()){                  //metod som instansierar alla möjliga cartListItem och lägger dem i en map
-            CartListItem item = new CartListItem(product, parentController);
-            map.put(product.getName(), item);
-        }
 
         shoppingCart.addShoppingCartListener(new ShoppingCartListener() {           //lägger till en listener på ShoppingCart - Metoden ska updatera flowPane varje gång ShoppingCart ändras
             @Override
@@ -72,9 +68,9 @@ public class Cart extends AnchorPane {
     private void updateFlowPane(){                      //uppdaterar flowpane med endast de produkter som finns i ShoppingCart (uppdaterar även antal av varje produkt)
         flowPane.getChildren().clear();
         for(ShoppingItem item : shoppingCart.getItems()){
-            CartListItem cartListItem = map.get(item.getProduct().getName());
+            CartListItem cartListItem = cartListItemMap.get(item.getProduct().getName());
             flowPane.getChildren().add(cartListItem);
-            cartListItem.writeToTextField(String.valueOf((int)item.getAmount()));        //TODO möjligen ändra int till double! skriver ut antalet till textField i cartListItem
+            cartListItem.updateTextField();
         }
     }
 
@@ -87,6 +83,25 @@ public class Cart extends AnchorPane {
             shoppingItem.setAmount(amount);     //om produkten inte finns i varukorgen ska lägga till den i ShoppingCart och även sätta antalet som vi har valt
         }
         updateFlowPane();
+    }
+
+    public void increaseAmount(ShoppingItem shoppingItem){
+        shoppingItem.setAmount(shoppingItem.getAmount() + 1);
+        updateFlowPane();
+    }
+
+    public void decreaseAmount(ShoppingItem shoppingItem){
+        if(shoppingItem.getAmount() > 1) {                          //om antalet är mer än 1 ska antalet subtraheras med 1
+            shoppingItem.setAmount(shoppingItem.getAmount() - 1);
+        } else {                                                    //om antalet är 1 eller mindre ska item:et bara försvinna ur varukorgen
+            shoppingCart.removeItem(shoppingItem);
+        }
+        updateFlowPane();
+        System.out.println("hello");
+    }
+
+    public Map<String,CartListItem> getCartListItemMap(){
+        return cartListItemMap;
     }
 
 }

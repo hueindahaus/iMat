@@ -17,6 +17,7 @@ public class CartListItem extends AnchorPane {
     ShoppingItem shoppingItem;
     ProductSearchController parentController;
 
+
     @FXML
     ImageView image;
     @FXML
@@ -25,7 +26,7 @@ public class CartListItem extends AnchorPane {
     TextField textField;
 
 
-    public CartListItem(Product product, ProductSearchController parentController){
+    public CartListItem(ShoppingItem shoppingItem, ProductSearchController parentController, Cart cart){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -37,16 +38,28 @@ public class CartListItem extends AnchorPane {
         }
 
         this.parentController = parentController;
-        shoppingItem = new ShoppingItem(product);
-        image.setImage(IMatDataHandler.getInstance().getFXImage(product));
-        title.setText(product.getName());
+        this.shoppingItem = shoppingItem;
+        image.setImage(IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct()));
+        title.setText(shoppingItem.getProduct().getName());
+
     }
 
     public ShoppingItem getShoppingItem(){
         return shoppingItem;
     }
 
-    public void writeToTextField(String string){
-        textField.textProperty().setValue(string);
+    public void updateTextField(){          //sätter strängen i textField till t.ex.: "1 kg"
+        textField.textProperty().setValue(String.valueOf(shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnitSuffix());
+    }
+
+    @FXML
+    public void addOneToAmount(){                                   //
+        parentController.getCart().increaseAmount(shoppingItem);
+    }
+
+    @FXML
+    public void subtractOneFromAmount(){
+        parentController.getCart().decreaseAmount(shoppingItem);
+
     }
 }
