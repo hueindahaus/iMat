@@ -23,6 +23,11 @@
     -fx-font-size: 14px;
 }
 
+.descFont{
+    -fx-font-family: "roboto";
+    -fx-font-size: 13px;
+}
+
 .chartButton{
     -fx-background-color: white;
     -fx-background-radius: 4px;

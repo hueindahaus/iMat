@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,7 +27,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     ProductSearchController parentController;
 
     @FXML
-    private TabPane cardBack;
+    private AnchorPane cardBack;
     @FXML
     private AnchorPane cardFront;
 
@@ -38,6 +39,10 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     private Label priceAndUnit;
     @FXML
     private TextField inputAmount;
+    @FXML
+    private TextArea cardDescription;
+    @FXML
+    private TextArea cardIngredients;
 
     private int currentAmount = 1;
 
@@ -59,6 +64,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         priceAndUnit.setText(product.getPrice() + " " + product.getUnit());         //exempelvis  34 kr/kg
         displayToTextField();
         this.parentController=parentController;
+        populateBack();
 
 
         inputAmount.setOnAction(new EventHandler<ActionEvent>() {       //actionhandler som agerar när man trycker enter i en textfield
@@ -88,6 +94,17 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         });
 
         listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
+    }
+
+    private void populateBack(){
+        StringBuilder desc = new StringBuilder();
+        desc.append(" " + product.getName() + "\n\nEkologisk: ");
+        if(product.isEcological())
+            desc.append("Ja\n");
+        else
+            desc.append("Nej\n");
+        desc.append("Svensk: Kanske");
+        cardDescription.appendText(desc.toString());
     }
 
     private int extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en int
@@ -129,7 +146,6 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     @FXML
     private void flipCardToBack(){
         cardBack.toFront();
-        System.out.println("Hello");
     }
 
     @FXML

@@ -38,4 +38,14 @@
 .sidebutton:hover{
     -fx-border-radius: 0px;
     -fx-border-color: #555555;
+    -fx-background-color: #99E9F2;
 }
+
+.sidebutton:selected{
+    -fx-background-color: #32A6A6;
+}
+.lightBlue{ -fx-background-color: #99E9F2; }
+.darkerBlue{ -fx-background-color: #32A6A6; }
+.lightOrange { -fx-background-color: #F2B705; }
+.darkerOrange { -fx-background-color: #F28705; }
+.darkOrange { -fx-background-color: #F27405; }

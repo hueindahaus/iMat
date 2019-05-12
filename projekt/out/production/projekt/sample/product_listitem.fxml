@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,12 +18,34 @@
    <children>
       <StackPane prefHeight="280.0" prefWidth="240.0">
          <children>
-            <TabPane fx:id="cardBack" onMouseClicked="#flipCardToFront" prefHeight="280.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Beskrivning" />
-                <Tab text="Ingredienser" />
-              </tabs>
-            </TabPane>
+            <AnchorPane fx:id="cardBack" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
+               <children>
+                  <TabPane prefHeight="251.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Beskrivning">
+                           <content>
+                              <TextArea fx:id="cardDescription" editable="false" prefHeight="215.0" prefWidth="194.0" styleClass="descFont" text="Beskrivning av produkten" wrapText="true" />
+                           </content>
+                        </Tab>
+                      <Tab text="Ingredienser">
+                           <content>
+                              <TextArea fx:id="cardIngredients" prefHeight="200.0" prefWidth="200.0" styleClass="descFont" wrapText="true" />
+                           </content>
+                        </Tab>
+                    </tabs>
+                     <styleClass>
+                        <String fx:value="cardbase" />
+                        <String fx:value="label2" />
+                     </styleClass>
+                  </TabPane>
+                  <Button layoutY="251.0" mnemonicParsing="false" onMouseClicked="#flipCardToFront" prefHeight="30.0" prefWidth="240.0" text="Vänd tillbaka">
+                     <styleClass>
+                        <String fx:value="chartButton" />
+                        <String fx:value="label2" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="cardFront" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
                <children>
                   <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
