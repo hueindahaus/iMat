@@ -1,6 +1,6 @@
 .Header {
-    -fx-background-image: url("css_backgrounds/produce-grocery-vegetables.jpg");    //backgrundsbilden i header
+    /*-fx-background-image: url("css_backgrounds/produce-grocery-vegetables.jpg");    //backgrundsbilden i header*/
     -fx-background-position: 0px 0px;
     -fx-background-repeat: no-repeat;
-    -fx-background-radius: 28px;
+  /*  -fx-background-radius: 28px;*/
 }

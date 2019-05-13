@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -20,34 +22,62 @@
          <children>
             <ScrollPane fx:id="mainScrollPane" layoutX="260.0" layoutY="120.0" prefHeight="780.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
                <content>
-                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css">
+                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" stylesheets="@CSS/main_theme.css">
                      <padding>
                         <Insets top="20.0" />
-                     </padding></FlowPane>
+                     </padding>
+                     <styleClass>
+                        <String fx:value="main" />
+                        <String fx:value="lightestBlue" />
+                     </styleClass></FlowPane>
                </content>
             </ScrollPane>
-            <ScrollPane fx:id="cartScrollPane" layoutX="1180.0" layoutY="120.0" prefHeight="780.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css">
+            <ScrollPane fx:id="cartScrollPane" layoutX="1180.0" layoutY="120.0" prefHeight="780.0" prefWidth="260.0" styleClass="lightBlue">
                <content>
-                  <FlowPane fx:id="cartFlowPane" prefHeight="780.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                  <FlowPane fx:id="cartFlowPane" prefHeight="780.0" prefWidth="260.0" stylesheets="@CSS/main_theme.css">
+                     <styleClass>
+                        <String fx:value="borderless" />
+                        <String fx:value="lightBlue" />
+                     </styleClass></FlowPane>
                </content>
+               <stylesheets>
+                  <URL value="@CSS/scroll_pane.css" />
+                  <URL value="@CSS/main_theme.css" />
+               </stylesheets>
             </ScrollPane>
-            <AnchorPane layoutX="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="1180.0" styleClass="Header" stylesheets="@CSS/Header.css">
+            <AnchorPane layoutX="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="1180.0" stylesheets="@CSS/Header.css">
                <children>
-                  <ImageView fitHeight="120.0" fitWidth="1180.0" pickOnBounds="true">
+                  <ImageView fitHeight="120.0" fitWidth="1180.0" opacity="0.0" pickOnBounds="true" styleClass="darkerBlue">
                      <image>
                         <Image url="@../images/good-food-box.jpg" />
                      </image>
                   </ImageView>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.7" stroke="#8d8d8d" strokeType="INSIDE" style="-fx-fill: #555555;" width="1180.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.0" stroke="#8d8d8d" strokeType="INSIDE" style="-fx-fill: #555555;" styleClass="darkerBlue" width="1180.0" />
                   <TextField fx:id="searchBar" layoutX="35.0" layoutY="35.0" prefHeight="50.0" prefWidth="600.0" promptText="Sök vara" styleClass="text-field" stylesheets="@CSS/Search_bar.css" />
                </children>
+               <styleClass>
+                  <String fx:value="Header" />
+                  <String fx:value="darkerBlue" />
+               </styleClass>
             </AnchorPane>
-            <AnchorPane prefHeight="880.0" prefWidth="260.0" styleClass="main" stylesheets="@CSS/main_theme.css">
+            <AnchorPane prefHeight="880.0" prefWidth="260.0" stylesheets="@CSS/main_theme.css">
                <children>
-                  <ScrollPane fx:id="categoryScrollPane" layoutY="290.0" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
+                  <ScrollPane fx:id="categoryScrollPane" layoutY="290.0" prefHeight="610.0" prefWidth="260.0">
                      <content>
-                        <FlowPane fx:id="categoryFlowPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                        <FlowPane fx:id="categoryFlowPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="610.0" prefWidth="260.0" stylesheets="@CSS/main_theme.css">
+                           <styleClass>
+                              <String fx:value="borderless" />
+                              <String fx:value="lightBlue" />
+                           </styleClass></FlowPane>
                      </content>
+                     <stylesheets>
+                        <URL value="@CSS/scroll_pane.css" />
+                        <URL value="@CSS/main_theme.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="borderless" />
+                        <String fx:value="lightBlue" />
+                     </styleClass>
                   </ScrollPane>
                   <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="240.0" styleClass="biglabel" stylesheets="@CSS/main_theme.css" text="Sortiment">
                      <font>
@@ -57,7 +87,7 @@
                   <Label layoutX="20.0" layoutY="12.0" styleClass="biglabel" text="Personligt" />
                   <Line endX="220.0" endY="56.0" opacity="0.3" startY="56.0" stroke="#555555" />
                   <Line endX="220.0" endY="284.0" opacity="0.3" startY="284.0" stroke="#555555" />
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter">
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" text="Användaruppgifter">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -65,8 +95,12 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <styleClass>
+                        <String fx:value="sidebutton" />
+                        <String fx:value="lightBlue" />
+                     </styleClass>
                   </ToggleButton>
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik">
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" text="Historik">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -74,8 +108,12 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <styleClass>
+                        <String fx:value="sidebutton" />
+                        <String fx:value="lightBlue" />
+                     </styleClass>
                   </ToggleButton>
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="137.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor">
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="137.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" text="Inköpslistor">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -83,8 +121,12 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <styleClass>
+                        <String fx:value="sidebutton" />
+                        <String fx:value="lightBlue" />
+                     </styleClass>
                   </ToggleButton>
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="177.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter">
+                  <ToggleButton alignment="BASELINE_LEFT" layoutY="177.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" text="Favoriter">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -92,8 +134,16 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <styleClass>
+                        <String fx:value="sidebutton" />
+                        <String fx:value="lightBlue" />
+                     </styleClass>
                   </ToggleButton>
                </children>
+               <styleClass>
+                  <String fx:value="main" />
+                  <String fx:value="lightBlue" />
+               </styleClass>
             </AnchorPane>
          </children>
       </AnchorPane>

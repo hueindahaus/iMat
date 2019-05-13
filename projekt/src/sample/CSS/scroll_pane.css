@@ -1,33 +1,33 @@
 .scroll-pane {
     -fx-border-width: 0 1 0 0;
-    -fx-border-color: white;
+    -fx-border-color: #99E9F2;
 }
 
 .scroll-pane .scroll-bar:vertical {
-    -fx-background-color: white;
+    -fx-background-color: #99E9F2;
     -fx-background-radius: 0;
 }
 
 .scroll-pane .scroll-bar:horizontal {
-    -fx-background-color: white;
+    -fx-background-color: #99E9F2;
     -fx-background-radius: 0;
 }
 
 .scroll-pane .scroll-bar:vertical .track{
-    -fx-background-color: white;
-    -fx-border-color: white;
+    -fx-background-color: #99E9F2;
+    -fx-border-color: #99E9F2;
     -fx-background-radius: 0em;
     -fx-border-radius: 2em;
 }
 
 .scroll-pane .scroll-bar:horizontal .decrement-button{
-    -fx-background-color: white;
+    -fx-background-color: #99E9F2;
     -fx-background-radius: 0em;
     -fx-padding: 0 0 10 0;
 }
 
 .scroll-pane .scroll-bar:vertical .decrement-button{
-    -fx-background-color: white;
+    -fx-background-color: #99E9F2;
     -fx-background-radius: 0em;
     -fx-padding: 0 0 10 0;
 }
@@ -38,7 +38,7 @@
 }
 
 .scroll-pane .scroll-bar .thumb{
-    -fx-background-color: white;
+    -fx-background-color: #99E9F2;
     -fx-background-insets: 2,0,0;
     -fx-background-radius: 1em;
 }
