@@ -99,8 +99,8 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
 
     private void populateBack(){
         StringBuilder desc = new StringBuilder();
-        desc.append(" " + product.getName() + "\n\nEkologisk: ");
-        if(product.isEcological())
+        desc.append(" " + shoppingItem.getProduct().getName() + "\n\nEkologisk: ");
+        if(shoppingItem.getProduct().isEcological())
             desc.append("Ja\n");
         else
             desc.append("Nej\n");
