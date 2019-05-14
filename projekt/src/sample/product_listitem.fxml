@@ -1,50 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="cardbase" width="240.0" />
-      <ImageView fitHeight="34.0" fitWidth="34.0" onMouseClicked="#addOne" pickOnBounds="true" preserveRatio="true" x="106.0" y="232.0">
-         <image>
-            <Image url="@../icons/baseline_add_circle_black_18dp.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="34.0" onMouseClicked="#subtractOne" pickOnBounds="true" preserveRatio="true" x="12.0" y="232.0">
-         <image>
-            <Image url="@../icons/baseline_remove_circle_black_18dp.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="image" />
-      <Label fx:id="listItemTitle" alignment="CENTER" layoutX="20.0" layoutY="180.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" styleClass="label1" text="Title">
-         <font>
-            <Font name="Helvetica Neue" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="priceAndUnit" alignment="CENTER" layoutX="20.0" layoutY="200.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" styleClass="label2" text="Label" />
-      <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#addToCart" prefHeight="34.0" prefWidth="68.0" styleClass="chartButton">
-         <graphic>
-            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/baseline_shopping_cart_black_18dp.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <TextField fx:id="inputAmount" layoutX="46.0" layoutY="232.0" prefHeight="34.0" prefWidth="60.0" styleClass="inputTextField" />
+      <StackPane prefHeight="280.0" prefWidth="240.0">
+         <children>
+            <AnchorPane fx:id="cardBack" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
+               <children>
+                  <TabPane prefHeight="251.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Beskrivning">
+                           <content>
+                              <TextArea fx:id="cardDescription" editable="false" prefHeight="215.0" prefWidth="194.0" styleClass="descFont" text="Beskrivning av produkten" wrapText="true" />
+                           </content>
+                        </Tab>
+                      <Tab text="Ingredienser">
+                           <content>
+                              <TextArea fx:id="cardIngredients" prefHeight="200.0" prefWidth="200.0" styleClass="descFont" wrapText="true" />
+                           </content>
+                        </Tab>
+                    </tabs>
+                     <styleClass>
+                        <String fx:value="cardbase" />
+                        <String fx:value="label2" />
+                     </styleClass>
+                  </TabPane>
+                  <Button layoutY="251.0" mnemonicParsing="false" onMouseClicked="#flipCardToFront" prefHeight="30.0" prefWidth="240.0" text="Vänd tillbaka">
+                     <styleClass>
+                        <String fx:value="chartButton" />
+                        <String fx:value="label2" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="cardFront" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
+               <children>
+                  <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Label fx:id="listItemTitle" alignment="CENTER" layoutX="20.0" layoutY="180.0" onMouseClicked="#flipCardToBack" prefHeight="30.0" prefWidth="200.0" styleClass="label1" text="Title">
+                     <font>
+                        <Font name="Helvetica Neue" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <TextField fx:id="inputAmount" layoutX="46.0" layoutY="232.0" prefHeight="34.0" prefWidth="60.0" styleClass="inputTextField" />
+                  <Label fx:id="priceAndUnit" alignment="CENTER" layoutX="20.0" layoutY="200.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" styleClass="label2" text="Label" />
+                  <ImageView fitHeight="34.0" fitWidth="34.0" onMouseClicked="#subtractOne" pickOnBounds="true" preserveRatio="true" x="12.0" y="232.0">
+                     <image>
+                        <Image url="@../icons/baseline_remove_circle_black_18dp.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="34.0" fitWidth="34.0" onMouseClicked="#addOne" pickOnBounds="true" preserveRatio="true" x="106.0" y="232.0">
+                     <image>
+                        <Image url="@../icons/baseline_add_circle_black_18dp.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#addToCart" prefHeight="34.0" prefWidth="68.0" styleClass="chartButton">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_shopping_cart_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </fx:root>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -14,19 +15,23 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
+<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="@CSS/main_theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <ScrollPane fx:id="mainScrollPane" layoutX="260.0" layoutY="120.0" prefHeight="780.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
+            <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="260.0" layoutY="120.0" prefHeight="780.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
                <content>
-                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css">
+                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" stylesheets="@CSS/main_theme.css">
                      <padding>
                         <Insets top="20.0" />
-                     </padding></FlowPane>
+                     </padding>
+                     <styleClass>
+                        <String fx:value="lightestBlue" />
+                        <String fx:value="main" />
+                     </styleClass></FlowPane>
                </content>
             </ScrollPane>
-            <ScrollPane fx:id="cartScrollPane" layoutX="1180.0" layoutY="120.0" prefHeight="780.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css">
+            <ScrollPane fx:id="cartScrollPane" hbarPolicy="NEVER" layoutX="1180.0" layoutY="120.0" prefHeight="780.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css">
                <content>
                   <FlowPane fx:id="cartFlowPane" prefHeight="780.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
                </content>
@@ -44,7 +49,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="880.0" prefWidth="260.0" styleClass="main" stylesheets="@CSS/main_theme.css">
                <children>
-                  <ScrollPane fx:id="categoryScrollPane" layoutY="290.0" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
+                  <ScrollPane fx:id="categoryScrollPane" hbarPolicy="NEVER" layoutY="290.0" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
                      <content>
                         <FlowPane fx:id="categoryFlowPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="610.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
                      </content>
