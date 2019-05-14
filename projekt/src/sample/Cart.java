@@ -97,7 +97,6 @@ public class Cart extends AnchorPane {
             shoppingCart.removeItem(shoppingItem);
         }
         updateFlowPane();
-        System.out.println("hello");
     }
 
     public Map<String,CartListItem> getCartListItemMap(){

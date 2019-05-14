@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,10 +14,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -46,6 +51,11 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     @FXML
     private TextArea cardIngredients;
 
+    Image checkmark = new Image("images/checkmark.png");
+
+
+
+    Timeline fadeCheckmark;
 
 
     public ProductListItem(ShoppingItem shoppingItem, ProductSearchController parentController) {
@@ -95,6 +105,17 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         });
 
         listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
+
+
+        fadeCheckmark = new Timeline(                                                                       //animation när man lägger till en produkt i varukorgen
+                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.imageProperty(), checkmark)),
+                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.opacityProperty(), 0)),
+                new KeyFrame(Duration.seconds(2), new KeyValue(listItemImage.opacityProperty(), 1)),
+                new KeyFrame(Duration.seconds(1.8), new KeyValue(listItemImage.imageProperty(), IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct())))
+
+        );
+
+
     }
 
     private void populateBack(){
@@ -141,6 +162,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     @FXML
     private void onClickAddToCart(){      //när man trycker på varukorgsknappen i ett ProductListItem
         parentController.getCart().addToCart(shoppingItem,currentAmount);
+        fadeCheckmark.play();
     }
 
     @FXML
