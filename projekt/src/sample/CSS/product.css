@@ -37,6 +37,11 @@
 
 .chartButton:hover{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 6, 0, 0, 0);
+    -fx-background-color: #F2B705;
+}
+
+.chartButton:pressed{
+    -fx-background-color: #F29305;
 }
 
 .inputTextField{

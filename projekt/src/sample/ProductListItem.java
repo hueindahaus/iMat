@@ -97,6 +97,8 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
             }
         });
 
+        listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());
+
         favouriteIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

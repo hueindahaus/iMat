@@ -39,10 +39,13 @@
 .sidebutton:hover{
     -fx-border-radius: 0px;
     -fx-border-color: #555555;
-    -fx-background-color: #99E9F2;
+    -fx-background-color: #5FD3D3;
 }
 
 .sidebutton:selected{
+    -fx-border-radius: 0px;
+    -fx-border-color: #555555;
+    -fx-text-fill: #1A1A1A;
     -fx-background-color: #32A6A6;
 }
 .lightestBlue{ -fx-background-color: #D0ECEF; }
