@@ -8,9 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -55,9 +56,16 @@ public class ProductSearchController implements Initializable {
 
     double x,y;
 
+    @FXML
+    private RadioButton favorit;
+    @FXML
+    private RadioButton listButton;
+    @FXML
+    private RadioButton userButton;
+    @FXML
+    private RadioButton historyButton;
 
-
-
+    private FavouriteManager favouriteManager = new FavouriteManager();
 
 
     @Override
@@ -89,7 +97,7 @@ public class ProductSearchController implements Initializable {
 
         for(Product product : database.getProducts()){//loopar igenom samtliga produkter som finns i appen
            ShoppingItem shoppingItem = new ShoppingItem(product,1);
-            ProductListItem productListItem = new ProductListItem(shoppingItem, this);     //skapar ett ProductListItem för varje produkt
+            ProductListItem productListItem = new ProductListItem(shoppingItem, this,favouriteManager);     //skapar ett ProductListItem för varje produkt
             CartListItem cartListItem = new CartListItem(shoppingItem, this, getCart());        //skapar ett CartListItem för varje produkt
             cart.getCartListItemMap().put(product.getName(),cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
             productListItemMap.put(product.getName(),productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
@@ -128,20 +136,41 @@ public class ProductSearchController implements Initializable {
                 }
             }
         });
+
+        implementSideBar();
     }
 
 
+    private void implementSideBar(){
+        fixRadioButtonStyle(favorit);
+        fixRadioButtonStyle(listButton);
+        fixRadioButtonStyle(historyButton);
+        fixRadioButtonStyle(userButton);
+    }
 
+    private void fixRadioButtonStyle(RadioButton button){
+        button.getStyleClass().remove("radio-button");
+        button.getStyleClass().add("toggle-button");
+        button.setToggleGroup(toggleGroup);
+    }
 
-
+    @FXML
+    public void displayFavourites(){
+        mainFlowPane.getChildren().clear();
+        for(String name: favouriteManager.getFavourites()){
+            if(productListItemMap.containsKey(name)){
+                mainFlowPane.getChildren().add(productListItemMap.get(name));
+            }
+        }
+    }
 
     public void update(){                                                       //uppdaterar mainFlowPane (uppdaterar produktrutan, basically)
         mainFlowPane.getChildren().clear();                                     //clearar mainFlowPane
         List<Product> filteredProductList = filterEngine.filter();      //vi får en lista med de varor som ska visas i rutan från filterEngine
 
         for(Product product: filteredProductList){
-        ProductListItem listItem = productListItemMap.get(product.getName());   //vi extraherar productListem från vår "Map". Detta gör det möjligt att inte behöva göra nya ProductListItems varje gång vi uppdaterar vyn
-        mainFlowPane.getChildren().add(listItem);
+            ProductListItem listItem = productListItemMap.get(product.getName());   //vi extraherar productListem från vår "Map". Detta gör det möjligt att inte behöva göra nya ProductListItems varje gång vi uppdaterar vyn
+            mainFlowPane.getChildren().add(listItem);
         }
 
     }

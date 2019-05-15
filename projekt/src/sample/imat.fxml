@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -62,7 +63,7 @@
                   <Label layoutX="20.0" layoutY="12.0" styleClass="biglabel" text="Personligt" />
                   <Line endX="220.0" endY="56.0" opacity="0.3" startY="56.0" stroke="#555555" />
                   <Line endX="220.0" endY="284.0" opacity="0.3" startY="284.0" stroke="#555555" />
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter">
+                  <RadioButton fx:id="userButton" alignment="BASELINE_LEFT" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,8 +71,8 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </ToggleButton>
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik">
+                  </RadioButton>
+                  <RadioButton fx:id="historyButton" alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,8 +80,8 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </ToggleButton>
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="137.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor">
+                  </RadioButton>
+                  <RadioButton fx:id="listButton" alignment="BASELINE_LEFT" layoutY="137.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -88,8 +89,8 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </ToggleButton>
-                  <ToggleButton alignment="BASELINE_LEFT" layoutY="177.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter">
+                  </RadioButton>
+                  <RadioButton fx:id="favorit" alignment="BASELINE_LEFT" layoutY="177.0" mnemonicParsing="false" onMousePressed="#displayFavourites" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -97,7 +98,7 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </ToggleButton>
+                  </RadioButton>
                </children>
             </AnchorPane>
          </children>

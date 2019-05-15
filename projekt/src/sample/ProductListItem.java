@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -45,10 +46,12 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     private TextArea cardDescription;
     @FXML
     private TextArea cardIngredients;
+    @FXML
+    private ImageView favouriteIcon;
 
 
 
-    public ProductListItem(ShoppingItem shoppingItem, ProductSearchController parentController) {
+    public ProductListItem(ShoppingItem shoppingItem, ProductSearchController parentController, FavouriteManager favouriteManager) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -94,7 +97,20 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
             }
         });
 
-        listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
+        favouriteIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(favouriteManager.isFavourite(shoppingItem.getProduct())){
+                    favouriteManager.removeFavourite(shoppingItem.getProduct());
+                    favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_border_black_18dp.png").toExternalForm()));
+                } else{
+                    favouriteManager.addFavourite(shoppingItem.getProduct());
+                    favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_black_18dp.png").toExternalForm()));
+                }
+            }
+        });  //lägger till en listener till bilden på kortet
+
+
     }
 
     private void populateBack(){
