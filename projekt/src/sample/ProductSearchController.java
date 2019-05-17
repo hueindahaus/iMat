@@ -66,7 +66,7 @@ public class ProductSearchController implements Initializable {
     private RadioButton historyButton;
 
     private FavouriteManager favouriteManager = new FavouriteManager();
-
+    private HistoryManager historyManager;
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -137,6 +137,7 @@ public class ProductSearchController implements Initializable {
             }
         });
 
+        historyManager = new HistoryManager(productListItemMap, mainFlowPane);
         implementSideBar();
     }
 
@@ -146,6 +147,8 @@ public class ProductSearchController implements Initializable {
         fixRadioButtonStyle(listButton);
         fixRadioButtonStyle(historyButton);
         fixRadioButtonStyle(userButton);
+
+        historyButton.setOnMouseClicked(e -> historyManager.getHistory());
     }
 
     private void fixRadioButtonStyle(RadioButton button){
