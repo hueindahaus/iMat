@@ -20,7 +20,7 @@ public class HistoryItem extends AnchorPane {
     @FXML
     private FlowPane orderMain;
 
-    public HistoryItem(Map<String, ProductListItem> productListItemMap, Order order){
+    public HistoryItem(Map<String, ProductListItem> productListItemMap, Order order, ProductSearchController parent){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("history_item.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -31,8 +31,9 @@ public class HistoryItem extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        orderDate.setText(order.getDate().toString());
-        orderNumber.setText(Integer.toString(order.getOrderNumber()));
-        order.getItems().forEach(e -> orderMain.getChildren().add(productListItemMap.get(e.getProduct().getName())));
+        orderDate.setText("Datum: " + order.getDate().toString());
+        orderNumber.setText("Ordernummer: " + Integer.toString(order.getOrderNumber()));
+        //order.getItems().forEach(e -> orderMain.getChildren().add(productListItemMap.get(e.getProduct().getName())));
+        order.getItems().forEach(e -> orderMain.getChildren().add(new ProductListItem(e,parent)));
     }
 }

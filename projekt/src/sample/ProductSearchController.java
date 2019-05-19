@@ -95,7 +95,7 @@ public class ProductSearchController implements Initializable {
 
 
         for(Product product : database.getProducts()){//loopar igenom samtliga produkter som finns i appen
-           ShoppingItem shoppingItem = new ShoppingItem(product,1);
+            ShoppingItem shoppingItem = new ShoppingItem(product,1);
             ProductListItem productListItem = new ProductListItem(shoppingItem, this);     //skapar ett ProductListItem för varje produkt
             CartListItem cartListItem = new CartListItem(shoppingItem, this, getCart());        //skapar ett CartListItem för varje produkt
             cart.getCartListItemMap().put(product.getName(),cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
@@ -136,9 +136,22 @@ public class ProductSearchController implements Initializable {
             }
         });
 
-        historyManager = new HistoryManager(productListItemMap, mainFlowPane);
+        historyManager = new HistoryManager(productListItemMap, mainFlowPane,this);
         implementSideBar();
 
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(87)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(30)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(77)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(8)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(34)));
+        database.placeOrder();
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(87)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(30)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(77)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(8)));
+        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(34)));
+        database.placeOrder();
+        System.out.println(database.getOrders().size());
     }
 
 

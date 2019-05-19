@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="880.0" stylesheets="@CSS/main_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HistoryItem">
+<fx:root prefHeight="400.0" prefWidth="880.0" style="-fx-background-color: #FFFFFF;" stylesheets="@CSS/main_theme.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="orderNumber" layoutX="14.0" layoutY="14.0" styleClass="mediumlabel" text="Order Number" />
-      <Label fx:id="orderDate" layoutX="216.0" layoutY="14.0" styleClass="mediumlabel" text="Date" />
-      <ScrollPane layoutY="50.0" prefHeight="350.0" prefWidth="880.0" vbarPolicy="NEVER">
+      <Label fx:id="orderDate" layoutX="268.0" layoutY="14.0" styleClass="mediumlabel" text="Date" />
+      <ScrollPane hbarPolicy="NEVER" layoutY="50.0" prefHeight="350.0" prefWidth="880.0">
          <content>
-            <FlowPane fx:id="orderMain" prefHeight="350.0" prefWidth="880.0" />
+            <FlowPane fx:id="orderMain" alignment="TOP_CENTER" prefHeight="350.0" prefWidth="880.0" />
          </content>
       </ScrollPane>
    </children>
-</AnchorPane>
+</fx:root>

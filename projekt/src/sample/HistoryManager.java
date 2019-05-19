@@ -14,14 +14,17 @@ public class HistoryManager {
 
     public FlowPane mainFlowPane;
 
-    public HistoryManager(Map<String, ProductListItem> productListItemMap, FlowPane mainFlowPane){
+    ProductSearchController parent;
+
+    public HistoryManager(Map<String, ProductListItem> productListItemMap, FlowPane mainFlowPane, ProductSearchController parent){
         this.productListItemMap = productListItemMap;
         this.mainFlowPane = mainFlowPane;
+        this.parent = parent;
     }
 
     public void getHistory(){
         mainFlowPane.getChildren().clear();
        // database.getOrders().forEach(e -> e.getItems().forEach(f -> mainFlowPane.getChildren().add(productListItemMap.get(f.getProduct().getName())))); // fyller fönstret med alla objekts som har köpts lite meme kommer ändra snart
-        database.getOrders().forEach(e -> mainFlowPane.getChildren().add(new HistoryItem(productListItemMap,e)));
+        database.getOrders().forEach(e -> mainFlowPane.getChildren().add(new HistoryItem(productListItemMap,e,parent)));
     }
 }
