@@ -65,7 +65,6 @@ public class ProductSearchController implements Initializable {
     @FXML
     private RadioButton historyButton;
 
-    private FavouriteManager favouriteManager = new FavouriteManager();
     private HistoryManager historyManager;
 
     @Override
@@ -97,7 +96,7 @@ public class ProductSearchController implements Initializable {
 
         for(Product product : database.getProducts()){//loopar igenom samtliga produkter som finns i appen
            ShoppingItem shoppingItem = new ShoppingItem(product,1);
-            ProductListItem productListItem = new ProductListItem(shoppingItem, this,favouriteManager);     //skapar ett ProductListItem för varje produkt
+            ProductListItem productListItem = new ProductListItem(shoppingItem, this);     //skapar ett ProductListItem för varje produkt
             CartListItem cartListItem = new CartListItem(shoppingItem, this, getCart());        //skapar ett CartListItem för varje produkt
             cart.getCartListItemMap().put(product.getName(),cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
             productListItemMap.put(product.getName(),productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
@@ -139,6 +138,7 @@ public class ProductSearchController implements Initializable {
 
         historyManager = new HistoryManager(productListItemMap, mainFlowPane);
         implementSideBar();
+
     }
 
 
@@ -160,9 +160,9 @@ public class ProductSearchController implements Initializable {
     @FXML
     public void displayFavourites(){
         mainFlowPane.getChildren().clear();
-        for(String name: favouriteManager.getFavourites()){
-            if(productListItemMap.containsKey(name)){
-                mainFlowPane.getChildren().add(productListItemMap.get(name));
+        for(Product product: database.favorites()){
+            if(productListItemMap.containsKey(product.getName())){
+                mainFlowPane.getChildren().add(productListItemMap.get(product.getName()));
             }
         }
     }

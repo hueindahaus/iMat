@@ -51,7 +51,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
 
 
 
-    public ProductListItem(ShoppingItem shoppingItem, ProductSearchController parentController, FavouriteManager favouriteManager) {
+    public ProductListItem(ShoppingItem shoppingItem, ProductSearchController parentController) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -102,11 +102,12 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         favouriteIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(favouriteManager.isFavourite(shoppingItem.getProduct())){
-                    favouriteManager.removeFavourite(shoppingItem.getProduct());
+                IMatDataHandler dataHandler = IMatDataHandler.getInstance();
+                if(dataHandler.isFavorite(shoppingItem.getProduct())){
+                    dataHandler.removeFavorite(shoppingItem.getProduct());
                     favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_border_black_18dp.png").toExternalForm()));
                 } else{
-                    favouriteManager.addFavourite(shoppingItem.getProduct());
+                    dataHandler.addFavorite(shoppingItem.getProduct());
                     favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_black_18dp.png").toExternalForm()));
                 }
             }
