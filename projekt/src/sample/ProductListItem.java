@@ -105,15 +105,22 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
                 IMatDataHandler dataHandler = IMatDataHandler.getInstance();
                 if(dataHandler.isFavorite(shoppingItem.getProduct())){
                     dataHandler.removeFavorite(shoppingItem.getProduct());
-                    favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_border_black_18dp.png").toExternalForm()));
+
                 } else{
                     dataHandler.addFavorite(shoppingItem.getProduct());
-                    favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_black_18dp.png").toExternalForm()));
                 }
+                changeFavIcon();
             }
         });  //lägger till en listener till bilden på kortet
 
+        changeFavIcon();
+    }
 
+    public void changeFavIcon(){
+        if(!IMatDataHandler.getInstance().isFavorite(shoppingItem.getProduct()))
+            favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_border_black_18dp.png").toExternalForm()));
+        else
+            favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_black_18dp.png").toExternalForm()));
     }
 
     private void populateBack(){

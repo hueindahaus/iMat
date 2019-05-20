@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 public class Main extends Application {
 
@@ -26,6 +27,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> IMatDataHandler.getInstance().shutDown(), "Shutdown-thread"));
         launch(args);
     }
 }

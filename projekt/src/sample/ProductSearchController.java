@@ -31,9 +31,6 @@ import java.util.ResourceBundle;
 
 public class ProductSearchController implements Initializable {
 
-
-
-
     IMatDataHandler database = IMatDataHandler.getInstance();
     FilterEngine filterEngine = FilterEngine.getInstance();
     Map<String,ProductListItem> productListItemMap = new HashMap<String,ProductListItem>();
@@ -138,20 +135,6 @@ public class ProductSearchController implements Initializable {
 
         historyManager = new HistoryManager(productListItemMap, mainFlowPane,this);
         implementSideBar();
-
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(87)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(30)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(77)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(8)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(34)));
-        database.placeOrder();
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(87)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(30)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(77)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(8)));
-        database.getShoppingCart().addItem(new ShoppingItem(database.getProduct(34)));
-        database.placeOrder();
-        System.out.println(database.getOrders().size());
     }
 
 
@@ -180,6 +163,7 @@ public class ProductSearchController implements Initializable {
         for(Product product: database.favorites()){
             if(productListItemMap.containsKey(product.getName())){
                 mainFlowPane.getChildren().add(productListItemMap.get(product.getName()));
+                productListItemMap.get(product.getName()).changeFavIcon();
             }
         }
     }
@@ -191,6 +175,7 @@ public class ProductSearchController implements Initializable {
         for(Product product: filteredProductList){
             ProductListItem listItem = productListItemMap.get(product.getName());   //vi extraherar productListem från vår "Map". Detta gör det möjligt att inte behöva göra nya ProductListItems varje gång vi uppdaterar vyn
             mainFlowPane.getChildren().add(listItem);
+            listItem.changeFavIcon();
         }
 
     }
