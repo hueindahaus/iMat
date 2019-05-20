@@ -6,7 +6,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,7 +23,7 @@
                <content>
                   <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="780.0" prefWidth="920.0" rowValignment="TOP" stylesheets="@CSS/main_theme.css">
                      <padding>
-                        <Insets top="20.0" />
+                        <Insets bottom="20.0" top="20.0" />
                      </padding>
                      <styleClass>
                         <String fx:value="lightestBlue" />
