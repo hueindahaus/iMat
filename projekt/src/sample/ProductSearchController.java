@@ -162,6 +162,10 @@ public class ProductSearchController implements Initializable {
         fixRadioButtonStyle(userButton);
 
         historyButton.setOnMouseClicked(e -> historyManager.getHistory());
+        userButton.setOnMouseClicked(event -> {
+          mainFlowPane.getChildren().clear();
+          mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
+        });
     }
 
     private void fixRadioButtonStyle(RadioButton button){
