@@ -18,7 +18,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1180.0" stylesheets="@CSS/payment_wizard.css" type="StackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane fx:id="customerInfoPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;">
+      <AnchorPane fx:id="customerInfoPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
             <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="262.0" prefWidth="280.0" styleClass="regular-label" text="Förnamn:" />
             <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="342.0" prefWidth="280.0" styleClass="regular-label" text="Efternamn:" />
@@ -68,7 +68,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paymentInfoPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;">
+      <AnchorPane fx:id="paymentInfoPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
             <Button layoutX="830.0" layoutY="760.0" mnemonicParsing="false" onMouseClicked="#overviewPaneToFront" prefHeight="60.0" prefWidth="184.0" text="Bekräfta">
                <font>
@@ -147,7 +147,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="deliveryInfoPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;">
+      <AnchorPane fx:id="deliveryInfoPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
             <Label fx:id="deliveryInfoErrorLabel" layoutX="455.0" layoutY="784.0" text="Fyll i samtliga uppgifter innan du fortsätter!" textFill="RED" visible="false">
                <font>
@@ -180,7 +180,7 @@
             </TextField>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="overviewPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;">
+      <AnchorPane fx:id="overviewPane" prefHeight="900.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
             <Label layoutX="362.0" layoutY="100.0" styleClass="regular-label" text="Tack för att du väljer IMat! " />
             <ScrollPane hbarPolicy="NEVER" layoutX="140.0" layoutY="160.0" prefHeight="450.0" prefWidth="450.0">
@@ -194,27 +194,47 @@
                </font>
             </Button>
             <Label layoutX="620.0" layoutY="240.0" styleClass="regular-label" text="Orderinformation" />
-            <Label fx:id="overviewNameLabel" layoutX="620.0" layoutY="300.0" text="namn">
+            <Label fx:id="overviewNameLabel" layoutX="760.0" layoutY="300.0" prefWidth="300.0" text="namn">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="overviewDeliveryPlaceLabel" layoutX="620.0" layoutY="330.0" text="leveransaddress &amp; postnummer">
+            <Label fx:id="overviewDeliveryPlaceLabel" layoutX="760.0" layoutY="330.0" prefWidth="300.0" text="leveransaddress &amp; postnummer">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="overviewOrdernumberLabel" layoutX="620.0" layoutY="360.0" text="ordernummer:">
+            <Label fx:id="overviewOrdernumberLabel" layoutX="760.0" layoutY="360.0" prefWidth="300.0" text="ordernummer:">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="overviewTimeLabel" layoutX="620.0" layoutY="390.0" text="tid">
+            <Label fx:id="overviewTimeLabel" layoutX="760.0" layoutY="390.0" prefWidth="300.0" text="tid">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="totalPriceLabel" layoutX="400.0" layoutY="630.0" text="totala priset">
+            <Label fx:id="totalPriceLabel" alignment="CENTER_RIGHT" layoutX="390.0" layoutY="630.0" prefWidth="200.0" text="totala priset">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="300.0" prefWidth="160.0" text="Mottagare:">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="330.0" prefWidth="160.0" text="Leveransadress:">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="360.0" prefWidth="160.0" text="Ordernummer:">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="390.0" prefWidth="160.0" text="Ordertid:">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>

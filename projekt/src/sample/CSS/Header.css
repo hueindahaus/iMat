@@ -1,3 +1,10 @@
+* {
+    -black: #000000;
+    -white: #FFFFFF;
+    -primary: #263238;
+    -secondary: #7cb342;
+}
+
 .Header {
     /*-fx-background-image: url("css_backgrounds/produce-grocery-vegetables.jpg");    //backgrundsbilden i header*/
     -fx-background-position: 0px 0px;

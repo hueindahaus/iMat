@@ -1,62 +1,94 @@
+* {
+    -black: #000000;
+    -white: #FFFFFF;
+    -primary: #263238;
+    -primary-dark: #000a12;
+    -primary-light: #4f5b62;
+    -secondary: #7cb342;
+    -secondary-dark: #4b830d;
+    -secondary-light: #aee571;
+}
+
+
+
 .biglabel{
     -fx-font-family: 'Roboto-Regular';
     -fx-font-size: 34px;
-    -fx-text-fill: #555555;
+    -fx-text-fill: -black;
 }
 
 .biglabelWhite{
     -fx-font-family: 'Roboto-Regular';
     -fx-font-size: 34px;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: -white;
 }
 
 .mediumlabel{
     -fx-font-family: 'Roboto-Regular';
     -fx-font-size: 18px;
-    -fx-text-fill: #555555;
+    -fx-text-fill: -black;
 }
 
 .smalllabel{
     -fx-font-family: 'Roboto-Regular';
     -fx-font-size: 12px;
-    -fx-text-fill: #555555;
+    -fx-text-fill: -black;
 }
 
 .main{
-    -fx-background-color: #99E9F2;
+    -fx-background-color: -white;
     -fx-border-width: 1px;
 }
 
 .borderless{
-    -fx-background-color: #99E9F2;
+    -fx-background-color: -white;
     -fx-border-width: 0;
 }
 
 .sidebutton{
     -fx-font-family: 'Roboto-Regular';
     -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
     -fx-font-size: 18px;
-    -fx-text-fill: #555555;
-    -fx-background-color: #99E9F2;
+    -fx-text-fill: -black;
+    -fx-background-color: #FFFFFF;
     -fx-border-width: 0 0 0 3px;
-    -fx-border-color: #99E9F2;
+    -fx-border-color: -white;
 }
 
 .sidebutton:hover{
     -fx-border-radius: 0px;
-    -fx-border-color: #555555;
-    -fx-background-color: #99E9F2;
+    -fx-border-color: -secondary-dark;
+    -fx-background-color: -secondary-light;
 }
 
 .sidebutton:selected{
-    -fx-background-color: #32A6A6;
+    -fx-background-color: -secondary;
+    -fx-border-color: -secondary-dark;
+    -fx-text-fill: -white;
 }
 
 .to-payment-button{
-    -fx-background-color: #555555;
+    -fx-background-color: -secondary;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
     -fx-font-size: 18px;
     -fx-font-family: 'Roboto-Regular';
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: -white;
+}
+
+.to-payment-button:hover{
+    -fx-background-color: -secondary-light;
+    -fx-text-fill: -black;
+}
+
+.to-payment-button:pressed{
+    -fx-background-color: -secondary-dark;
+    -fx-text-fill: -white;
+}
+
+.leftAnchorPane{
+    -fx-background-color: -primary;
 }
 
 .lightestBlue{ -fx-background-color: #D0ECEF; }

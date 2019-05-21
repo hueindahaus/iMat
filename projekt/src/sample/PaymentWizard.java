@@ -251,10 +251,10 @@ public class PaymentWizard extends StackPane {
     @FXML private Label totalPriceLabel;
 
     private void fillOrderOverviewInfo(){
-        overviewNameLabel.setText("Mottagare:   " + customer.getFirstName() + " " + customer.getLastName());
-        overviewDeliveryPlaceLabel.setText("Leveransadress:   " + customer.getPostAddress() + "   " + "(" + customer.getPostCode() +")" );
-        overviewTimeLabel.setText("Ordertid:   "  + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + "   " + "(" + LocalDate.now().toString() + ")");
-        overviewOrdernumberLabel.setText("Order#:   " + String.valueOf(IMatDataHandler.getInstance().getOrders().get(IMatDataHandler.getInstance().getOrders().size() - 1).getOrderNumber()));
+        overviewNameLabel.setText(customer.getFirstName() + " " + customer.getLastName());
+        overviewDeliveryPlaceLabel.setText(customer.getPostAddress() + " " + "(" + customer.getPostCode() +")" );
+        overviewTimeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + "(" + LocalDate.now().toString() + ")");
+        overviewOrdernumberLabel.setText("#" + String.valueOf(IMatDataHandler.getInstance().getOrders().get(IMatDataHandler.getInstance().getOrders().size() - 1).getOrderNumber()));
     }
 
     public void fillOrderFlowPane(){

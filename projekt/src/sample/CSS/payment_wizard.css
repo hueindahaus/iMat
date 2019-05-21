@@ -78,3 +78,8 @@
 .scroll-pane:hover .scroll-bar .thumb{
     -fx-background-color: #555555;
 }
+
+.with-border{
+    -fx-border-width: 0.5px;
+    -fx-border-color: #757575;
+}
