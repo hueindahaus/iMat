@@ -98,8 +98,8 @@ public class ProductSearchController implements Initializable {
             cart.getCartListItemMap().put(product.getName(),cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
             productListItemMap.put(product.getName(),productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
         }
-        update();
-
+        //update();
+        mainFlowPane.getChildren().add(new MainPage(productListItemMap));
 
         populateCategoryView();
 
