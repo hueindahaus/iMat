@@ -60,6 +60,12 @@ public class Cart extends AnchorPane {
             @Override
             public void shoppingCartChanged(CartEvent cartEvent) {
                 updateFlowPane();
+
+                if(!shoppingCart.getItems().isEmpty()){                         //om det finns saker i varukorgen ska man kunna ta sig till betalning. Annars så ska man inte kunna göra det
+                    parentController.disableCheckOutButton(false);
+                } else if(shoppingCart.getItems().isEmpty()){
+                    parentController.disableCheckOutButton(true);
+                }
             }
         });
 

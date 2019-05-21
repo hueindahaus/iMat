@@ -1,25 +1,30 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ProductCategory;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import javafx.util.Duration;
+import se.chalmers.cse.dat216.project.*;
 
 import java.awt.*;
 import java.net.URL;
@@ -52,9 +57,26 @@ public class ProductSearchController implements Initializable {
     private ScrollPane mainScrollPane; //ScrollPane för huvudfönstret
     @FXML
     private TextField searchBar;        //Själva textrutan(sökrutan)
+    @FXML
+    private ImageView cartButton;       //knappen för att gömma/visa varukorgen
+    @FXML
+    private Label cartLabel;            //Texten "Varukorg" uppe o högre hörnet
+    @FXML
+    private AnchorPane paymentAnchorPane;   //Anchorpane för alla betalningsvyerna
+    @FXML
+    private Button checkoutButton;       //Knappen i nedre högra hörnet för att ta sig till betalning/avsluta betalning
 
     double x,y;
 
+    private boolean cartIsHidden = false;
+    private boolean isCheckoutMode = false;
+
+    Timeline hideCart;
+    Timeline showCart;
+
+    PaymentWizard paymentWizard = new PaymentWizard(this);
+
+    Customer customer = IMatDataHandler.getInstance().getCustomer();
 
 
 
@@ -62,7 +84,17 @@ public class ProductSearchController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        cartAnchorPane.getChildren().add(cart);
+
+        customer.setFirstName("Rune");
+        customer.setLastName("Andersson");
+        customer.setEmail("Rune.Andersson@hotmail.com");
+        customer.setAddress("Stationsvägen 123");
+        customer.setMobilePhoneNumber("070-1234567");
+        customer.setPhoneNumber("040-123456");
+        customer.setPostAddress(customer.getAddress());
+        customer.setPostCode("12345");
+
+        cartAnchorPane.getChildren().add(cart); //lägger till klassen "Cart" som en child i den Anchorpane som avser varukorgen
 
         mainFlowPane.setHgap(28);
         mainFlowPane.setVgap(28);
@@ -128,6 +160,27 @@ public class ProductSearchController implements Initializable {
                 }
             }
         });
+
+
+        hideCart = new Timeline(                                                                                        //animation för när man gömmer varukorgen
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartAnchorPane.layoutXProperty(), 1440)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(mainScrollPane.prefWidthProperty(), 1180)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 1180)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(),1120)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1180))
+        );
+        showCart = new Timeline(                                                                                         //animation för när man tar fram varukorgen
+                new KeyFrame(Duration.seconds(0.5),new KeyValue(cartAnchorPane.layoutXProperty(), 1180)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(mainScrollPane.prefWidthProperty(), 920)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 920)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 946)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1006))
+        );
+
+        paymentAnchorPane.getChildren().add(paymentWizard);
+
+        disableCheckOutButton(true);                //när man startar programmet ska man inte kunna ta sig till betalning utan att ha lagt produkter i varukorgen
+
     }
 
 
@@ -178,6 +231,39 @@ public class ProductSearchController implements Initializable {
 
     public Cart getCart(){
         return cart;
+    }
+
+
+
+    @FXML
+    public void toggleCart(){
+        if(!cartIsHidden && !isCheckoutMode) {             //om varukorgen inte är gömd(dvs syns) och om vi inte är i betalningsläge så ska vi gömma den (detta sker genom att sätta varukorgen på ett x-värde där den inte syns)
+            hideCart.play();
+            cartIsHidden = true;
+        } else{                        //om varukorgen är gömd så ska vi visa den
+            showCart.play();
+            cartIsHidden = false;
+        }
+    }
+
+    @FXML
+    public void checkoutModeSwitch(){
+        if(!isCheckoutMode) {
+            paymentAnchorPane.toFront();
+            paymentWizard.customerInfoPaneToFront();
+            checkoutButton.textProperty().setValue("Avbryt Köp");   //ändrar text på button
+            isCheckoutMode = true;
+
+        } else {
+            paymentAnchorPane.toBack();
+            checkoutButton.textProperty().setValue("Till Betalning");
+            isCheckoutMode = false;
+        }
+    }
+
+
+    public void disableCheckOutButton(boolean value){
+        checkoutButton.setDisable(value);
     }
 
 

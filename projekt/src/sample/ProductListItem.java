@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -19,11 +20,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class ProductListItem extends AnchorPane {       //TODO att fixa så att om man redan har produkten i varukorgen så ska inte ett nytt CartListItem skapas, utan istället ska amount bara adderas
@@ -51,11 +54,14 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     @FXML
     private TextArea cardIngredients;
 
-    Image checkmark = new Image("images/checkmark.png");
+    Image checkmark = new Image("images/cart48.png");
 
 
 
-    Timeline fadeCheckmark;
+    Timeline transitionToCartIcon;
+    Timeline transitionToImage;
+
+    SequentialTransition transition;
 
 
     public ProductListItem(ShoppingItem shoppingItem, ProductSearchController parentController) {
@@ -107,13 +113,25 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
 
 
-        fadeCheckmark = new Timeline(                                                                       //animation när man lägger till en produkt i varukorgen
+        transitionToCartIcon = new Timeline(                                                                       //del 1 av animation när man lägger till en produkt i varukorgen
                 new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.imageProperty(), checkmark)),
                 new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.opacityProperty(), 0)),
-                new KeyFrame(Duration.seconds(2), new KeyValue(listItemImage.opacityProperty(), 1)),
-                new KeyFrame(Duration.seconds(1.8), new KeyValue(listItemImage.imageProperty(), IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct())))
-
+                new KeyFrame(Duration.seconds(2), new KeyValue(listItemImage.opacityProperty(), 1))
         );
+
+        transitionToImage = new Timeline(                                                                           //del 2 av animation när man lägger till en produkt i varukorgen
+                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.opacityProperty(), 0)),
+                new KeyFrame(Duration.seconds(2), new KeyValue(listItemImage.opacityProperty(), 1)),
+                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.imageProperty(), IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct())))
+        );
+
+        transition = new SequentialTransition(transitionToCartIcon,transitionToImage);      //lägger ihop de 2 olika timelines till en en timeline är de spelas efter varandra
+
+
+
+
+
+
 
 
     }
@@ -162,7 +180,8 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     @FXML
     private void onClickAddToCart(){      //när man trycker på varukorgsknappen i ett ProductListItem
         parentController.getCart().addToCart(shoppingItem,currentAmount);
-        fadeCheckmark.play();
+        transition.play();
+
     }
 
     @FXML

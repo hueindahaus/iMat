@@ -4,12 +4,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="260.0" stylesheets="@CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="260.0" stylesheets="@CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane fx:id="scrollPane" prefHeight="780.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css" AnchorPane.topAnchor="0.0">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="740.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css" AnchorPane.topAnchor="0.0">
          <content>
-            <FlowPane fx:id="flowPane" prefHeight="780.0" prefWidth="260.0" styleClass="borderless" />
+            <FlowPane fx:id="flowPane" prefHeight="740.0" prefWidth="260.0" styleClass="borderless" />
          </content>
       </ScrollPane>
    </children>

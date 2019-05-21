@@ -14,13 +14,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <StackPane prefHeight="280.0" prefWidth="240.0">
+      <StackPane prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders">
          <children>
-            <AnchorPane fx:id="cardBack" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
+            <AnchorPane fx:id="cardBack" prefHeight="280.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
                <children>
-                  <TabPane prefHeight="251.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane prefHeight="250.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Beskrivning">
                            <content>
@@ -38,7 +38,7 @@
                         <String fx:value="label2" />
                      </styleClass>
                   </TabPane>
-                  <Button layoutY="251.0" mnemonicParsing="false" onMouseClicked="#flipCardToFront" prefHeight="30.0" prefWidth="240.0" text="Vänd tillbaka">
+                  <Button layoutY="250.0" mnemonicParsing="false" onMouseClicked="#flipCardToFront" prefHeight="30.0" prefWidth="240.0" text="Vänd tillbaka">
                      <styleClass>
                         <String fx:value="chartButton" />
                         <String fx:value="label2" />
@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="cardFront" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
+            <AnchorPane fx:id="cardFront" prefHeight="280.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
                <children>
                   <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
                      <cursor>
@@ -78,7 +78,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="chartButton">
+                  <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="cartButton">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>

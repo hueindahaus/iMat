@@ -1,3 +1,14 @@
+.regular-label{
+    -fx-font-family: "Roboto-Regular";
+    -fx-text-fill: #000000;
+    -fx-font-size: 36px;
+}
+
+.date-picker{
+    -fx-font-size: 36px;
+}
+
+
 .scroll-pane {
     -fx-border-width: 0 1 0 0;
     -fx-border-color: transparent;
@@ -5,17 +16,17 @@
 }
 
 .scroll-pane .scroll-bar:vertical {
-    -fx-background-color: transparent;   //ändra denna om man vill få bort den vita randen i scrollbar
+    -fx-background-color: #FFFFFF;   //ändra denna om man vill få bort den vita randen i scrollbar
     -fx-background-radius: 0;
 
 }
 
 
 .scroll-bar{
-   -fx-background-color: transparent;
+   -fx-background-color: #FFFFFF;
    -fx-background-radius: 2em;
-   -fx-focus-color: transparent;
-   -fx-faint-focus-color: transparent;
+   -fx-focus-color: #FFFFFF;
+   -fx-faint-focus-color: #FFFFFF;
 }
 
 
@@ -23,7 +34,7 @@
 
 .scroll-bar:horizontal .increment-button ,
 .scroll-bar:horizontal .decrement-button {
-    -fx-background-color :transparent;
+    -fx-background-color :#FFFFFF;
     -fx-background-radius : 0.0em;
     -fx-padding :0.0 0.0 10.0 0.0;
 
@@ -32,7 +43,7 @@
 .scroll-bar:vertical .track-background,
 .scroll-bar:horizontal .track-background {
     -fx-opacity: 0;
-   -fx-background-color: transparent;
+   -fx-background-color: #FFFFFF;
    -fx-background-insets: 0;
    -fx-background-radius: 2em;
 }
@@ -59,7 +70,7 @@
 
 
 .scroll-pane .scroll-bar:vertical .thumb{
-    -fx-background-color: transparent;
+    -fx-background-color: #FFFFFF;
     -fx-background-insets: 2,0,0;
     -fx-background-radius: 1em;
 }
@@ -67,10 +78,3 @@
 .scroll-pane:hover .scroll-bar .thumb{
     -fx-background-color: #555555;
 }
-
-.with-border{
-    -fx-border-width: 1px;
-    -fx-border-color: #cccccc;
-}
-
-

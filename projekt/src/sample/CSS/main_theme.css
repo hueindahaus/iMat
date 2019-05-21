@@ -4,6 +4,12 @@
     -fx-text-fill: #555555;
 }
 
+.biglabelWhite{
+    -fx-font-family: 'Roboto-Regular';
+    -fx-font-size: 34px;
+    -fx-text-fill: #FFFFFF;
+}
+
 .mediumlabel{
     -fx-font-family: 'Roboto-Regular';
     -fx-font-size: 18px;
@@ -45,6 +51,14 @@
 .sidebutton:selected{
     -fx-background-color: #32A6A6;
 }
+
+.to-payment-button{
+    -fx-background-color: #555555;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Roboto-Regular';
+    -fx-text-fill: #FFFFFF;
+}
+
 .lightestBlue{ -fx-background-color: #D0ECEF; }
 .lightBlue{ -fx-background-color: #99E9F2; }
 .darkerBlue{ -fx-background-color: #32A6A6; }
