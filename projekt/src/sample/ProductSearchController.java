@@ -99,7 +99,6 @@ public class ProductSearchController implements Initializable {
             productListItemMap.put(product.getName(),productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
         }
         //update();
-        mainFlowPane.getChildren().add(new MainPage(productListItemMap));
 
         populateCategoryView();
 
@@ -135,6 +134,8 @@ public class ProductSearchController implements Initializable {
 
         historyManager = new HistoryManager(productListItemMap, mainFlowPane,this);
         implementSideBar();
+        mainFlowPane.getChildren().clear();
+        mainFlowPane.getChildren().add(new MainPage(productListItemMap));
     }
 
 
