@@ -54,7 +54,7 @@ public class HistoryItem extends AnchorPane {
             historyScroll.setPrefHeight(350);
             expandButton.setImage(new Image(getClass().getResource("../icons/baseline_expand_more_black_18dp.png").toExternalForm()));
         } else{
-            int height = ((order.getItems().size()%3) + 1)*300 + 20;
+            int height = ((order.getItems().size()/3) + 1)*300 + 20;
             historyScroll.setPrefHeight(height);
             expandButton.setImage(new Image(getClass().getResource("../icons/baseline_expand_less_black_18dp.png").toExternalForm()));
         }

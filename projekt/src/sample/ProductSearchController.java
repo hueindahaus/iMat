@@ -87,6 +87,9 @@ public class ProductSearchController implements Initializable {
     @FXML
     private RadioButton historyButton;
 
+    @FXML
+    private ImageView homeButton;
+
     private HistoryManager historyManager;
 
     @Override
@@ -190,7 +193,7 @@ public class ProductSearchController implements Initializable {
         historyManager = new HistoryManager(productListItemMap, mainFlowPane,this);
         implementSideBar();
         mainFlowPane.getChildren().clear();
-        mainFlowPane.getChildren().add(new MainPage(productListItemMap));
+        mainFlowPane.getChildren().add(new MainPage(productListItemMap,this));
     }
 
 
@@ -204,6 +207,10 @@ public class ProductSearchController implements Initializable {
         userButton.setOnMouseClicked(event -> {
           mainFlowPane.getChildren().clear();
           mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
+        });
+        homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event ->{
+           mainFlowPane.getChildren().clear();
+            mainFlowPane.getChildren().add(new MainPage(productListItemMap,this));
         });
     }
 

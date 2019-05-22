@@ -17,8 +17,6 @@ public class CategoryListItem extends AnchorPane {
     @FXML
     public RadioButton categoryButton;
 
-
-
     private ProductCategory category;
 
     public CategoryListItem(ProductCategory category,ProductSearchController parentController ) {
@@ -32,7 +30,7 @@ public class CategoryListItem extends AnchorPane {
             throw new RuntimeException(exception);
         }
         this.parentController = parentController;
-        categoryButton.setText(category.name());
+        categoryButton.setText(tranlateCategoryName(category));
 
         this.category = category;
         categoryButton.setToggleGroup(parentController.toggleGroup);        //Lägger till varje kategoriknapp i en och samma togglegroup
@@ -54,4 +52,52 @@ public class CategoryListItem extends AnchorPane {
         return categoryButton;
     }
 
+    public String tranlateCategoryName(ProductCategory category){
+        switch (category.name()){
+            case "POD":
+                return "Böner, ärtor och linser";
+            case "BREAD":
+                return "Bröd";
+            case "BERRY":
+                return "Bär";
+            case "CITRUS_FRUIT":
+                return "Citrusfrukter";
+            case "HOT_DRINKS":
+                return "Varma drycker";
+            case "COLD_DRINKS":
+                return "Kalla drycker";
+            case "EXOTIC_FRUIT":
+                return "Exotiska frukter";
+            case "FISH":
+                return "Fisk";
+            case "VEGETABLE_FRUIT":
+                return "Frukt och grönt";
+            case "CABBAGE":
+                return "Kål";
+            case "MEAT":
+                return "Kött";
+            case "DAIRIES":
+                return "Mejeri";
+            case "MELONS":
+                return "Meloner";
+            case "FLOUR_SUGAR_SALT":
+                return "Mjöl, socker och salt";
+            case "NUTS_AND_SEEDS":
+                return "Nötter och frön";
+            case "PASTA":
+                return "Pasta";
+            case "POTATO_RICE":
+                return "Potatis och ris";
+            case "ROOT_VEGETABLE":
+                return "Rotfrukter";
+            case "FRUIT":
+                return "Frukt";
+            case "SWEET":
+                return "Godis";
+            case "HERB":
+                return "Kryddor";
+            default:
+                return "catergori namn saknas";
+        }
+    }
 }

@@ -2,13 +2,19 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.FlowPane?>
 
 <fx:root prefHeight="780.0" prefWidth="920.0" style="-fx-background-color: #FFFFFF;" stylesheets="@CSS/main_theme.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="71.0" layoutY="50.0" styleClass="biglabel" text="Veckans erbjudanden:" />
-      <AnchorPane fx:id="weekOffers" layoutX="6.0" layoutY="100.0" prefHeight="300.0" prefWidth="920.0" />
-      <Label layoutX="71.0" layoutY="400.0" styleClass="biglabel" text="Mest köpta:" />
-      <AnchorPane fx:id="mostBought" layoutY="450.0" prefHeight="330.0" prefWidth="926.0" />
+      <Label layoutX="71.0" layoutY="29.0" styleClass="biglabel" text="Veckans erbjudanden:" />
+      <AnchorPane layoutX="4.0" layoutY="79.0" prefHeight="300.0" prefWidth="920.0">
+         <children>
+            <FlowPane fx:id="weekOffers" hgap="20.0" layoutX="50.0" prefHeight="300.0" prefWidth="875.0" vgap="20.0" />
+         </children></AnchorPane>
+      <Label layoutX="71.0" layoutY="390.0" styleClass="biglabel" text="Mest köpta:" />
+      <AnchorPane layoutX="1.0" layoutY="450.0" prefHeight="330.0" prefWidth="875.0">
+         <children>
+            <FlowPane fx:id="mostBought" hgap="20.0" layoutX="50.0" prefHeight="330.0" prefWidth="875.0" vgap="20.0" />
+         </children></AnchorPane>
    </children>
 </fx:root>
