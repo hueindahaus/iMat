@@ -18,6 +18,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -34,9 +38,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ProductSearchController implements Initializable {
-
-
-
 
     IMatDataHandler database = IMatDataHandler.getInstance();
     FilterEngine filterEngine = FilterEngine.getInstance();
@@ -77,10 +78,16 @@ public class ProductSearchController implements Initializable {
     PaymentWizard paymentWizard = new PaymentWizard(this);
 
     Customer customer = IMatDataHandler.getInstance().getCustomer();
+    @FXML
+    private RadioButton favorit;
+    @FXML
+    private RadioButton listButton;
+    @FXML
+    private RadioButton userButton;
+    @FXML
+    private RadioButton historyButton;
 
-
-
-
+    private HistoryManager historyManager;
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -120,14 +127,13 @@ public class ProductSearchController implements Initializable {
 
 
         for(Product product : database.getProducts()){//loopar igenom samtliga produkter som finns i appen
-           ShoppingItem shoppingItem = new ShoppingItem(product,1);
+            ShoppingItem shoppingItem = new ShoppingItem(product,1);
             ProductListItem productListItem = new ProductListItem(shoppingItem, this);     //skapar ett ProductListItem för varje produkt
             CartListItem cartListItem = new CartListItem(shoppingItem, this, getCart());        //skapar ett CartListItem för varje produkt
             cart.getCartListItemMap().put(product.getName(),cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
             productListItemMap.put(product.getName(),productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
         }
-        update();
-
+        //update();
 
         populateCategoryView();
 
@@ -181,20 +187,51 @@ public class ProductSearchController implements Initializable {
 
         disableCheckOutButton(true);                //när man startar programmet ska man inte kunna ta sig till betalning utan att ha lagt produkter i varukorgen
 
+        historyManager = new HistoryManager(productListItemMap, mainFlowPane,this);
+        implementSideBar();
+        mainFlowPane.getChildren().clear();
+        mainFlowPane.getChildren().add(new MainPage(productListItemMap));
     }
 
 
+    private void implementSideBar(){
+        fixRadioButtonStyle(favorit);
+        fixRadioButtonStyle(listButton);
+        fixRadioButtonStyle(historyButton);
+        fixRadioButtonStyle(userButton);
 
+        historyButton.setOnMouseClicked(e -> historyManager.getHistory());
+        userButton.setOnMouseClicked(event -> {
+          mainFlowPane.getChildren().clear();
+          mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
+        });
+    }
 
+    private void fixRadioButtonStyle(RadioButton button){
+        button.getStyleClass().remove("radio-button");
+        button.getStyleClass().add("toggle-button");
+        button.setToggleGroup(toggleGroup);
+    }
 
+    @FXML
+    public void displayFavourites(){
+        mainFlowPane.getChildren().clear();
+        for(Product product: database.favorites()){
+            if(productListItemMap.containsKey(product.getName())){
+                mainFlowPane.getChildren().add(productListItemMap.get(product.getName()));
+                productListItemMap.get(product.getName()).changeFavIcon();
+            }
+        }
+    }
 
     public void update(){                                                       //uppdaterar mainFlowPane (uppdaterar produktrutan, basically)
         mainFlowPane.getChildren().clear();                                     //clearar mainFlowPane
         List<Product> filteredProductList = filterEngine.filter();      //vi får en lista med de varor som ska visas i rutan från filterEngine
 
         for(Product product: filteredProductList){
-        ProductListItem listItem = productListItemMap.get(product.getName());   //vi extraherar productListem från vår "Map". Detta gör det möjligt att inte behöva göra nya ProductListItems varje gång vi uppdaterar vyn
-        mainFlowPane.getChildren().add(listItem);
+            ProductListItem listItem = productListItemMap.get(product.getName());   //vi extraherar productListem från vår "Map". Detta gör det möjligt att inte behöva göra nya ProductListItems varje gång vi uppdaterar vyn
+            mainFlowPane.getChildren().add(listItem);
+            listItem.changeFavIcon();
         }
 
     }

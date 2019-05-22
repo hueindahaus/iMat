@@ -53,6 +53,8 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     private TextArea cardDescription;
     @FXML
     private TextArea cardIngredients;
+    @FXML
+    private ImageView favouriteIcon;
 
     Image checkmark = new Image("images/cart48.png");
 
@@ -126,13 +128,28 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         );
 
         transition = new SequentialTransition(transitionToCartIcon,transitionToImage);      //lägger ihop de 2 olika timelines till en en timeline är de spelas efter varandra
+        favouriteIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                IMatDataHandler dataHandler = IMatDataHandler.getInstance();
+                if(dataHandler.isFavorite(shoppingItem.getProduct())){
+                    dataHandler.removeFavorite(shoppingItem.getProduct());
 
+                } else{
+                    dataHandler.addFavorite(shoppingItem.getProduct());
+                }
+                changeFavIcon();
+            }
+        });  //lägger till en listener till bilden på kortet
 
-
-
-
-
-
+        changeFavIcon();
+    }
+    
+    public void changeFavIcon(){
+        if(!IMatDataHandler.getInstance().isFavorite(shoppingItem.getProduct()))
+            favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_border_black_18dp.png").toExternalForm()));
+        else
+            favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_black_18dp.png").toExternalForm()));
 
     }
 

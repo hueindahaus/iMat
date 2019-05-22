@@ -91,6 +91,10 @@
     -fx-background-color: -primary;
 }
 
+.blackFont{
+    -fx-text-fill: #1A1A1A;
+}
+
 .lightestBlue{ -fx-background-color: #D0ECEF; }
 .lightBlue{ -fx-background-color: #99E9F2; }
 .darkerBlue{ -fx-background-color: #32A6A6; }
