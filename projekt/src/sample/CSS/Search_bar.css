@@ -1,3 +1,10 @@
+* {
+    -black: #000000;
+    -white: #FFFFFF;
+    -primary: #263238;
+    -secondary: #7cb342;
+}
+
 .text-field {
     -fx-font-family: "Roboto-Regular";
     -fx-font-size: 18px;

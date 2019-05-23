@@ -1,3 +1,12 @@
+* {
+    -black: #000000;
+    -white: #FFFFFF;
+    -primary: #3e2723;
+    -primary-dark: #1b0000;
+    -primary-light: #6a4f4b;
+    -secondary: #7cb342;
+}
+
 .regular-label{
     -fx-font-family: "Roboto-Regular";
     -fx-text-fill: #000000;

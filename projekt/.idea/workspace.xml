@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7335f063-dc53-4277-a9de-82c4cb13c7d8" name="Default Changelist" comment="Test">
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CSS/Search_bar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/Search_bar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/CSS/main_theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/main_theme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/CSS/payment_wizard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/payment_wizard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CSS/product.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/product.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CategoryListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CategoryListItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/PaymentWizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/PaymentWizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/imat.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/imat.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/order_overviewitem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/order_overviewitem.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/payment_wizard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/payment_wizard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/product_listitem.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/product_listitem.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CSS/scroll_pane.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CSS/scroll_pane.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +19,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="10" />
-          <entry key="css" value="11" />
+          <entry key="css" value="12" />
           <entry key="fxml" value="3" />
           <entry key="java" value="5" />
         </counts>
@@ -33,20 +27,20 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="10" />
-          <entry key="CSS" value="11" />
+          <entry key="CSS" value="12" />
           <entry key="JAVA" value="5" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="1772" />
+          <entry key="css" value="1779" />
           <entry key="java" value="10856" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="1772" />
+          <entry key="CSS" value="1779" />
           <entry key="JAVA" value="10856" />
         </counts>
       </usages-collector>
@@ -66,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/ProductSearchController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2570">
-              <caret line="209" column="5" lean-forward="true" selection-start-line="209" selection-start-column="5" selection-end-line="209" selection-end-column="5" />
+            <state relative-caret-position="124">
+              <caret line="244" column="26" lean-forward="true" selection-start-line="244" selection-start-column="26" selection-end-line="244" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1197#1221#0" expanded="true" />
@@ -99,10 +93,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/projectbackend.jar!/se/chalmers/cse/dat216/project/ShoppingCart.class">
+        <entry file="file://$PROJECT_DIR$/src/sample/CSS/Search_bar.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-441">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="75">
+              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -110,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/CSS/main_theme.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+            <state relative-caret-position="45">
+              <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="5" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -119,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/CSS/Header.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+            <state relative-caret-position="75">
+              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -128,7 +122,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/CSS/product.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
+            <state relative-caret-position="855">
               <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
             </state>
           </provider>
@@ -151,17 +145,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/CSS/scroll_pane.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-245">
-              <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            <state relative-caret-position="390">
+              <caret line="26" column="2" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/CSS/payment_wizard.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+            <state relative-caret-position="75">
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -182,20 +176,20 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/sample/FilterEngine.java" />
-        <option value="$PROJECT_DIR$/src/sample/CSS/Search_bar.css" />
         <option value="$PROJECT_DIR$/src/sample/CartListItem.java" />
         <option value="$PROJECT_DIR$/src/sample/ProductListItem.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/src/sample/CSS/scroll_pane.css" />
         <option value="$PROJECT_DIR$/src/sample/OrderOverviewItem.java" />
         <option value="$PROJECT_DIR$/src/sample/ProductSearchController.java" />
         <option value="$PROJECT_DIR$/src/sample/Cart.java" />
-        <option value="$PROJECT_DIR$/src/sample/CSS/Header.css" />
         <option value="$PROJECT_DIR$/src/sample/CategoryListItem.java" />
         <option value="$PROJECT_DIR$/src/sample/PaymentWizard.java" />
         <option value="$PROJECT_DIR$/src/sample/CSS/product.css" />
+        <option value="$PROJECT_DIR$/src/sample/CSS/Header.css" />
+        <option value="$PROJECT_DIR$/src/sample/CSS/Search_bar.css" />
         <option value="$PROJECT_DIR$/src/sample/CSS/main_theme.css" />
         <option value="$PROJECT_DIR$/src/sample/CSS/payment_wizard.css" />
+        <option value="$PROJECT_DIR$/src/sample/CSS/scroll_pane.css" />
       </list>
     </option>
   </component>
@@ -281,7 +275,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558472609965" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558561072160" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -368,7 +362,7 @@
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49905124" visible="true" weight="0.18884121" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49905124" visible="true" weight="0.18884121" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -377,7 +371,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.5009488" side_tool="true" weight="0.18884121" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32866243" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32866243" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -463,13 +457,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/projekt.iml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Search_bar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/cart_listitem.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -607,41 +594,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/scroll_pane.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245">
-          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/CategoryListItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="40" column="156" selection-start-line="40" selection-start-column="156" selection-end-line="40" selection-end-column="156" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ProductSearchController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2570">
-          <caret line="209" column="5" lean-forward="true" selection-start-line="209" selection-start-column="5" selection-end-line="209" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1197#1221#0" expanded="true" />
-            <element signature="e#5898#5899#0" expanded="true" />
-            <element signature="e#5975#5976#0" expanded="true" />
-            <element signature="e#7492#7493#0" expanded="true" />
-            <element signature="e#7519#7520#0" expanded="true" />
-            <element signature="e#11224#11225#0" expanded="true" />
-            <element signature="e#11267#11268#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Header.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -659,22 +615,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/CSS/product.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
+        <state relative-caret-position="855">
           <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Search_bar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Header.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/CSS/main_theme.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+        <state relative-caret-position="45">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="5" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/CSS/payment_wizard.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="75">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/scroll_pane.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="2" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ProductSearchController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="244" column="26" lean-forward="true" selection-start-line="244" selection-start-column="26" selection-end-line="244" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1197#1221#0" expanded="true" />
+            <element signature="e#5898#5899#0" expanded="true" />
+            <element signature="e#5975#5976#0" expanded="true" />
+            <element signature="e#7492#7493#0" expanded="true" />
+            <element signature="e#7519#7520#0" expanded="true" />
+            <element signature="e#11224#11225#0" expanded="true" />
+            <element signature="e#11267#11268#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
