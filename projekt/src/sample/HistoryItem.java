@@ -50,8 +50,8 @@ public class HistoryItem extends AnchorPane {
 
     @FXML
     public void changeHistorySize(){
-        if(historyScroll.getPrefHeight() != 350){
-            historyScroll.setPrefHeight(350);
+        if(historyScroll.getPrefHeight() != 200){
+            historyScroll.setPrefHeight(200);
             expandButton.setImage(new Image(getClass().getResource("../icons/baseline_expand_more_black_18dp.png").toExternalForm()));
         } else{
             int height = ((order.getItems().size()/3) + 1)*300 + 20;
