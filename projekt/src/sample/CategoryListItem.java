@@ -71,7 +71,7 @@ public class CategoryListItem extends AnchorPane {
             case "FISH":
                 return "Fisk";
             case "VEGETABLE_FRUIT":
-                return "Frukt och grönt";
+                return "Grönsaker";
             case "CABBAGE":
                 return "Kål";
             case "MEAT":
@@ -95,7 +95,7 @@ public class CategoryListItem extends AnchorPane {
             case "SWEET":
                 return "Godis";
             case "HERB":
-                return "Kryddor";
+                return "Örter";
             default:
                 return "catergori namn saknas";
         }

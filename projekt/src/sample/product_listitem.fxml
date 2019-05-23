@@ -15,44 +15,44 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <StackPane prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders">
+      <StackPane alignment="TOP_CENTER" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders">
          <children>
-            <AnchorPane fx:id="cardBack" prefHeight="280.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
+            <AnchorPane fx:id="cardBack" maxHeight="-Infinity" prefHeight="230.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <TabPane prefHeight="250.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane prefHeight="230.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Beskrivning">
                            <content>
-                              <TextArea fx:id="cardDescription" editable="false" prefHeight="215.0" prefWidth="194.0" styleClass="descFont" text="Beskrivning av produkten" wrapText="true" />
+                              <TextArea fx:id="cardDescription" editable="false" prefHeight="165.0" prefWidth="240.0" styleClass="descFont" text="Beskrivning av produkten" wrapText="true" />
                            </content>
                         </Tab>
-                      <Tab text="Ingredienser">
+                      <Tab text="Innehåll">
                            <content>
-                              <TextArea fx:id="cardIngredients" prefHeight="200.0" prefWidth="200.0" styleClass="descFont" wrapText="true" />
+                              <TextArea fx:id="cardIngredients" prefHeight="158.0" prefWidth="240.0" styleClass="descFont" wrapText="true" />
                            </content>
                         </Tab>
                     </tabs>
                      <styleClass>
                         <String fx:value="cardbase" />
                         <String fx:value="label2" />
+                        <String fx:value="cardBack" />
                      </styleClass>
                   </TabPane>
-                  <Button layoutY="250.0" mnemonicParsing="false" onMouseClicked="#flipCardToFront" prefHeight="30.0" prefWidth="240.0" text="Vänd tillbaka">
-                     <styleClass>
-                        <String fx:value="chartButton" />
-                        <String fx:value="label2" />
-                     </styleClass>
-                  </Button>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="196.0" layoutY="186.0" onMouseClicked="#flipCardToFront" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                     <image>
+                        <Image url="@../icons/outline_redo_black_18dp.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="cardFront" prefHeight="280.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
                <children>
-                  <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></ImageView>
+                  <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image" />
                   <Label fx:id="listItemTitle" alignment="CENTER" layoutX="20.0" layoutY="180.0" onMouseClicked="#flipCardToBack" prefHeight="30.0" prefWidth="200.0" styleClass="label1" text="Title">
                      <font>
                         <Font name="Helvetica Neue" size="18.0" />
@@ -98,6 +98,14 @@
                      <image>
                         <Image url="@../icons/baseline_favorite_border_black_18dp.png" />
                      </image>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="14.0" layoutY="14.0" onMousePressed="#flipCardToBack" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/outline_info_black_18dp.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
             </AnchorPane>

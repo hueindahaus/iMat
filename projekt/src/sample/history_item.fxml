@@ -13,7 +13,7 @@
    <children>
       <Label fx:id="orderNumber" layoutX="14.0" layoutY="14.0" styleClass="mediumlabel" text="Order Number" />
       <Label fx:id="orderDate" layoutX="268.0" layoutY="14.0" styleClass="mediumlabel" text="Date" />
-      <ScrollPane fx:id="historyScroll" hbarPolicy="NEVER" layoutY="50.0" prefHeight="200.0" prefWidth="880.0" vbarPolicy="NEVER">
+      <ScrollPane fx:id="historyScroll" hbarPolicy="NEVER" layoutY="50.0" prefHeight="200.0" prefWidth="880.0" vbarPolicy="NEVER" vmax="0.0">
          <content>
             <FlowPane fx:id="orderMain" alignment="TOP_CENTER" hgap="20.0" prefHeight="200.0" prefWidth="880.0" vgap="30.0">
                <padding>

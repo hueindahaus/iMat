@@ -112,7 +112,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
             }
         });
 
-        listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
+        //listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
 
 
         transitionToCartIcon = new Timeline(                                                                       //del 1 av animation när man lägger till en produkt i varukorgen

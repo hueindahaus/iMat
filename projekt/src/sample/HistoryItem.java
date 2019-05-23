@@ -41,7 +41,7 @@ public class HistoryItem extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        orderDate.setText("Datum: " + order.getDate().toString());
+        orderDate.setText("Datum: " + order.getDate().getDate() + " " +  translateMonth(order.getDate().getMonth()) + " " + (order.getDate().getYear()+1900));
         orderNumber.setText("Ordernummer: " + Integer.toString(order.getOrderNumber()));
         order.getItems().forEach(e -> orderMain.getChildren().add(new ProductListItem(parent.getShoppingItemMap().get(e.getProduct().getName()),parent)));      //skapar nytt productlistitems eftersom att vi behöver duplicates (men de refererar till samma shoppingItem som de representerar)
 
@@ -52,10 +52,10 @@ public class HistoryItem extends AnchorPane {
 
     @FXML
     public void changeHistorySize(){
-        if(!isExpanded){
+        if(isExpanded){
             historyScroll.setPrefHeight(200);
             expandButton.setImage(new Image(getClass().getResource("../icons/baseline_expand_more_black_18dp.png").toExternalForm()));
-            isExpanded = true;
+            isExpanded = false;
         } else{
             int height = ((order.getItems().size()/3))*300 + 50;    //obs eventuellt fixa
             if(order.getItems().size() % 3 != 0){                   //adderar 300dp om antalet items i en order inte är delbart med 3
@@ -63,7 +63,38 @@ public class HistoryItem extends AnchorPane {
             }
             historyScroll.setPrefHeight(height);
             expandButton.setImage(new Image(getClass().getResource("../icons/baseline_expand_less_black_18dp.png").toExternalForm()));
-            isExpanded = false;
+            isExpanded = true;
+        }
+    }
+
+    private String translateMonth(int month){
+        switch (month){
+            case 0:
+                return "januari";
+            case 1:
+                return "februari";
+            case 2:
+                return "mars";
+            case 3:
+                return "april";
+            case 4:
+                return "maj";
+            case 5:
+                return "juni";
+            case 6:
+                return "juli";
+            case 7:
+                return "augusti";
+            case 8:
+                return "september";
+            case 9:
+                return "oktober";
+            case 10:
+                return "november";
+            case 11:
+                return "december";
+            default:
+                return "odefinerad månad";
         }
     }
 }

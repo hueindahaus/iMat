@@ -36,6 +36,11 @@
     -fx-font-size: 18px;
 }
 
+.label1:hover{
+    -fx-underline: true;
+    -fx-text-fill: -secondary-dark;
+}
+
 .label2{
     -fx-font-family: "roboto";
     -fx-font-size: 14px;
@@ -61,4 +66,12 @@
 .inputTextField{
     -fx-font-family: "roboto";
     -fx-font-size: 14px
+}
+
+.cardBack{
+    -fx-background-color: -white;
+}
+
+.cardBack .tab-header-background{
+    -fx-background-color: -primary;
 }

@@ -25,6 +25,9 @@ public class HistoryManager {
     public void getHistory(){
         mainFlowPane.getChildren().clear();
        // database.getOrders().forEach(e -> e.getItems().forEach(f -> mainFlowPane.getChildren().add(productListItemMap.get(f.getProduct().getName())))); // fyller fönstret med alla objekts som har köpts lite meme kommer ändra snart
-        database.getOrders().forEach(e -> mainFlowPane.getChildren().add(new HistoryItem(productListItemMap,e,parent)));
+        for(int i = database.getOrders().size()-1; i >= 0; i--){
+            mainFlowPane.getChildren().add(new HistoryItem(productListItemMap,database.getOrders().get(i),parent));
+        }
+//        database.getOrders().forEach(e -> mainFlowPane.getChildren().add(new HistoryItem(productListItemMap,e,parent)));
     }
 }
