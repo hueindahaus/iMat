@@ -44,7 +44,8 @@ public class MainPage extends AnchorPane {
             List<Product> mostBoughtProducts = getMostBought(dataHandler.getOrders());
             System.out.println(mostBoughtProducts.size());
             for(int i = 0; i < mostBoughtProducts.size(); i++){
-                mostBought.getChildren().add(new ProductListItem(new ShoppingItem(mostBoughtProducts.get(i),1),parent));
+                //mostBought.getChildren().add(new ProductListItem(new ShoppingItem(mostBoughtProducts.get(i),1),parent));    //problem eftersom att vi skapar nya Shoppingitems
+                mostBought.getChildren().add(new ProductListItem(   parent.getShoppingItemMap().get(mostBoughtProducts.get(i).getName()),   parent));
             }
         }
     }

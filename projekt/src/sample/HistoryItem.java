@@ -26,6 +26,8 @@ public class HistoryItem extends AnchorPane {
     @FXML
     private ScrollPane historyScroll;
 
+    boolean isExpanded;
+
     private Order order;
 
     public HistoryItem(Map<String, ProductListItem> productListItemMap, Order order, ProductSearchController parent){
@@ -41,22 +43,27 @@ public class HistoryItem extends AnchorPane {
 
         orderDate.setText("Datum: " + order.getDate().toString());
         orderNumber.setText("Ordernummer: " + Integer.toString(order.getOrderNumber()));
-        //order.getItems().forEach(e -> orderMain.getChildren().add(productListItemMap.get(e.getProduct().getName())));
-        order.getItems().forEach(e -> orderMain.getChildren().add(new ProductListItem(e,parent)));
+        order.getItems().forEach(e -> orderMain.getChildren().add(new ProductListItem(parent.getShoppingItemMap().get(e.getProduct().getName()),parent)));      //skapar nytt productlistitems eftersom att vi behöver duplicates (men de refererar till samma shoppingItem som de representerar)
 
 
         this.order = order;
+        isExpanded = false;
     }
 
     @FXML
     public void changeHistorySize(){
-        if(historyScroll.getPrefHeight() != 200){
+        if(!isExpanded){
             historyScroll.setPrefHeight(200);
             expandButton.setImage(new Image(getClass().getResource("../icons/baseline_expand_more_black_18dp.png").toExternalForm()));
+            isExpanded = true;
         } else{
-            int height = ((order.getItems().size()/3) + 1)*300 + 20;
+            int height = ((order.getItems().size()/3))*300 + 50;    //obs eventuellt fixa
+            if(order.getItems().size() % 3 != 0){                   //adderar 300dp om antalet items i en order inte är delbart med 3
+                height += 300;
+            }
             historyScroll.setPrefHeight(height);
             expandButton.setImage(new Image(getClass().getResource("../icons/baseline_expand_less_black_18dp.png").toExternalForm()));
+            isExpanded = false;
         }
     }
 }

@@ -69,6 +69,9 @@ public class Cart extends AnchorPane {
             }
         });
 
+        shoppingCart.getItems().clear();
+        updateFlowPane();
+
     }
 
     private void updateFlowPane(){                      //uppdaterar flowpane med endast de produkter som finns i ShoppingCart (uppdaterar även antal av varje produkt)

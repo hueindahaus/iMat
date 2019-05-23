@@ -6,11 +6,9 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,9 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +37,7 @@ public class ProductSearchController implements Initializable {
     IMatDataHandler database = IMatDataHandler.getInstance();
     FilterEngine filterEngine = FilterEngine.getInstance();
     Map<String,ProductListItem> productListItemMap = new HashMap<String,ProductListItem>();
+    Map<String,ShoppingItem> shoppingItemMap = new HashMap<String,ShoppingItem>();
     Cart cart = Cart.getInstance(this);
 
     ToggleGroup toggleGroup = new ToggleGroup();    //togglegroup för knapparna på vänstra sidan
@@ -131,6 +127,7 @@ public class ProductSearchController implements Initializable {
 
         for(Product product : database.getProducts()){//loopar igenom samtliga produkter som finns i appen
             ShoppingItem shoppingItem = new ShoppingItem(product,1);
+            shoppingItemMap.put(shoppingItem.getProduct().getName(),shoppingItem);          //lägger alla shoppingItems i en Map
             ProductListItem productListItem = new ProductListItem(shoppingItem, this);     //skapar ett ProductListItem för varje produkt
             CartListItem cartListItem = new CartListItem(shoppingItem, this, getCart());        //skapar ett CartListItem för varje produkt
             cart.getCartListItemMap().put(product.getName(),cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
@@ -140,19 +137,17 @@ public class ProductSearchController implements Initializable {
 
         populateCategoryView();
 
-        searchBar.textProperty().addListener(new ChangeListener<String>() {     //changelistener för sökrutan
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        searchBar.setOnAction(event -> {
+            filterEngine.setSearchCategory(null);       //när man söker vill man inte bara söka inom t.ex. kategorin som vi valt, vi resettar dessa så att alla produkter som man söker på kommer upp
+            filterEngine.setSearchIsEcological(false);
+            filterEngine.setSearchPriceMax(0);
+            filterEngine.setSearchPriceMin(0);
 
-                filterEngine.setSearchCategory(null);       //när man söker vill man inte bara söka inom t.ex. kategorin som vi valt, vi resettar dessa så att alla produkter som man söker på kommer upp
-                filterEngine.setSearchIsEcological(false);
-                filterEngine.setSearchPriceMax(0);
-                filterEngine.setSearchPriceMin(0);
-
-                filterEngine.setSearchString(newValue);     //sätter det nya värdet i sökrutan i filterEngine
-                if(newValue.isEmpty()){                     //om det nya värdet är tomt så resettar vi searchString i filterEngine
-                    filterEngine.setSearchString(null);
-                }
+            filterEngine.setSearchString(searchBar.getText());     //sätter det nya värdet i sökrutan i filterEngine
+            if(searchBar.getText().isEmpty()){                     //om det nya värdet är tomt så hamnar man i startvyn
+                mainFlowPane.getChildren().clear();
+                mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
+            }else {
                 update();
             }
         });
@@ -310,6 +305,9 @@ public class ProductSearchController implements Initializable {
         checkoutButton.setDisable(value);
     }
 
+    Map<String, ShoppingItem> getShoppingItemMap(){
+        return shoppingItemMap;
+    }
 
 
 
