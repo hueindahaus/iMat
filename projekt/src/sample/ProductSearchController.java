@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -91,14 +92,14 @@ public class ProductSearchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb){
 
-        customer.setFirstName("Rune");
+  /*    customer.setFirstName("Rune");
         customer.setLastName("Andersson");
         customer.setEmail("Rune.Andersson@hotmail.com");
         customer.setAddress("Stationsvägen 123");
         customer.setMobilePhoneNumber("070-1234567");
         customer.setPhoneNumber("040-123456");
         customer.setPostAddress(customer.getAddress());
-        customer.setPostCode("12345");
+        customer.setPostCode("12345");*/
 
         cartAnchorPane.getChildren().add(cart); //lägger till klassen "Cart" som en child i den Anchorpane som avser varukorgen
 
@@ -309,8 +310,15 @@ public class ProductSearchController implements Initializable {
         return shoppingItemMap;
     }
 
+    @FXML
+    public void setLogoToColored(){
+        homeButton.setImage(new Image(getClass().getResource("../icons/imatLogoColor.png").toExternalForm()));
+    }
 
-
+    @FXML
+    public void setLogoToWhite(){
+        homeButton.setImage(new Image(getClass().getResource("../icons/imatLogo.png").toExternalForm()));
+    }
 
 }
 

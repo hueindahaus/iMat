@@ -51,7 +51,7 @@
                      </image>
                   </ImageView>
                   <Label fx:id="cartLabel" layoutX="1006.0" layoutY="20.0" onMousePressed="#toggleCart" prefWidth="148.0" styleClass="biglabelWhite" text="Varukorg" textFill="WHITE" />
-                  <ImageView fx:id="homeButton" fitHeight="80.0" fitWidth="80.0" layoutX="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="homeButton" fitHeight="80.0" fitWidth="80.0" layoutX="25.0" layoutY="5.0" onMouseEntered="#setLogoToColored" onMouseExited="#setLogoToWhite" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/imatLogo.png" />
                      </image>
