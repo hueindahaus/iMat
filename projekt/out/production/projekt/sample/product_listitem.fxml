@@ -98,6 +98,9 @@
                      <image>
                         <Image url="@../icons/baseline_favorite_border_black_18dp.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
             </AnchorPane>
