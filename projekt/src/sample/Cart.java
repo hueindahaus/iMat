@@ -108,6 +108,12 @@ public class Cart extends AnchorPane {
         updateFlowPane();
     }
 
+    public void removeAllOfItem(ShoppingItem shoppingItem){
+        shoppingCart.removeItem(shoppingItem);
+        shoppingItem.setAmount(1);
+        updateFlowPane();
+    }
+
     public Map<String,CartListItem> getCartListItemMap(){
         return cartListItemMap;
     }

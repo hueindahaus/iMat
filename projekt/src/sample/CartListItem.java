@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class CartListItem extends AnchorPane {
@@ -26,7 +28,8 @@ public class CartListItem extends AnchorPane {
     TextField textField;
     @FXML
     private Label price;
-
+    @FXML
+    private ImageView clearIcon;
 
     public CartListItem(ShoppingItem shoppingItem, ProductSearchController parentController, Cart cart){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart_listitem.fxml"));
@@ -44,6 +47,7 @@ public class CartListItem extends AnchorPane {
         image.setImage(IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct()));
         title.setText(shoppingItem.getProduct().getName());
         price.setText(shoppingItem.getTotal() + " kr");
+
     }
 
     public ShoppingItem getShoppingItem(){
@@ -64,5 +68,10 @@ public class CartListItem extends AnchorPane {
     public void subtractOneFromAmount(){
         parentController.getCart().decreaseAmount(shoppingItem);
 
+    }
+
+    @FXML
+    public void clearItem(){
+        parentController.getCart().removeAllOfItem(shoppingItem);
     }
 }
