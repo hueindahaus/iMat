@@ -4,10 +4,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.media.Track;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -21,6 +25,8 @@ public class Main extends Application {
 
 
         Font.loadFont(getClass().getResourceAsStream("src/fonts/Roboto-Regular.ttf") , 14);     //loadar font som finns i mappen "fonts"
+
+
     }
 
 

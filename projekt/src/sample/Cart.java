@@ -46,6 +46,9 @@ public class Cart extends AnchorPane {
 
         this.parentController = parentController;
 
+        scrollPane.setPrefViewportWidth(260);       //sätter viewportdith så att ScrollBar i ScrollPane hamnar utanför det synliga området
+        scrollPane.setMinViewportWidth(260);
+
         scrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {         //disablar horizontell scroll
             @Override
             public void handle(ScrollEvent event) {     //scrollevent

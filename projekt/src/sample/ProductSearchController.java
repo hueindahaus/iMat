@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,17 +29,15 @@ import se.chalmers.cse.dat216.project.*;
 
 import java.awt.*;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
 
 public class ProductSearchController implements Initializable {
 
     IMatDataHandler database = IMatDataHandler.getInstance();
     FilterEngine filterEngine = FilterEngine.getInstance();
-    Map<String,ProductListItem> productListItemMap = new HashMap<String,ProductListItem>();
-    Map<String,ShoppingItem> shoppingItemMap = new HashMap<String,ShoppingItem>();
+    Map<String, ProductListItem> productListItemMap = new HashMap<String, ProductListItem>();
+    Map<String, ShoppingItem> shoppingItemMap = new HashMap<String, ShoppingItem>();
     Cart cart = Cart.getInstance(this);
 
     ToggleGroup toggleGroup = new ToggleGroup();    //togglegroup för knapparna på vänstra sidan
@@ -71,7 +70,7 @@ public class ProductSearchController implements Initializable {
     public ImageView step3;
 
 
-    double x,y;
+    double x, y;
 
     private boolean cartIsHidden = false;
     private boolean isCheckoutMode = false;
@@ -99,14 +98,21 @@ public class ProductSearchController implements Initializable {
     private HistoryManager historyManager;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb){
+    public void initialize(URL url, ResourceBundle rb) {
+
+
+
+        categoryScrollPane.setPrefViewportWidth(260);   //sätter viewportdith så att ScrollBar i ScrollPane hamnar utanför det synliga området
+        categoryScrollPane.setMinViewportWidth(260);
+
+
 
         cartAnchorPane.getChildren().add(cart); //lägger till klassen "Cart" som en child i den Anchorpane som avser varukorgen
 
         mainFlowPane.setHgap(28);
         mainFlowPane.setVgap(28);
 
-        categoryScrollPane.addEventFilter(ScrollEvent.SCROLL,new EventHandler<ScrollEvent>() {      //disablar horizontell scroll
+        categoryScrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {      //disablar horizontell scroll
             @Override
             public void handle(ScrollEvent event) {     //scrollevent
                 if (event.getDeltaX() != 0) {           //om eventets hastighet i x-led inte är 0
@@ -119,20 +125,20 @@ public class ProductSearchController implements Initializable {
         mainScrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {         //disablar horizontell scroll
             @Override
             public void handle(ScrollEvent event) {     //scrollevent
-                if(event.getDeltaX() != 0){             //om eventets hastighet i x-led inte är 0
+                if (event.getDeltaX() != 0) {             //om eventets hastighet i x-led inte är 0
                     event.consume();                    //så ska eventet consumas
                 }
             }
         });
 
 
-        for(Product product : database.getProducts()){//loopar igenom samtliga produkter som finns i appen
-            ShoppingItem shoppingItem = new ShoppingItem(product,1);
-            shoppingItemMap.put(shoppingItem.getProduct().getName(),shoppingItem);          //lägger alla shoppingItems i en Map
+        for (Product product : database.getProducts()) {//loopar igenom samtliga produkter som finns i appen
+            ShoppingItem shoppingItem = new ShoppingItem(product, 1);
+            shoppingItemMap.put(shoppingItem.getProduct().getName(), shoppingItem);          //lägger alla shoppingItems i en Map
             ProductListItem productListItem = new ProductListItem(shoppingItem, this);     //skapar ett ProductListItem för varje produkt
             CartListItem cartListItem = new CartListItem(shoppingItem, this, getCart());        //skapar ett CartListItem för varje produkt
-            cart.getCartListItemMap().put(product.getName(),cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
-            productListItemMap.put(product.getName(),productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
+            cart.getCartListItemMap().put(product.getName(), cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
+            productListItemMap.put(product.getName(), productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
         }
         //update();
 
@@ -145,10 +151,10 @@ public class ProductSearchController implements Initializable {
             filterEngine.setSearchPriceMin(0);
 
             filterEngine.setSearchString(searchBar.getText());     //sätter det nya värdet i sökrutan i filterEngine
-            if(searchBar.getText().isEmpty()){                     //om det nya värdet är tomt så hamnar man i startvyn
+            if (searchBar.getText().isEmpty()) {                     //om det nya värdet är tomt så hamnar man i startvyn
                 mainFlowPane.getChildren().clear();
                 mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
-            }else {
+            } else {
                 update();
             }
         });
@@ -156,7 +162,7 @@ public class ProductSearchController implements Initializable {
         searchBar.focusedProperty().addListener(new ChangeListener<Boolean>() {     //när sökrutan får fokus ska allt i rutan selectas
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(newValue){
+                if (newValue) {
                     Platform.runLater(new Runnable() {      // Gör det möjligt att selecta allt när sökrutan får fokus (förstår mig inte helt på denna)
                         public void run() {
                             searchBar.selectAll();
@@ -171,7 +177,7 @@ public class ProductSearchController implements Initializable {
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartAnchorPane.layoutXProperty(), 1440)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainScrollPane.prefWidthProperty(), 1440)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 1180)),
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(),1354)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1354)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1440))
         );
         showCart = new Timeline(                                                                                         //animation för när man tar fram varukorgen
@@ -185,27 +191,27 @@ public class ProductSearchController implements Initializable {
         paymentAnchorPane.translateXProperty().setValue(-1310);
 
         showWizard = new Timeline(
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.translateXProperty(),-130))
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.translateXProperty(), -130))
         );
 
         hideWizard = new Timeline(
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.translateXProperty(),-1310))
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.translateXProperty(), -1310))
         );
 
         paymentAnchorPane.getChildren().add(paymentWizard);
 
         disableCheckOutButton(true);                //när man startar programmet ska man inte kunna ta sig till betalning utan att ha lagt produkter i varukorgen
 
-        historyManager = new HistoryManager(productListItemMap, mainFlowPane,this);
+        historyManager = new HistoryManager(productListItemMap, mainFlowPane, this);
         implementSideBar();
         mainFlowPane.getChildren().clear();
-        mainFlowPane.getChildren().add(new MainPage(productListItemMap,this));
+        mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
 
 
         checkoutButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(newValue){
+                if (newValue) {
                     checkoutButtonOnHover();
                 } else {
                     checkoutButtonWithoutHover();
@@ -215,7 +221,7 @@ public class ProductSearchController implements Initializable {
     }
 
 
-    private void implementSideBar(){
+    private void implementSideBar() {
         fixRadioButtonStyle(favorit);
         fixRadioButtonStyle(listButton);
         fixRadioButtonStyle(historyButton);
@@ -223,37 +229,37 @@ public class ProductSearchController implements Initializable {
 
         historyButton.setOnMouseClicked(e -> historyManager.getHistory());
         userButton.setOnMouseClicked(event -> {
-          mainFlowPane.getChildren().clear();
-          mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
+            mainFlowPane.getChildren().clear();
+            mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
         });
-        homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event ->{
-           mainFlowPane.getChildren().clear();
-            mainFlowPane.getChildren().add(new MainPage(productListItemMap,this));
+        homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            mainFlowPane.getChildren().clear();
+            mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
         });
     }
 
-    private void fixRadioButtonStyle(RadioButton button){
+    private void fixRadioButtonStyle(RadioButton button) {
         button.getStyleClass().remove("radio-button");
         button.getStyleClass().add("toggle-button");
         button.setToggleGroup(toggleGroup);
     }
 
     @FXML
-    public void displayFavourites(){
+    public void displayFavourites() {
         mainFlowPane.getChildren().clear();
-        for(Product product: database.favorites()){
-            if(productListItemMap.containsKey(product.getName())){
+        for (Product product : database.favorites()) {
+            if (productListItemMap.containsKey(product.getName())) {
                 mainFlowPane.getChildren().add(productListItemMap.get(product.getName()));
                 productListItemMap.get(product.getName()).changeFavIcon();
             }
         }
     }
 
-    public void update(){                                                       //uppdaterar mainFlowPane (uppdaterar produktrutan, basically)
+    public void update() {                                                       //uppdaterar mainFlowPane (uppdaterar produktrutan, basically)
         mainFlowPane.getChildren().clear();                                     //clearar mainFlowPane
         List<Product> filteredProductList = filterEngine.filter();      //vi får en lista med de varor som ska visas i rutan från filterEngine
 
-        for(Product product: filteredProductList){
+        for (Product product : filteredProductList) {
             ProductListItem listItem = productListItemMap.get(product.getName());   //vi extraherar productListem från vår "Map". Detta gör det möjligt att inte behöva göra nya ProductListItems varje gång vi uppdaterar vyn
             mainFlowPane.getChildren().add(listItem);
             listItem.changeFavIcon();
@@ -262,55 +268,53 @@ public class ProductSearchController implements Initializable {
     }
 
 
-
-    public void populateCategoryView(){
+    public void populateCategoryView() {
         categoryFlowPane.getChildren().clear();
-        for(ProductCategory category: ProductCategory.values()){        //loopar genom alla kategorier som är enum
+        for (ProductCategory category : ProductCategory.values()) {        //loopar genom alla kategorier som är enum
             CategoryListItem categoryListItem = new CategoryListItem(category, this);
             categoryFlowPane.getChildren().add(categoryListItem);
         }
     }
 
 
-    public void filterByCategoryAndUpdate(ProductCategory category){
+    public void filterByCategoryAndUpdate(ProductCategory category) {
         searchBar.clear();                          //om man har text i sökrutan och trycker på en kategori ska texten i sökrutan försvinna och vi filtrerar endast utifrån vilken kategori som vi tryckt på
         filterEngine.setSearchCategory(category);
         update();
     }
 
     @FXML
-    public void dragHeader(MouseEvent event){   // Om man drar i whitespace i den övre panelen där sökrutan finns så sla hela fönstret också dras med
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    public void dragHeader(MouseEvent event) {   // Om man drar i whitespace i den övre panelen där sökrutan finns så sla hela fönstret också dras med
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setX(event.getScreenX() - x);
         stage.setY(event.getScreenY() - y);
     }
 
     @FXML
-    public void pressHeader(MouseEvent event){  // denna metoden behövs för att kunna dra runt rutan genom att dra runt den övre panelen
+    public void pressHeader(MouseEvent event) {  // denna metoden behövs för att kunna dra runt rutan genom att dra runt den övre panelen
         x = event.getSceneX();
         y = event.getSceneY();
     }
 
-    public Cart getCart(){
+    public Cart getCart() {
         return cart;
     }
 
 
-
     @FXML
-    public void toggleCart(){
-        if(!cartIsHidden && !isCheckoutMode) {             //om varukorgen inte är gömd(dvs syns) och om vi inte är i betalningsläge så ska vi gömma den (detta sker genom att sätta varukorgen på ett x-värde där den inte syns)
+    public void toggleCart() {
+        if (!cartIsHidden && !isCheckoutMode) {             //om varukorgen inte är gömd(dvs syns) och om vi inte är i betalningsläge så ska vi gömma den (detta sker genom att sätta varukorgen på ett x-värde där den inte syns)
             hideCart.play();
             cartIsHidden = true;
-        } else{                        //om varukorgen är gömd så ska vi visa den
+        } else {                        //om varukorgen är gömd så ska vi visa den
             showCart.play();
             cartIsHidden = false;
         }
     }
 
     @FXML
-    public void checkoutModeSwitch(){
-        if(!isCheckoutMode) {
+    public void checkoutModeSwitch() {
+        if (!isCheckoutMode) {
             paymentAnchorPane.toFront();
             showWizard.play();
             paymentWizard.customerInfoPaneToFront();
@@ -334,21 +338,21 @@ public class ProductSearchController implements Initializable {
     }
 
 
-    public void checkoutButtonOnHover(){        //bytar färgtema på knappen som tar en till/från varukorgen när hover är aktiv
-        if(!isCheckoutMode) {
+    public void checkoutButtonOnHover() {        //bytar färgtema på knappen som tar en till/från varukorgen när hover är aktiv
+        if (!isCheckoutMode) {
             checkoutButton.setStyle(
                     "-fx-background-color: -secondary-light;\n" +
-                    "    -fx-text-fill: -black;");
-        } else if(isCheckoutMode){
+                            "    -fx-text-fill: -black;");
+        } else if (isCheckoutMode) {
             checkoutButton.setStyle(
                     "-fx-background-color: -error-color-light;\n" +
-                    "-fx-text-fill: -black;");
+                            "-fx-text-fill: -black;");
         }
     }
 
 
-    public void checkoutButtonWithoutHover(){       //bytar färgtema på knappen som tar en till/från varukorgen när hover inte är aktiv
-        if(!isCheckoutMode){
+    public void checkoutButtonWithoutHover() {       //bytar färgtema på knappen som tar en till/från varukorgen när hover inte är aktiv
+        if (!isCheckoutMode) {
             checkoutButton.setStyle("" +
                     "-fx-background-color: -secondary;\n" +
                     "    -fx-border-radius: 0px;\n" +
@@ -356,7 +360,7 @@ public class ProductSearchController implements Initializable {
                     "    -fx-font-size: 18px;\n" +
                     "    -fx-font-family: 'Roboto-Regular';\n" +
                     "    -fx-text-fill: -white;");
-        } else if (isCheckoutMode){
+        } else if (isCheckoutMode) {
             checkoutButton.setStyle("" +
                     "-fx-background-color: -error-color;\n" +
                     "    -fx-border-radius: 0px;\n" +
@@ -368,17 +372,23 @@ public class ProductSearchController implements Initializable {
     }
 
 
-
-    public void disableCheckOutButton(boolean value){
+    public void disableCheckOutButton(boolean value) {
         checkoutButton.setDisable(value);
     }
 
-    Map<String, ShoppingItem> getShoppingItemMap(){
+    Map<String, ShoppingItem> getShoppingItemMap() {
         return shoppingItemMap;
     }
 
 
-
-
 }
+
+
+
+
+
+
+
+
+
 
