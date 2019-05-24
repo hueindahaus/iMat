@@ -105,6 +105,19 @@ public class ProductSearchController implements Initializable {
         categoryScrollPane.setPrefViewportWidth(260);   //sätter viewportdith så att ScrollBar i ScrollPane hamnar utanför det synliga området
         categoryScrollPane.setMinViewportWidth(260);
 
+        categoryScrollPane.hoverProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    categoryScrollPane.setPrefViewportWidth(255);
+                    categoryScrollPane.setMinViewportWidth(255);
+                } else {
+                    categoryScrollPane.setPrefViewportWidth(260);
+                    categoryScrollPane.setMinViewportWidth(260);
+                }
+            }
+        });
+
 
 
         cartAnchorPane.getChildren().add(cart); //lägger till klassen "Cart" som en child i den Anchorpane som avser varukorgen
