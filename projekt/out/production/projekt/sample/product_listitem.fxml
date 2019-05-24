@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane alignment="TOP_CENTER" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders">
          <children>
@@ -40,9 +40,9 @@
                         <String fx:value="cardBack" />
                      </styleClass>
                   </TabPane>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="196.0" layoutY="186.0" onMouseClicked="#flipCardToFront" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="196.0" layoutY="186.0" onMouseClicked="#flipCardToFront" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/outline_redo_black_18dp.png" />
+                        <Image url="@../icons/baseline_arrow_right_alt_black_18dp.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />

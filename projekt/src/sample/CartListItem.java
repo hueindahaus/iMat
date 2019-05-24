@@ -24,6 +24,8 @@ public class CartListItem extends AnchorPane {
     Label title;
     @FXML
     TextField textField;
+    @FXML
+    private Label price;
 
 
     public CartListItem(ShoppingItem shoppingItem, ProductSearchController parentController, Cart cart){
@@ -41,7 +43,7 @@ public class CartListItem extends AnchorPane {
         this.shoppingItem = shoppingItem;
         image.setImage(IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct()));
         title.setText(shoppingItem.getProduct().getName());
-
+        price.setText(shoppingItem.getTotal() + " kr");
     }
 
     public ShoppingItem getShoppingItem(){
@@ -49,6 +51,7 @@ public class CartListItem extends AnchorPane {
     }
 
     public void updateTextField(){          //sätter strängen i textField till t.ex.: "1 kg"
+        price.setText(shoppingItem.getTotal() + " kr");
         textField.textProperty().setValue(String.valueOf(shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnitSuffix());
     }
 
