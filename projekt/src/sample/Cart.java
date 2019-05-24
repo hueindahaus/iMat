@@ -3,6 +3,7 @@ package sample;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +20,9 @@ public class Cart extends AnchorPane {
     private FlowPane flowPane;
     @FXML
     private ScrollPane scrollPane;
+
+    @FXML
+    private Label sumLabel;
 
     private static Cart singleton;
     ProductSearchController parentController;
@@ -76,11 +80,14 @@ public class Cart extends AnchorPane {
 
     private void updateFlowPane(){                      //uppdaterar flowpane med endast de produkter som finns i ShoppingCart (uppdaterar även antal av varje produkt)
         flowPane.getChildren().clear();
+        double sum = 0;
         for(ShoppingItem item : shoppingCart.getItems()){
             CartListItem cartListItem = cartListItemMap.get(item.getProduct().getName());
             flowPane.getChildren().add(cartListItem);
             cartListItem.updateTextField();
+            sum += item.getTotal();
         }
+        sumLabel.setText("Summa: " + sum + " kr");
     }
 
 
