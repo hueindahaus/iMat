@@ -78,6 +78,7 @@ public class ProductSearchController implements Initializable {
 
     Timeline hideCart;
     Timeline showCart;
+    Timeline showWizard;
 
     PaymentWizard paymentWizard = new PaymentWizard(this);
 
@@ -187,6 +188,12 @@ public class ProductSearchController implements Initializable {
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 920)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1206)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1266))
+        );
+
+        paymentAnchorPane.setLayoutX(-1180);
+
+        showWizard = new Timeline(
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.layoutXProperty(),0))
         );
 
         paymentAnchorPane.getChildren().add(paymentWizard);
@@ -309,8 +316,9 @@ public class ProductSearchController implements Initializable {
     public void checkoutModeSwitch(){
         if(!isCheckoutMode) {
             paymentAnchorPane.toFront();
+            showWizard.play();
             paymentWizard.customerInfoPaneToFront();
-            checkoutButton.textProperty().setValue("Avbryt Köp");   //ändrar text på button
+            checkoutButton.textProperty().setValue("Till Sortiment");   //ändrar text på button
             searchBar.setVisible(false);
             isCheckoutMode = true;
             checkoutButtonOnHover();

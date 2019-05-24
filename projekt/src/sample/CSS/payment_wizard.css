@@ -83,3 +83,47 @@
     -fx-border-width: 0.5px;
     -fx-border-color: #757575;
 }
+
+.nav-button{
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-border-width: 0px;
+    -fx-background-color: -primary;
+    -fx-text-fill: -white;
+    -fx-font-family: "Roboto-regular";
+    -fx-font-size: 18px;
+}
+
+
+.nav-button: hover{
+    -fx-background-color: -primary-light;
+}
+
+.nav-button: pressed{
+    -fx-background-color: -primary-dark;
+}
+
+.card-button{
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+}
+
+.card-button: selected{
+    -fx-border-color: -secondary;
+}
+
+.card-button: hover{
+    -fx-border-color: -secondary-light;
+}
+
+
+.card-button-error{
+    -fx-border-width: 3px; -fx-border-color: #FF0000;
+}
+
+.card-button-error :hover{
+    -fx-border-color: -secondary-light;
+}

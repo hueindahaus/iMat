@@ -3,10 +3,13 @@ package sample;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.css.PseudoClass;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.FlowPane;
@@ -380,13 +383,24 @@ public class PaymentWizard extends StackPane {
 
     public void errorMeasureIfCardNotSelected(){
         if(getCreditCardType().isEmpty()){
+            /*
             visacardButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
             mastercardButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
             americanExpressButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            */
+            visacardButton.getStyleClass().add("card-button-error");
+            mastercardButton.getStyleClass().add("card-button-error");
+            americanExpressButton.getStyleClass().add("card-button-error");
         } else {
+            /*
             visacardButton.setStyle("");
             mastercardButton.setStyle("");
             americanExpressButton.setStyle("");
+            */
+            visacardButton.getStyleClass().remove("card-button-error");
+            mastercardButton.getStyleClass().remove("card-button-error");
+            americanExpressButton.getStyleClass().remove("card-button-error");
+
         }
     }
 
