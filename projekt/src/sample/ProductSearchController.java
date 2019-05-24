@@ -79,6 +79,7 @@ public class ProductSearchController implements Initializable {
     Timeline hideCart;
     Timeline showCart;
     Timeline showWizard;
+    Timeline hideWizard;
 
     PaymentWizard paymentWizard = new PaymentWizard(this);
 
@@ -99,15 +100,6 @@ public class ProductSearchController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
-
-        customer.setFirstName("");
-        customer.setLastName("");
-        customer.setEmail("");
-        customer.setAddress("");
-        customer.setMobilePhoneNumber("");
-        customer.setPhoneNumber("");
-        customer.setPostAddress(customer.getAddress());
-        customer.setPostCode("");
 
         cartAnchorPane.getChildren().add(cart); //lägger till klassen "Cart" som en child i den Anchorpane som avser varukorgen
 
@@ -190,10 +182,14 @@ public class ProductSearchController implements Initializable {
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1266))
         );
 
-        paymentAnchorPane.setLayoutX(-1180);
+        paymentAnchorPane.translateXProperty().setValue(-1310);
 
         showWizard = new Timeline(
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.layoutXProperty(),0))
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.translateXProperty(),-130))
+        );
+
+        hideWizard = new Timeline(
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(paymentAnchorPane.translateXProperty(),-1310))
         );
 
         paymentAnchorPane.getChildren().add(paymentWizard);
@@ -324,7 +320,9 @@ public class ProductSearchController implements Initializable {
             checkoutButtonOnHover();
 
         } else {
-            paymentAnchorPane.toBack();
+            //paymentAnchorPane.toBack();
+            showWizard.setAutoReverse(true);
+            hideWizard.play();
             checkoutButton.textProperty().setValue("Till Betalning");
             step1.setVisible(false);
             step2.setVisible(false);

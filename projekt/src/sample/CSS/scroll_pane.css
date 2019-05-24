@@ -19,7 +19,9 @@
 }
 
 
-.scroll-pane .track{-fx-opacity: 0;}
+.scroll-pane .track{
+    -fx-opacity: 0;
+}
 
 .scroll-bar:horizontal .increment-button ,
 .scroll-bar:horizontal .decrement-button {
