@@ -43,7 +43,7 @@ public class HistoryItem extends AnchorPane {
 
         orderDate.setText("Datum: " + order.getDate().getDate() + " " +  translateMonth(order.getDate().getMonth()) + " " + (order.getDate().getYear()+1900));
         orderNumber.setText("Ordernummer: " + Integer.toString(order.getOrderNumber()));
-        order.getItems().forEach(e -> orderMain.getChildren().add(new ProductListItem(parent.getShoppingItemMap().get(e.getProduct().getName()),parent)));      //skapar nytt productlistitems eftersom att vi behöver duplicates (men de refererar till samma shoppingItem som de representerar)
+        order.getItems().forEach(e -> orderMain.getChildren().add(new HistoryListItem(e,parent.getShoppingItemMap().get(e.getProduct().getName()),parent)));      //skapar nytt productlistitems eftersom att vi behöver duplicates (men de refererar till samma oldShoppingItem som de representerar)
 
 
         this.order = order;
