@@ -1,25 +1,41 @@
-.scroll-pane {
-    -fx-border-width: 0 1 0 0;
-    -fx-border-color: transparent;
-    -fx-padding: 0 0 0 0;
-}
-
-.scroll-pane .scroll-bar:vertical {
-    -fx-background-color: transparent;   //ändra denna om man vill få bort den vita randen i scrollbar
-    -fx-background-radius: 0;
-
+* {
+    -black: #000000;
+    -white: #FFFFFF;
+    -primary: #263238;
+    -primary-dark: #000a12;
+    -primary-light: #4f5b62;
+    -secondary: #7cb342;
+    -secondary-dark: #4b830d;
+    -secondary-light: #aee571;
+    -error-color: #B00020;
+    -error-color-light: #e94948;
 }
 
 
 .scroll-bar{
-   -fx-background-color: transparent;
-   -fx-background-radius: 2em;
-   -fx-focus-color: transparent;
-   -fx-faint-focus-color: transparent;
+    -fx-opacity: 1;
+    -fx-pref-width: 6px;
 }
 
 
-.scroll-pane .track{-fx-opacity: 0;}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+ -fx-background-color: white;
+ -fx-border-color: white;
+ -fx-background-radius: 2em;
+
+}
+
+.scroll-bar:vertical .track-background,
+.scroll-bar:horizontal .track-background {
+ -fx-background-color: white;
+ -fx-border-color: white;
+ -fx-background-insets: 0;
+ -fx-background-radius: 2em;
+}
+
+
 
 .scroll-bar:horizontal .increment-button ,
 .scroll-bar:horizontal .decrement-button {
@@ -29,13 +45,7 @@
 
 }
 
-.scroll-bar:vertical .track-background,
-.scroll-bar:horizontal .track-background {
-    -fx-opacity: 0;
-   -fx-background-color: transparent;
-   -fx-background-insets: 0;
-   -fx-background-radius: 2em;
-}
+
 
 .scroll-bar:vertical .increment-button ,
 .scroll-bar:vertical .decrement-button {
@@ -65,7 +75,7 @@
 }
 
 .scroll-pane:hover .scroll-bar .thumb{
-    -fx-background-color: #555555;
+    -fx-background-color: -primary;
 }
 
 .with-border{

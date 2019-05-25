@@ -39,4 +39,7 @@ public class OrderOverviewItem extends AnchorPane {
         title.setText(String.valueOf((int)shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnitSuffix() +  " x " + shoppingItem.getProduct().getName());
         price.setText(String.valueOf((int)shoppingItem.getTotal() + " kr"));
     }
+
+
+
 }

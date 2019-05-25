@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -15,11 +16,121 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="@CSS/main_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
+<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="@CSS/main_theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
    <children>
-      <AnchorPane fx:id="paymentAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1180.0" translateX="-130.0" />
+      <AnchorPane fx:id="paymentAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1180.0" translateX="-130.0" translateY="40.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="1440.0" styleClass="Header" stylesheets="@CSS/Header.css">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="1180.0" opacity="0.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/good-food-box.jpg" />
+                     </image>
+                  </ImageView>
+                  <Rectangle fill="DODGERBLUE" height="80.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.0" stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #263238;" width="1180.0" />
+                  <TextField fx:id="searchBar" layoutX="260.0" layoutY="15.0" prefHeight="50.0" prefWidth="600.0" promptText="Sök vara" styleClass="text-field" stylesheets="@CSS/Search_bar.css">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></TextField>
+                  <ImageView fx:id="cartButton" fitHeight="50.0" fitWidth="50.0" layoutX="1206.0" layoutY="15.0" onMousePressed="#toggleCart" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cart48white.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="cartLabel" layoutX="1006.0" layoutY="20.0" onMousePressed="#toggleCart" prefWidth="148.0" styleClass="biglabelWhite" text="Varukorg" textFill="WHITE" />
+                  <ImageView fx:id="homeButton" fitHeight="80.0" fitWidth="80.0" layoutX="25.0" layoutY="5.0" onMouseEntered="#setLogoToColored" onMouseExited="#setLogoToWhite" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/imatLogo.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="step1" fitHeight="80.0" fitWidth="500.0" layoutX="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/step1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="step2" fitHeight="80.0" fitWidth="500.0" layoutX="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/step2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="step3" fitHeight="80.0" fitWidth="500.0" layoutX="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/step3.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="260.0" styleClass="leftAnchorPane" stylesheets="@CSS/main_theme.css">
+               <children>
+                  <ScrollPane fx:id="categoryScrollPane" hbarPolicy="NEVER" layoutY="240.0" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
+                     <content>
+                        <FlowPane fx:id="categoryFlowPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                     </content>
+                  </ScrollPane>
+                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="160.0" prefHeight="80.0" prefWidth="240.0" styleClass="biglabelWhite" stylesheets="@CSS/main_theme.css" text="Sortiment">
+                     <font>
+                        <Font name="Bodoni 72 Oldstyle Book" size="36.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="userButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_person_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="historyButton" alignment="BASELINE_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik">
+
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_access_time_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="listButton" alignment="BASELINE_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor">
+
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_list_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="favorit" alignment="BASELINE_LEFT" layoutY="120.0" mnemonicParsing="false" onMousePressed="#displayFavourites" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/baseline_favorite_black_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+               </children>
+            </AnchorPane>
             <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="260.0" layoutY="80.0" prefHeight="820.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
                <content>
                   <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="820.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css">
@@ -34,83 +145,11 @@
             </ScrollPane>
             <AnchorPane fx:id="cartAnchorPane" layoutX="1180.0" layoutY="80.0" prefHeight="820.0" prefWidth="260.0">
                <children>
-                  <Button fx:id="checkoutButton" layoutY="740.0" mnemonicParsing="false" onMouseReleased="#checkoutModeSwitch" prefHeight="80.0" prefWidth="260.0" styleClass="to-payment-button" text="Till Betalning" textFill="WHITE" />
+                  <Button fx:id="checkoutButton" layoutY="740.0" mnemonicParsing="false" onMouseReleased="#checkoutModeSwitch" prefHeight="80.0" prefWidth="260.0" styleClass="to-payment-button" text="Till Betalning" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children></AnchorPane>
-            <AnchorPane layoutX="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="1180.0" styleClass="Header" stylesheets="@CSS/Header.css">
-               <children>
-                  <ImageView fitHeight="80.0" fitWidth="1180.0" opacity="0.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../images/good-food-box.jpg" />
-                     </image>
-                  </ImageView>
-                  <Rectangle fill="DODGERBLUE" height="80.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.0" stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #263238;" width="1180.0" />
-                  <TextField fx:id="searchBar" layoutX="143.0" layoutY="15.0" prefHeight="50.0" prefWidth="600.0" promptText="Sök vara" styleClass="text-field" stylesheets="@CSS/Search_bar.css" />
-                  <ImageView fx:id="cartButton" fitHeight="50.0" fitWidth="50.0" layoutX="946.0" layoutY="15.0" onMousePressed="#toggleCart" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/cart48white.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="cartLabel" layoutX="1006.0" layoutY="20.0" onMousePressed="#toggleCart" prefWidth="148.0" styleClass="biglabelWhite" text="Varukorg" textFill="WHITE" />
-                  <ImageView fx:id="homeButton" fitHeight="80.0" fitWidth="80.0" layoutX="25.0" layoutY="5.0" onMouseEntered="#setLogoToColored" onMouseExited="#setLogoToWhite" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/imatLogo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="880.0" prefWidth="260.0" styleClass="leftAnchorPane" stylesheets="@CSS/main_theme.css">
-               <children>
-                  <ScrollPane fx:id="categoryScrollPane" hbarPolicy="NEVER" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
-                     <content>
-                        <FlowPane fx:id="categoryFlowPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
-                     </content>
-                  </ScrollPane>
-                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="260.0" styleClass="biglabelWhite" stylesheets="@CSS/main_theme.css" text="Sortiment">
-                     <font>
-                        <Font name="Bodoni 72 Oldstyle Book" size="36.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="20.0" layoutY="20.0" styleClass="biglabelWhite" text="Personligt" textFill="WHITE" />
-                  <RadioButton fx:id="userButton" alignment="BASELINE_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/baseline_person_black_18dp.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </RadioButton>
-                  <RadioButton fx:id="historyButton" alignment="BASELINE_LEFT" layoutY="120.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik">
-
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/baseline_access_time_black_18dp.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </RadioButton>
-                  <RadioButton fx:id="listButton" alignment="BASELINE_LEFT" layoutY="160.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor">
-
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/baseline_list_black_18dp.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </RadioButton>
-                  <RadioButton fx:id="favorit" alignment="BASELINE_LEFT" layoutY="200.0" mnemonicParsing="false" onMousePressed="#displayFavourites" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Favoriter">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/baseline_favorite_black_18dp.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </RadioButton>
-               </children>
-            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

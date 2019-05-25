@@ -1,17 +1,29 @@
 package sample;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.css.PseudoClass;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import se.chalmers.cse.dat216.project.*;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PaymentWizard extends StackPane {
@@ -59,13 +71,28 @@ public class PaymentWizard extends StackPane {
         });
 
         datePicker.setShowWeekNumbers(false);
+        linkTextFieldWithErrorIcon();
 
+    }
+
+    private boolean containsDigitsOnly(TextField textField){        //metod som kollar om texten i en textfield endast består av siffror
+        char[] chars = textField.getText().toCharArray();
+        for(int i = 0; i < chars.length; i++){
+            if(!Character.isDigit(chars[i])){
+                return false;
+            }
+        }
+        return true;
     }
 
     @FXML
     public void customerInfoPaneToFront(){
         autofillCustomerInfo();
         customerInfoPane.toFront();
+
+        parentController.step1.setVisible(true);
+        parentController.step2.setVisible(false);
+        parentController.step3.setVisible(false);
     }
 
     @FXML
@@ -75,9 +102,14 @@ public class PaymentWizard extends StackPane {
             autofillDeliveryInfo();
             deliveryInfoPane.toFront();
             customerInfoErrorLabel.setVisible(false);
+
+            parentController.step1.setVisible(false);
+            parentController.step2.setVisible(true);
+            parentController.step3.setVisible(false);
         } else {
             customerInfoErrorLabel.setVisible(true);
         }
+        errorMeasureCustomerInfo();                     //error-messages visas om isCostumerInfoComplete returnar false
     }
 
     @FXML
@@ -86,9 +118,15 @@ public class PaymentWizard extends StackPane {
             setDeliveryInfoValues();
             paymentInfoPane.toFront();
             deliveryInfoErrorLabel.setVisible(false);
+
+            parentController.step1.setVisible(false);
+            parentController.step2.setVisible(false);
+            parentController.step3.setVisible(true);
         } else {
             deliveryInfoErrorLabel.setVisible(true);
         }
+        errorMeasureDeliveryInfo();                     //error-messages visas om isDeliveryInfoComplete returnar false
+
     }
 
     @FXML
@@ -104,6 +142,9 @@ public class PaymentWizard extends StackPane {
         } else{
             paymentInfoErrorLabel.setVisible(true);
         }
+        errorMeasurePaymentInfo();
+
+        //setErrorIconVisibleValidMonthOrValidYear();     //speciellt eftersom att en Error-Icon används för två olika TextField
     }
 
 
@@ -144,8 +185,10 @@ public class PaymentWizard extends StackPane {
     }
 
 
-    public boolean isCustomerInfoComplete(){        //returnar true om inga textrutor är tomma
-        return !firstNameTextField.getText().isEmpty() && !lastNameTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && (!mobileNumberTextField.getText().isEmpty() || !homeNumberTextField.getText().isEmpty()) && !emailTextField.getText().isEmpty() && !addressTextField.getText().isEmpty();
+
+
+    public boolean isCustomerInfoComplete(){        //returnar true om inga textrutor är tomma om de rutor som endast kräver digits innehåller digits och om email-fältet innehåller "@"
+        return !firstNameTextField.getText().isEmpty() && !lastNameTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && emailTextField.getText().contains("@") && !mobileNumberTextField.getText().isEmpty() && !homeNumberTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && !addressTextField.getText().isEmpty() && containsDigitsOnly(homeNumberTextField) && containsDigitsOnly(mobileNumberTextField);
     }
     //------------------------------------------------------------------------------------------------------------------  Deliver Info
 
@@ -174,7 +217,7 @@ public class PaymentWizard extends StackPane {
     }
 
     private boolean isDeliveryInfoComplete(){           //returnerar true om inga textrutor är tomma
-        return !postAddressTextField.getText().isEmpty() && !postCodeTextField.getText().isEmpty() && !datePicker.editorProperty().getValue().getText().isEmpty();
+        return !postAddressTextField.getText().isEmpty() && !postCodeTextField.getText().isEmpty() && !datePicker.editorProperty().getValue().getText().isEmpty() && containsDigitsOnly(postCodeTextField);
     }
 
     //------------------------------------------------------------------------------------------------------------------ Payment Info
@@ -210,15 +253,7 @@ public class PaymentWizard extends StackPane {
         }
     }
 
-    private boolean containsDigitsOnly(TextField textField){        //metod som kollar om texten i en textfield endast består av siffror
-        char[] chars = textField.getText().toCharArray();
-        for(int i = 0; i < chars.length; i++){
-            if(!Character.isDigit(chars[i])){
-                return false;
-            }
-        }
-        return true;
-    }
+
 
     private boolean isPaymentInfoComplete(){            //return:ar true om inga textrutor är tomma och om de textrutor som kräver endast siffror inte har bokstäver i sig. (dessutom måste man ha valt typ av kreditkort)
         return !getCreditCardType().isEmpty() && !cardHolderNameTextField.getText().isEmpty() && !validMonthTextField.getText().isEmpty() && !validYearTextField.getText().isEmpty() && !cardnumberTextField.getText().isEmpty() && !cvcTextField.getText().isEmpty() && containsDigitsOnly(validMonthTextField) && containsDigitsOnly(validYearTextField) && containsDigitsOnly(cvcTextField);
@@ -269,10 +304,189 @@ public class PaymentWizard extends StackPane {
 
     @FXML
     public void checkoutComplete(){
-        parentController.disableCheckOutButton(false);
+        parentController.disableCheckOutButton(true);
         resetPaymentInfoValues();
         parentController.checkoutModeSwitch();
     }
+
+
+
+    //------------------------------------------------------------------------------------------------------------------ Felmeddelande-hantering
+    public void errorMeasureCustomerInfo(){
+        errorMeasureIfEmpty(firstNameTextField);
+        errorMeasureIfEmpty(lastNameTextField);
+        errorMeasureIfEmpty(addressTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(homeNumberTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(mobileNumberTextField);
+        errorMeasureIfNoSnabelAOrEmpty(emailTextField);
+    }
+
+    public void errorMeasureDeliveryInfo(){
+        errorMeasureIfEmpty(postAddressTextField);
+        errorMeasureIfEmpty(datePicker.getEditor());
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(postCodeTextField);
+    }
+
+    public void errorMeasurePaymentInfo(){
+        errorMeasureIfEmpty(cardnumberTextField);
+        errorMeasureIfEmpty(cardHolderNameTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(validYearTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(validMonthTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(cvcTextField);
+        errorMeasureIfCardNotSelected();
+
+    }
+
+    public void errorMeasureIfEmpty(TextField textField){
+        if(textField.getText().isEmpty()){
+            textField.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            setErrorIconVisible(textField,true);
+            setErrorMessageOnIcon(textField);
+        } else {
+            textField.setStyle("");
+            setErrorIconVisible(textField,false);
+        }
+    }
+
+    public void errorMeasureIfOnlyDigitsRequiredOrEmpty(TextField textField){
+        if(!containsDigitsOnly(textField) || textField.getText().isEmpty()){
+            textField.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            setErrorIconVisible(textField,true);
+            setErrorMessageOnIcon(textField);
+        } else {
+            textField.setStyle("");
+            setErrorIconVisible(textField,false);
+        }
+    }
+
+    public void errorMeasureIfNoSnabelAOrEmpty(TextField textField){
+        if(!textField.getText().contains("@")|| textField.getText().isEmpty()) {
+            textField.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            setErrorIconVisible(textField,true);
+            setErrorMessageOnIcon(textField);
+        } else {
+            textField.setStyle("");
+            setErrorIconVisible(textField,false);
+        }
+    }
+
+    public void errorMeasureIfTooManyCharacters(TextField textField, int max){      //inget vi använder för tillfället
+        if(textField.getText().length() > max){
+            textField.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            setErrorIconVisible(textField,true);
+            setErrorMessageOnIcon(textField);
+        } else {
+            textField.setStyle("");
+            setErrorIconVisible(textField,false);
+        }
+    }
+
+    public void errorMeasureIfCardNotSelected(){
+        if(getCreditCardType().isEmpty()){
+            /*
+            visacardButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            mastercardButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            americanExpressButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
+            */
+            visacardButton.getStyleClass().add("card-button-error");
+            mastercardButton.getStyleClass().add("card-button-error");
+            americanExpressButton.getStyleClass().add("card-button-error");
+        } else {
+            /*
+            visacardButton.setStyle("");
+            mastercardButton.setStyle("");
+            americanExpressButton.setStyle("");
+            */
+            visacardButton.getStyleClass().remove("card-button-error");
+            mastercardButton.getStyleClass().remove("card-button-error");
+            americanExpressButton.getStyleClass().remove("card-button-error");
+
+        }
+    }
+
+    //----------------------------------errorIcons & tooltips
+    private Map<TextField,ImageView> errorMap = new HashMap<>();
+
+    private void linkTextFieldWithErrorIcon(){
+        errorMap.put(firstNameTextField,errorFirstNameIcon);
+        errorMap.put(lastNameTextField,errorLastNameIcon);
+        errorMap.put(homeNumberTextField,errorPhoneIcon);
+        errorMap.put(mobileNumberTextField,errorMobileIcon);
+        errorMap.put(emailTextField,errorEmailIcon);
+        errorMap.put(addressTextField, errorAdressIcon);
+        errorMap.put(postAddressTextField, errorPostAdressIcon);
+        errorMap.put(postCodeTextField,errorPostCodeIcon);
+        errorMap.put(datePicker.getEditor(),errorDeliveryDayIcon);
+        errorMap.put(cardnumberTextField,errorCardNumberIcon);
+        errorMap.put(cardHolderNameTextField,errorHolderNameIcon);
+        errorMap.put(cvcTextField,errorCvcIcon);
+        errorMap.put(validMonthTextField, errorValidMonth);
+        errorMap.put(validYearTextField,errorValidYearFront);
+
+    }
+
+    @FXML ImageView errorFirstNameIcon;
+    @FXML ImageView errorLastNameIcon;
+    @FXML ImageView errorPhoneIcon;
+    @FXML ImageView errorMobileIcon;
+    @FXML ImageView errorEmailIcon;
+    @FXML ImageView errorAdressIcon;
+    @FXML ImageView errorPostAdressIcon;
+    @FXML ImageView errorPostCodeIcon;
+    @FXML ImageView errorDeliveryDayIcon;
+    @FXML ImageView errorCardNumberIcon;
+    @FXML ImageView errorHolderNameIcon;
+    @FXML ImageView errorCvcIcon;
+    @FXML ImageView errorValidYearFront;
+    @FXML ImageView errorValidMonth;
+
+
+    private void setErrorIconVisible(TextField textField, boolean value){
+        ImageView errorIcon = errorMap.get(textField);
+        errorIcon.setVisible(value);
+    }
+
+
+
+    private void setErrorMessageOnIcon(TextField textField){
+        StringBuilder messageBuilder = new StringBuilder();
+
+
+        if(isEmpty(textField)){
+            messageBuilder.append("Fältet kan inte vara tomt\n");
+        }
+        if(textField.equals(homeNumberTextField) || textField.equals(mobileNumberTextField) || textField.equals(postCodeTextField) || textField.equals(validMonthTextField) || textField.equals(validYearTextField) || textField.equals(cvcTextField)){
+            if(!containsDigitsOnly(textField)){
+                messageBuilder.append("Fältet får endast innehålla siffror\n");
+            }
+        }
+        if(textField.equals(emailTextField)) {
+            if (doesntContainSnabelA(textField)) {
+                messageBuilder.append("Fältet måste ha formen: email@email.com\n");
+            }
+        }
+
+        ImageView errorIcon = errorMap.get(textField);
+
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText(messageBuilder.toString());
+        tooltip.setFont(new Font("Roboto-regular", 18));
+        Tooltip.install(errorIcon,tooltip);
+    }
+
+    private boolean isEmpty(TextField textField){
+        return textField.getText().isEmpty();
+    }
+
+    private boolean doesntContainSnabelA(TextField textField){
+        return !textField.getText().contains("@");
+    }
+
+
+
+
+
+
 
 
 

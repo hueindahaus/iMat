@@ -98,6 +98,9 @@
                      <image>
                         <Image url="@../icons/baseline_favorite_border_black_18dp.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="14.0" layoutY="14.0" onMousePressed="#flipCardToBack" pickOnBounds="true" preserveRatio="true">
                      <image>

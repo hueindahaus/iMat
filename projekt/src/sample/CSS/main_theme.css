@@ -7,6 +7,8 @@
     -secondary: #7cb342;
     -secondary-dark: #4b830d;
     -secondary-light: #aee571;
+    -error-color: #B00020;
+    -error-color-light: #e94948;
 }
 
 
@@ -19,14 +21,32 @@
 
 .biglabelWhite{
     -fx-font-family: 'Roboto-Regular';
-    -fx-font-size: 34px;
+    -fx-font-size: 24px;
     -fx-text-fill: -white;
+}
+
+
+.cartlabel{
+    -fx-font-family: 'Roboto-Regular';
+    -fx-font-size: 24px;
+    -fx-text-fill: -white;
+}
+
+
+.cartlabel:hover{
+    -fx-text-fill: -secondary-light;
 }
 
 .mediumlabel{
     -fx-font-family: 'Roboto-Regular';
     -fx-font-size: 18px;
     -fx-text-fill: -black;
+}
+
+.mediumlabelWhite{
+    -fx-font-family: 'Roboto-Regular';
+    -fx-font-size: 18px;
+    -fx-text-fill: -white;
 }
 
 .smalllabel{
@@ -99,6 +119,22 @@
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
+.buy-button{
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-border-width: 0px;
+    -fx-background-color: -secondary;
+    -fx-font-family: "Roboto-regular";
+    -fx-font-size: 18px;
+    -fx-text-fill: -black;
+}
+
+
+.buy-button: hover{
+    -fx-background-color: -secondary-light;
+    -fx-font-size: 24px;
 }
 
 .lightestBlue{ -fx-background-color: #D0ECEF; }
