@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -158,10 +159,14 @@ public class ProductSearchController implements Initializable {
         populateCategoryView();
 
         searchBar.setOnAction(event -> {
-            filterEngine.setSearchCategory(null);       //när man söker vill man inte bara söka inom t.ex. kategorin som vi valt, vi resettar dessa så att alla produkter som man söker på kommer upp
-            filterEngine.setSearchIsEcological(false);
-            filterEngine.setSearchPriceMax(0);
-            filterEngine.setSearchPriceMin(0);
+
+            ObservableList<Toggle> toggles= toggleGroup.getToggles();
+            for(Toggle toggle: toggles){
+                if(toggle.isSelected()){
+                    toggle.setSelected(false);
+                }
+            }
+            filterEngine.resetFilterEngine();
 
             filterEngine.setSearchString(searchBar.getText());     //sätter det nya värdet i sökrutan i filterEngine
             if (searchBar.getText().isEmpty()) {                     //om det nya värdet är tomt så hamnar man i startvyn
@@ -292,6 +297,7 @@ public class ProductSearchController implements Initializable {
 
     public void filterByCategoryAndUpdate(ProductCategory category) {
         searchBar.clear();                          //om man har text i sökrutan och trycker på en kategori ska texten i sökrutan försvinna och vi filtrerar endast utifrån vilken kategori som vi tryckt på
+        filterEngine.resetFilterEngine();
         filterEngine.setSearchCategory(category);
         update();
     }
