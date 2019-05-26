@@ -1,6 +1,7 @@
 package sample;
 
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.css.PseudoClass;
@@ -73,16 +74,122 @@ public class PaymentWizard extends StackPane {
         datePicker.setShowWeekNumbers(false);
         linkTextFieldWithErrorIcon();
 
+
+
+        visacardButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                errorMeasureIfCardNotSelected();
+            }
+        });
+
+        mastercardButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                errorMeasureIfCardNotSelected();
+            }
+        });
+
+        americanExpressButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                errorMeasureIfCardNotSelected();
+            }
+        });
+
+
+        cvcTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 3){
+                    cvcTextField.setText(oldValue);
+                }
+            }
+        });
+
+        validMonthTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 2){
+                    validMonthTextField.setText(oldValue);
+                }
+            }
+        });
+
+        validYearTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 2){
+                    validYearTextField.setText(oldValue);
+                }
+            }
+        });
+
+        postCodeTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 6){
+                    postCodeTextField.setText(oldValue);
+                }
+            }
+        });
+
+        cardnumberTextField.textProperty().addListener(new ChangeListener<String>() {       //fixar formatet på kredikort  TODO OBSSSS  skickar runtime exception när man tar bort en siffra så att ett bindestreck automatiskt försvinner (Programmet fungerar ändå)
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() < 20){
+                    cardnumberTextField.setText(toCreditcardFormat(newValue));     //skapar illegalargumentexception när man tar bort ett bindestreck
+                    /*
+                    Platform.runLater(() -> {
+                        String inputInCardformat = toCreditcardFormat(newValue);
+                        cardnumberTextField.setText(inputInCardformat);
+                        cardnumberTextField.positionCaret(inputInCardformat.length());
+                    });
+                    */
+                }   else {
+                    cardnumberTextField.setText(oldValue);
+                }
+            }
+        });
+
+
+
     }
 
     private boolean containsDigitsOnly(TextField textField){        //metod som kollar om texten i en textfield endast består av siffror
         char[] chars = textField.getText().toCharArray();
         for(int i = 0; i < chars.length; i++){
-            if(!Character.isDigit(chars[i])){
+            if(!Character.isDigit(chars[i]) && !String.valueOf(chars[i]).equals(" ") && !String.valueOf(chars[i]).equals("-")){
                 return false;
             }
         }
         return true;
+    }
+
+
+    private String toCreditcardFormat(String str){
+        String numbers = extractDigits(str);
+
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i < numbers.length(); i++){
+            if(i==4 || i==8 || i==12 || i==16){
+                sb.append("-");
+            }
+            sb.append(numbers.charAt(i));
+        }
+        return sb.toString();
+
+    }
+
+    private String extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en sträng
+        StringBuilder builder = new StringBuilder();
+        for(int i=0; i < string.length(); i++){
+            char c = string.charAt(i);
+            if(Character.isDigit(c)){
+                builder.append(c);
+            }
+        }
+        return builder.toString();
     }
 
     @FXML
@@ -135,6 +242,7 @@ public class PaymentWizard extends StackPane {
             setPaymentInfoValues();
             overviewPane.toFront();
             fillOrderFlowPane();
+            isInReceiptMode = true;
             placeOrder();
             fillOrderOverviewInfo();
             parentController.disableCheckOutButton(true);
@@ -188,7 +296,7 @@ public class PaymentWizard extends StackPane {
 
 
     public boolean isCustomerInfoComplete(){        //returnar true om inga textrutor är tomma om de rutor som endast kräver digits innehåller digits och om email-fältet innehåller "@"
-        return !firstNameTextField.getText().isEmpty() && !lastNameTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && emailTextField.getText().contains("@") && !mobileNumberTextField.getText().isEmpty() && !homeNumberTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && !addressTextField.getText().isEmpty() && containsDigitsOnly(homeNumberTextField) && containsDigitsOnly(mobileNumberTextField);
+        return !firstNameTextField.getText().isEmpty() && !lastNameTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && isInEmailForm(emailTextField) && !mobileNumberTextField.getText().isEmpty() && !homeNumberTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && !addressTextField.getText().isEmpty() && containsDigitsOnly(homeNumberTextField) && containsDigitsOnly(mobileNumberTextField);
     }
     //------------------------------------------------------------------------------------------------------------------  Deliver Info
 
@@ -256,7 +364,7 @@ public class PaymentWizard extends StackPane {
 
 
     private boolean isPaymentInfoComplete(){            //return:ar true om inga textrutor är tomma och om de textrutor som kräver endast siffror inte har bokstäver i sig. (dessutom måste man ha valt typ av kreditkort)
-        return !getCreditCardType().isEmpty() && !cardHolderNameTextField.getText().isEmpty() && !validMonthTextField.getText().isEmpty() && !validYearTextField.getText().isEmpty() && !cardnumberTextField.getText().isEmpty() && !cvcTextField.getText().isEmpty() && containsDigitsOnly(validMonthTextField) && containsDigitsOnly(validYearTextField) && containsDigitsOnly(cvcTextField);
+        return !getCreditCardType().isEmpty() && !cardHolderNameTextField.getText().isEmpty() && !validMonthTextField.getText().isEmpty() && !validYearTextField.getText().isEmpty() && !cardnumberTextField.getText().isEmpty() && !cvcTextField.getText().isEmpty() && containsDigitsOnly(validMonthTextField) && containsDigitsOnly(validYearTextField) && containsDigitsOnly(cvcTextField) && containsDigitsOnly(cardnumberTextField);
     }
 
     public void placeOrder(){
@@ -284,6 +392,8 @@ public class PaymentWizard extends StackPane {
     @FXML private Label overviewTimeLabel;
     @FXML private FlowPane orderFlowPane;
     @FXML private Label totalPriceLabel;
+    private boolean isInReceiptMode = false;
+
 
     private void fillOrderOverviewInfo(){
         overviewNameLabel.setText(customer.getFirstName() + " " + customer.getLastName());
@@ -301,9 +411,14 @@ public class PaymentWizard extends StackPane {
         totalPriceLabel.setText("Totala priset: " + String.valueOf((int)IMatDataHandler.getInstance().getShoppingCart().getTotal()) + " kr");
     }
 
+    protected boolean isInReceiptMode(){
+        return isInReceiptMode;
+    }
+
 
     @FXML
     public void checkoutComplete(){
+        isInReceiptMode = false;
         parentController.disableCheckOutButton(true);
         resetPaymentInfoValues();
         parentController.checkoutModeSwitch();
@@ -318,7 +433,7 @@ public class PaymentWizard extends StackPane {
         errorMeasureIfEmpty(addressTextField);
         errorMeasureIfOnlyDigitsRequiredOrEmpty(homeNumberTextField);
         errorMeasureIfOnlyDigitsRequiredOrEmpty(mobileNumberTextField);
-        errorMeasureIfNoSnabelAOrEmpty(emailTextField);
+        errorMeasureIfNotInEmailForm(emailTextField);
     }
 
     public void errorMeasureDeliveryInfo(){
@@ -328,8 +443,8 @@ public class PaymentWizard extends StackPane {
     }
 
     public void errorMeasurePaymentInfo(){
-        errorMeasureIfEmpty(cardnumberTextField);
         errorMeasureIfEmpty(cardHolderNameTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField);
         errorMeasureIfOnlyDigitsRequiredOrEmpty(validYearTextField);
         errorMeasureIfOnlyDigitsRequiredOrEmpty(validMonthTextField);
         errorMeasureIfOnlyDigitsRequiredOrEmpty(cvcTextField);
@@ -359,8 +474,8 @@ public class PaymentWizard extends StackPane {
         }
     }
 
-    public void errorMeasureIfNoSnabelAOrEmpty(TextField textField){
-        if(!textField.getText().contains("@")|| textField.getText().isEmpty()) {
+    public void errorMeasureIfNotInEmailForm(TextField textField){
+        if(!isInEmailForm(textField)|| textField.getText().isEmpty()) {
             textField.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
             setErrorIconVisible(textField,true);
             setErrorMessageOnIcon(textField);
@@ -370,33 +485,13 @@ public class PaymentWizard extends StackPane {
         }
     }
 
-    public void errorMeasureIfTooManyCharacters(TextField textField, int max){      //inget vi använder för tillfället
-        if(textField.getText().length() > max){
-            textField.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
-            setErrorIconVisible(textField,true);
-            setErrorMessageOnIcon(textField);
-        } else {
-            textField.setStyle("");
-            setErrorIconVisible(textField,false);
-        }
-    }
 
     public void errorMeasureIfCardNotSelected(){
         if(getCreditCardType().isEmpty()){
-            /*
-            visacardButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
-            mastercardButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
-            americanExpressButton.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
-            */
             visacardButton.getStyleClass().add("card-button-error");
             mastercardButton.getStyleClass().add("card-button-error");
             americanExpressButton.getStyleClass().add("card-button-error");
         } else {
-            /*
-            visacardButton.setStyle("");
-            mastercardButton.setStyle("");
-            americanExpressButton.setStyle("");
-            */
             visacardButton.getStyleClass().remove("card-button-error");
             mastercardButton.getStyleClass().remove("card-button-error");
             americanExpressButton.getStyleClass().remove("card-button-error");
@@ -455,13 +550,13 @@ public class PaymentWizard extends StackPane {
         if(isEmpty(textField)){
             messageBuilder.append("Fältet kan inte vara tomt\n");
         }
-        if(textField.equals(homeNumberTextField) || textField.equals(mobileNumberTextField) || textField.equals(postCodeTextField) || textField.equals(validMonthTextField) || textField.equals(validYearTextField) || textField.equals(cvcTextField)){
+        if(textField.equals(homeNumberTextField) || textField.equals(mobileNumberTextField) || textField.equals(postCodeTextField) || textField.equals(validMonthTextField) || textField.equals(validYearTextField) || textField.equals(cvcTextField) || textField.equals(cardnumberTextField)){
             if(!containsDigitsOnly(textField)){
-                messageBuilder.append("Fältet får endast innehålla siffror\n");
+                messageBuilder.append("Fältet får endast innehålla siffror, bindestreck och mellanslag\n");
             }
         }
         if(textField.equals(emailTextField)) {
-            if (doesntContainSnabelA(textField)) {
+            if (!isInEmailForm(textField)) {
                 messageBuilder.append("Fältet måste ha formen: email@email.com\n");
             }
         }
@@ -472,14 +567,15 @@ public class PaymentWizard extends StackPane {
         tooltip.setText(messageBuilder.toString());
         tooltip.setFont(new Font("Roboto-regular", 18));
         Tooltip.install(errorIcon,tooltip);
+        Tooltip.install(textField,tooltip);
     }
 
     private boolean isEmpty(TextField textField){
         return textField.getText().isEmpty();
     }
 
-    private boolean doesntContainSnabelA(TextField textField){
-        return !textField.getText().contains("@");
+    private boolean isInEmailForm(TextField textField){
+        return textField.getText().contains("@") && textField.getText().contains(".");
     }
 
 

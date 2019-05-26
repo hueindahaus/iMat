@@ -358,7 +358,7 @@ public class ProductSearchController implements Initializable {
     }
 
 
-    public void checkoutButtonOnHover() {        //bytar färgtema på knappen som tar en till/från varukorgen när hover är aktiv
+    protected void checkoutButtonOnHover() {        //bytar färgtema på knappen som tar en till/från varukorgen när hover är aktiv
         if (!isCheckoutMode) {
             checkoutButton.setStyle(
                     "-fx-background-color: -secondary-light;\n" +
@@ -371,7 +371,7 @@ public class ProductSearchController implements Initializable {
     }
 
 
-    public void checkoutButtonWithoutHover() {       //bytar färgtema på knappen som tar en till/från varukorgen när hover inte är aktiv
+    protected void checkoutButtonWithoutHover() {       //bytar färgtema på knappen som tar en till/från varukorgen när hover inte är aktiv
         if (!isCheckoutMode) {
             checkoutButton.setStyle("" +
                     "-fx-background-color: -secondary;\n" +
@@ -392,7 +392,7 @@ public class ProductSearchController implements Initializable {
     }
 
 
-    public void disableCheckOutButton(boolean value) {
+    protected void disableCheckOutButton(boolean value) {
         checkoutButton.setDisable(value);
     }
 
@@ -409,4 +409,9 @@ public class ProductSearchController implements Initializable {
     public void setLogoToWhite(){
         homeButton.setImage(new Image(getClass().getResource("../icons/imatLogo.png").toExternalForm()));
     }
+
+    protected boolean isCheckoutMode(){
+        return isCheckoutMode;
+    }
+
 }

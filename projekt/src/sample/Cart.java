@@ -37,10 +37,12 @@ public class Cart extends AnchorPane {
     }
 
 
+
     private Cart(ProductSearchController parentController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+
 
         try{
             fxmlLoader.load();
@@ -68,13 +70,23 @@ public class Cart extends AnchorPane {
             public void shoppingCartChanged(CartEvent cartEvent) {
                 updateFlowPane();
 
+                if(shoppingCart.getItems().isEmpty() && parentController.isCheckoutMode() && !parentController.paymentWizard.isInReceiptMode()){     //om vi är i checkoutmode och cart blir tom så ska vi åter tillbaka till sortimentet (man ska inte kunna utföra ett köp när man inte har några varor i varukorgen) däremot töms cart när man place:ar en order, i detta fallet ska vi inte tillbaka till sortimentet, utan man ska fortsätta till kvittot
+                    parentController.checkoutModeSwitch();
+                }
+
                 if(!shoppingCart.getItems().isEmpty()){                         //om det finns saker i varukorgen ska man kunna ta sig till betalning. Annars så ska man inte kunna göra det
                     parentController.disableCheckOutButton(false);
                 } else if(shoppingCart.getItems().isEmpty()){
                     parentController.disableCheckOutButton(true);
                 }
+
+
+
+
             }
         });
+
+        flowPane.setVgap(8);
 
         shoppingCart.getItems().clear();
         updateFlowPane();

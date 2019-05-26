@@ -137,6 +137,16 @@
     -fx-font-size: 24px;
 }
 
+
+
+#cart-item{
+    -fx-border-radius: 4px;
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
 .lightestBlue{ -fx-background-color: #D0ECEF; }
 .lightBlue{ -fx-background-color: #99E9F2; }
 .darkerBlue{ -fx-background-color: #32A6A6; }

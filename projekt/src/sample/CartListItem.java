@@ -1,5 +1,9 @@
 package sample;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +52,33 @@ public class CartListItem extends AnchorPane {
         title.setText(shoppingItem.getProduct().getName());
         price.setText(shoppingItem.getTotal() + " kr");
 
+
+        textField.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String input = textField.getText();   //vi sparar det som står i textfield i en variabel
+                if(input.isEmpty()){                    //om strängen är empty ska vi ta bort item från cart
+                    clearItem();
+                } else {                                //annars ska vi extrahera ut endast siffrorna i textfield och sätta currentAmount till vad som står
+                    shoppingItem.setAmount(extractDigits(input));
+                }
+                updateTextField();
+            }
+        });
+
+        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {     //när textrutan får fokus ska allt i rutan selectas
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    Platform.runLater(new Runnable() {      // Gör det möjligt att selecta allt när textrutan får fokus (förstår mig inte helt på denna)
+                        public void run() {
+                            textField.selectAll();
+                        }
+                    });
+                }
+            }
+        });
+
     }
 
     public ShoppingItem getShoppingItem(){
@@ -73,5 +104,17 @@ public class CartListItem extends AnchorPane {
     @FXML
     public void clearItem(){
         parentController.getCart().removeAllOfItem(shoppingItem);
+    }
+
+
+    private int extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en int
+        StringBuilder builder = new StringBuilder();
+        for(int i=0; i < string.length(); i++){
+            char c = string.charAt(i);
+            if(Character.isDigit(c)){
+                builder.append(c);
+            }
+        }
+        return Integer.valueOf(builder.toString());
     }
 }
