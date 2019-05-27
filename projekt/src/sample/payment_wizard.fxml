@@ -20,7 +20,7 @@
    <children>
       <AnchorPane fx:id="deliveryInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
-            <Label fx:id="deliveryInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="420.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på röda fält för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+            <Label fx:id="deliveryInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="420.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på varningssymbolen för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
@@ -132,6 +132,91 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="customerInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
+         <children>
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Förnamn:" />
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Efternamn:" />
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Hemtelefon:" />
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Mobilnummer:" />
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="520.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Email-adress:" />
+            <TextField fx:id="firstNameTextField" layoutX="455.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Sven">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="lastNameTextField" layoutX="455.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Svensson">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="homeNumberTextField" layoutX="455.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="040123456">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="mobileNumberTextField" layoutX="455.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="0701234567">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="emailTextField" layoutX="455.0" layoutY="520.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="email@email.se">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <Button layoutX="836.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#deliveryInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Nästa">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Adress:" />
+            <TextField fx:id="addressTextField" layoutX="455.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Stationsvägen 1">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <Label fx:id="customerInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="420.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på varningssymbolen för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="errorFirstNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorLastNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorPhoneIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorMobileIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorEmailIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorAdressIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Användaruppgifter">
+               <font>
+                  <Font name="Roboto" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="paymentInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
             <Button layoutX="792.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#overviewPaneToFront" prefHeight="60.0" prefWidth="260.0" styleClass="buy-button" text="Slutför köp">
@@ -204,7 +289,7 @@
                   <Font name="Roboto" size="36.0" />
                </font>
             </TextField>
-            <Label fx:id="paymentInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="410.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på röda fält för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+            <Label fx:id="paymentInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="410.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på varningssymbolen för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
@@ -240,91 +325,11 @@
                   <Font name="Roboto" size="48.0" />
                </font>
             </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="customerInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
-         <children>
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Förnamn:" />
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Efternamn:" />
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Hemtelefon:" />
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Mobilnummer:" />
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="520.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Email-adress:" />
-            <TextField fx:id="firstNameTextField" layoutX="455.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Sven">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="lastNameTextField" layoutX="455.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Svensson">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="homeNumberTextField" layoutX="455.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="040123456">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="mobileNumberTextField" layoutX="455.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="0701234567">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="emailTextField" layoutX="455.0" layoutY="520.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="email@email.se">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <Button layoutX="836.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#deliveryInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Nästa">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </Button>
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Adress:" />
-            <TextField fx:id="addressTextField" layoutX="455.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Stationsvägen 1">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <Label fx:id="customerInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="420.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på röda fält för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
-               <font>
-                  <Font name="Roboto" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="errorFirstNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="errorCardTypeIcon" fitHeight="66.0" fitWidth="66.0" layoutX="810.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="errorLastNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorPhoneIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorMobileIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorEmailIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorAdressIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Användaruppgifter">
-               <font>
-                  <Font name="Roboto" size="48.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </children>

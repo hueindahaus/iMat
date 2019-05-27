@@ -20,6 +20,7 @@ import javafx.scene.text.TextAlignment;
 import se.chalmers.cse.dat216.project.*;
 
 import javax.swing.*;
+import javax.tools.Tool;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -449,7 +450,6 @@ public class PaymentWizard extends StackPane {
         errorMeasureIfOnlyDigitsRequiredOrEmpty(validMonthTextField);
         errorMeasureIfOnlyDigitsRequiredOrEmpty(cvcTextField);
         errorMeasureIfCardNotSelected();
-
     }
 
     public void errorMeasureIfEmpty(TextField textField){
@@ -486,16 +486,19 @@ public class PaymentWizard extends StackPane {
     }
 
 
+
     public void errorMeasureIfCardNotSelected(){
         if(getCreditCardType().isEmpty()){
             visacardButton.getStyleClass().add("card-button-error");
             mastercardButton.getStyleClass().add("card-button-error");
             americanExpressButton.getStyleClass().add("card-button-error");
+            setErrorIconCardTypeVisible(true);
+            setErrorMessageOnIconCardType();
         } else {
             visacardButton.getStyleClass().remove("card-button-error");
             mastercardButton.getStyleClass().remove("card-button-error");
             americanExpressButton.getStyleClass().remove("card-button-error");
-
+            setErrorIconCardTypeVisible(false);
         }
     }
 
@@ -517,7 +520,6 @@ public class PaymentWizard extends StackPane {
         errorMap.put(cvcTextField,errorCvcIcon);
         errorMap.put(validMonthTextField, errorValidMonth);
         errorMap.put(validYearTextField,errorValidYearFront);
-
     }
 
     @FXML ImageView errorFirstNameIcon;
@@ -534,6 +536,25 @@ public class PaymentWizard extends StackPane {
     @FXML ImageView errorCvcIcon;
     @FXML ImageView errorValidYearFront;
     @FXML ImageView errorValidMonth;
+    @FXML ImageView errorCardTypeIcon;
+
+    private void setErrorIconCardTypeVisible(boolean value){
+        errorCardTypeIcon.setVisible(value);
+    }
+
+    private void setErrorMessageOnIconCardType(){
+        Tooltip tooltip = new Tooltip();
+        String message = "Korttyp måste väljas";
+        tooltip.setText(message);
+        tooltip.setFont(new Font("Roboto-regular", 18));
+
+        Tooltip.install(errorCardTypeIcon, tooltip);
+        Tooltip.install(visacardButton, tooltip);
+        Tooltip.install(mastercardButton, tooltip);
+        Tooltip.install(americanExpressButton, tooltip);
+
+
+    }
 
 
     private void setErrorIconVisible(TextField textField, boolean value){
