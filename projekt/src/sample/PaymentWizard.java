@@ -170,27 +170,33 @@ public class PaymentWizard extends StackPane {
 
     private String toCreditcardFormat(String str){
         String numbers = extractDigits(str);
-
         StringBuilder sb = new StringBuilder();
-        for(int i=0; i < numbers.length(); i++){
-            if(i==4 || i==8 || i==12 || i==16){
-                sb.append("-");
+        if(numbers.length() > 0) {
+            for (int i = 0; i < numbers.length(); i++) {
+                if (i == 4 || i == 8 || i == 12 || i == 16) {
+                    sb.append("-");
+                }
+                sb.append(numbers.charAt(i));
             }
-            sb.append(numbers.charAt(i));
         }
         return sb.toString();
 
     }
 
     private String extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en sträng
-        StringBuilder builder = new StringBuilder();
-        for(int i=0; i < string.length(); i++){
-            char c = string.charAt(i);
-            if(Character.isDigit(c)){
-                builder.append(c);
+        if(!string.isEmpty()) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < string.length(); i++) {
+                char c = string.charAt(i);
+                if (Character.isDigit(c)) {
+                    builder.append(c);
+                }
             }
+            return builder.toString();
+        } else {
+            return "";
         }
-        return builder.toString();
+
     }
 
     @FXML
@@ -378,7 +384,7 @@ public class PaymentWizard extends StackPane {
         visacardButton.setSelected(false);
         americanExpressButton.setSelected(false);
         cardHolderNameTextField.setText("");
-        validMonthTextField.setText("");
+        validMonthTextField.clear();
         validYearTextField.setText("");
         cardnumberTextField.setText("");
         cvcTextField.setText("");
