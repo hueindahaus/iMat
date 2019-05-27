@@ -161,12 +161,7 @@ public class ProductSearchController implements Initializable {
 
         searchBar.setOnAction(event -> {
 
-            ObservableList<Toggle> toggles= toggleGroup.getToggles();
-            for(Toggle toggle: toggles){
-                if(toggle.isSelected()){
-                    toggle.setSelected(false);
-                }
-            }
+            removeToggleFromSidePanel();
             filterEngine.resetFilterEngine();
 
             filterEngine.setSearchString(searchBar.getText());     //sätter det nya värdet i sökrutan i filterEngine
@@ -190,6 +185,7 @@ public class ProductSearchController implements Initializable {
                 }
             }
         });
+
 
 
         hideCart = new Timeline(                                                                                        //animation för när man gömmer varukorgen
@@ -252,6 +248,8 @@ public class ProductSearchController implements Initializable {
             mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
         });
         homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+
+            removeToggleFromSidePanel();                //tar bort togglen(om den finns) i knapparna på vänstra sidan
             mainFlowPane.getChildren().clear();
             mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
         });
@@ -270,6 +268,15 @@ public class ProductSearchController implements Initializable {
             if (productListItemMap.containsKey(product.getName())) {
                 mainFlowPane.getChildren().add(productListItemMap.get(product.getName()));
                 productListItemMap.get(product.getName()).changeFavIcon();
+            }
+        }
+    }
+
+    private void removeToggleFromSidePanel(){
+        ObservableList<Toggle> toggles= toggleGroup.getToggles();
+        for(Toggle toggle: toggles){
+            if(toggle.isSelected()){
+                toggle.setSelected(false);
             }
         }
     }
