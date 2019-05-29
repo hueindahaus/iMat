@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Order;
+import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.util.HashMap;
@@ -28,14 +29,34 @@ public class HistoryManager {
     public void getHistory(){
         mainFlowPane.getChildren().clear();
        // database.getOrders().forEach(e -> e.getItems().forEach(f -> mainFlowPane.getChildren().add(productListItemMap.get(f.getProduct().getName())))); // fyller fönstret med alla objekts som har köpts lite meme kommer ändra snart
-        for(int i = database.getOrders().size()-1; i >= 0; i--){
-            Order order = database.getOrders().get(i);
-            if(!historyItemMap.containsKey(database.getOrders().get(i).getOrderNumber())){
+        List<Order> orders = sortHistory();
+        for(int i = orders.size()-1; i >= 0; i--){
+            Order order = orders.get(i);
+            if(!historyItemMap.containsKey(order.getOrderNumber())){
                 historyItemMap.put(order.getOrderNumber(),new HistoryItem(productListItemMap,order,parent));
             }
-            mainFlowPane.getChildren().add(historyItemMap.get(database.getOrders().get(i).getOrderNumber()));
+            mainFlowPane.getChildren().add(historyItemMap.get(order.getOrderNumber()));
         }
-        System.out.println(historyItemMap.size());
 //        database.getOrders().forEach(e -> mainFlowPane.getChildren().add(new HistoryItem(productListItemMap,e,parent)));
+    }
+
+    private List<Order> sortHistory(){
+        List<Order> orders = database.getOrders();
+
+        int n = orders.size();
+        boolean swapped;
+        do{
+            swapped = false;
+            for(int i = 1; i < n-1; i++){
+                if(orders.get(i).getDate().after(orders.get(i-1).getDate())){
+                    swapped = true;
+                    Order tmp = orders.get(i);
+                    orders.set(i,orders.get(i-1));
+                    orders.set(i-1,tmp);
+                }
+            }
+        }while(swapped);
+
+        return orders;
     }
 }
