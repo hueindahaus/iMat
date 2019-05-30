@@ -107,6 +107,10 @@
     -fx-text-fill: -white;
 }
 
+.to-payment-button:disabled{
+    -fx-text-fill: -black;
+}
+
 .leftAnchorPane{
     -fx-background-color: -primary;
 }
