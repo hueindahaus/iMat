@@ -63,7 +63,7 @@
                   </Label>
                   <TextField fx:id="inputAmount" layoutX="46.0" layoutY="232.0" prefHeight="34.0" prefWidth="60.0" styleClass="inputTextField" />
                   <Label fx:id="priceAndUnit" alignment="CENTER" layoutX="20.0" layoutY="200.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" styleClass="label2" text="Label" />
-                  <ImageView fitHeight="34.0" fitWidth="34.0" onMouseClicked="#subtractOne" pickOnBounds="true" preserveRatio="true" x="12.0" y="232.0">
+                  <ImageView fx:id="subButton" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#subtractOne" pickOnBounds="true" preserveRatio="true" x="12.0" y="232.0">
                      <image>
                         <Image url="@../icons/baseline_remove_circle_black_18dp.png" />
                      </image>

@@ -30,7 +30,7 @@ public class HistoryManager {
         mainFlowPane.getChildren().clear();
        // database.getOrders().forEach(e -> e.getItems().forEach(f -> mainFlowPane.getChildren().add(productListItemMap.get(f.getProduct().getName())))); // fyller fönstret med alla objekts som har köpts lite meme kommer ändra snart
         List<Order> orders = sortHistory();
-        for(int i = orders.size()-1; i >= 0; i--){
+        for(int i = 0; i < orders.size(); i++){
             Order order = orders.get(i);
             if(!historyItemMap.containsKey(order.getOrderNumber())){
                 historyItemMap.put(order.getOrderNumber(),new HistoryItem(productListItemMap,order,parent));
@@ -47,7 +47,7 @@ public class HistoryManager {
         boolean swapped;
         do{
             swapped = false;
-            for(int i = 1; i < n-1; i++){
+            for(int i = 1; i <= n-1; i++){
                 if(orders.get(i).getDate().after(orders.get(i-1).getDate())){
                     swapped = true;
                     Order tmp = orders.get(i);

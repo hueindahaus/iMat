@@ -17,6 +17,7 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class CartListItem extends AnchorPane {
 
@@ -34,6 +35,8 @@ public class CartListItem extends AnchorPane {
     private Label price;
     @FXML
     private ImageView clearIcon;
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public CartListItem(ShoppingItem shoppingItem, ProductSearchController parentController, Cart cart){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart_listitem.fxml"));
@@ -53,16 +56,16 @@ public class CartListItem extends AnchorPane {
         price.setText(shoppingItem.getTotal() + " kr");
 
 
-        textField.setOnAction(new EventHandler<ActionEvent>() {
+        textField.setOnAction(new EventHandler<ActionEvent>() {       //actionhandler som agerar när man trycker enter i en textfield
             @Override
             public void handle(ActionEvent event) {
                 String input = textField.getText();   //vi sparar det som står i textfield i en variabel
-                if(input.isEmpty()){                    //om strängen är empty ska vi ta bort item från cart
-                    clearItem();
+                if(input.isEmpty()){                    //om strängen är empty ska vi sätta 1 som default värde
+                    shoppingItem.setAmount(1);
                 } else {                                //annars ska vi extrahera ut endast siffrorna i textfield och sätta currentAmount till vad som står
-                    shoppingItem.setAmount(extractDigits(input));
+                    shoppingItem.setAmount(handleInput(input));
                 }
-                updateTextField();
+                updateTextField();                     //display:ar t.ex. "1 kg"
             }
         });
 
@@ -70,11 +73,9 @@ public class CartListItem extends AnchorPane {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue){
-                    Platform.runLater(new Runnable() {      // Gör det möjligt att selecta allt när textrutan får fokus (förstår mig inte helt på denna)
-                        public void run() {
-                            textField.selectAll();
-                        }
-                    });
+                    textField.clear();
+                }  else if(!newValue) {
+                    updateTextField();
                 }
             }
         });
@@ -86,8 +87,21 @@ public class CartListItem extends AnchorPane {
     }
 
     public void updateTextField(){          //sätter strängen i textField till t.ex.: "1 kg"
-        price.setText(shoppingItem.getTotal() + " kr");
-        textField.textProperty().setValue(String.valueOf(shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnitSuffix());
+        price.setText(decimalFormat.format(shoppingItem.getTotal()) + " kr");
+
+
+
+        double amount = shoppingItem.getAmount();
+        String output = "";
+        String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
+
+        if(unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk")){
+            output = String.valueOf((int)amount) + " " + unitSuffix;
+        } else {
+            output = String.valueOf(amount) + " " + unitSuffix;
+        }
+
+        textField.textProperty().setValue(output); //sätter texten i inputrutan till t.ex. "1 kg"
     }
 
     @FXML
@@ -107,14 +121,40 @@ public class CartListItem extends AnchorPane {
     }
 
 
-    private int extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en int
+    private double extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en int
         StringBuilder builder = new StringBuilder();
-        for(int i=0; i < string.length(); i++){
+
+        for (int i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
-            if(Character.isDigit(c)){
+            if (Character.isDigit(c) || c == '.') {
                 builder.append(c);
             }
         }
-        return Integer.valueOf(builder.toString());
+        return Double.valueOf(builder.toString());
     }
+
+
+
+    private double handleInput(String value){       //metod som tar hänsyn till om det är förp,st eller kg som produkten säljs i. Den avrundar om det är kr/st eller kr/förp
+
+        double amount = extractDigits(value);
+
+        String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
+
+        if((unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk"))){
+            amount = Math.round(amount);
+        } else if(unitSuffix.equals("kg") || unitSuffix.equals("l")){
+            if (amount < 0.1){
+                amount = 0.1;
+            }
+        }
+
+
+        if(amount > 0){
+            return amount;
+        } else {
+            return 1;
+        }
+    }
+
 }

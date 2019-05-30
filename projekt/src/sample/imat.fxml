@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="@CSS/main_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
+<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="@CSS/main_theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
    <children>
       <AnchorPane fx:id="paymentAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1180.0" translateX="-130.0" translateY="40.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
@@ -74,7 +74,10 @@
                <children>
                   <ScrollPane fx:id="categoryScrollPane" hbarPolicy="NEVER" layoutY="240.0" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
                      <content>
-                        <FlowPane fx:id="categoryFlowPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css" />
+                        <FlowPane fx:id="categoryFlowPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></FlowPane>
                      </content>
                   </ScrollPane>
                   <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="160.0" prefHeight="80.0" prefWidth="240.0" styleClass="biglabelWhite" stylesheets="@CSS/main_theme.css" text="Sortiment">
@@ -132,6 +135,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </RadioButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane id="coming-soon-pane" fx:id="comingSoonPane" layoutX="260.0" layoutY="80.0" prefHeight="820.0" prefWidth="920.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="230.0" layoutY="260.0" prefHeight="100.0" prefWidth="460.0" rotate="-15.0" style="-fx-background-color: 263238;" text="Coming soon!">
+                     <font>
+                        <Font name="Roboto" size="66.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="260.0" layoutY="80.0" prefHeight="820.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">

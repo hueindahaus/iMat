@@ -11,6 +11,10 @@
     -error-color-light: #e94948;
 }
 
+.scroll-pane{
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
 
 .scroll-bar{
     -fx-opacity: 1;
@@ -81,6 +85,7 @@
 .with-border{
     -fx-border-width: 1px;
     -fx-border-color: #cccccc;
+
 }
 
 

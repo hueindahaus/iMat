@@ -63,6 +63,8 @@ public class ProductSearchController implements Initializable {
     @FXML
     private AnchorPane paymentAnchorPane;   //Anchorpane för alla betalningsvyerna
     @FXML
+    private AnchorPane comingSoonPane;          //Rutan för inköpslistor, (för nuvarande en coming soon-etikett)
+    @FXML
     private Button checkoutButton;       //Knappen i nedre högra hörnet för att ta sig till betalning/avsluta betalning
     @FXML
     public ImageView step1;
@@ -70,6 +72,7 @@ public class ProductSearchController implements Initializable {
     public ImageView step2;
     @FXML
     public ImageView step3;
+
 
 
     double x, y;
@@ -155,7 +158,6 @@ public class ProductSearchController implements Initializable {
             cart.getCartListItemMap().put(product.getName(), cartListItem);          //lägger varje CartListItem i en Map som finns i Cart
             productListItemMap.put(product.getName(), productListItem);          //stoppar in listitem:et som vi nyss skapat i vår hashmap och kopplar den till namnet på produkten
         }
-        //update();
 
         populateCategoryView();
 
@@ -186,12 +188,24 @@ public class ProductSearchController implements Initializable {
             }
         });
 
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {     //gör så att comingSoonPane endast visas när den är togglad  OBS om man togglar den och sedan trycker på loggan så försvinner den ej. Detta är åtgärdat i metoden som behandlar klick på loggan
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if(newValue.getToggleGroup().getSelectedToggle().equals(listButton)){
+                    comingSoonPane.toFront();
+                } else {
+                    comingSoonPane.toBack();
+                }
+            }
+        });
+
 
 
         hideCart = new Timeline(                                                                                        //animation för när man gömmer varukorgen
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartAnchorPane.layoutXProperty(), 1440)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainScrollPane.prefWidthProperty(), 1440)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 1180)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(comingSoonPane.prefWidthProperty(), 1180)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1354)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1440))
         );
@@ -199,6 +213,7 @@ public class ProductSearchController implements Initializable {
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartAnchorPane.layoutXProperty(), 1180)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainScrollPane.prefWidthProperty(), 920)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 920)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(comingSoonPane.prefWidthProperty(), 920)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1206)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1266))
         );
@@ -233,6 +248,8 @@ public class ProductSearchController implements Initializable {
                 }
             }
         });
+
+
     }
 
 
@@ -248,7 +265,7 @@ public class ProductSearchController implements Initializable {
             mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
         });
         homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-
+            comingSoonPane.toBack();
             removeToggleFromSidePanel();                //tar bort togglen(om den finns) i knapparna på vänstra sidan
             mainFlowPane.getChildren().clear();
             mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
@@ -267,6 +284,7 @@ public class ProductSearchController implements Initializable {
         for (Product product : database.favorites()) {
             if (productListItemMap.containsKey(product.getName())) {
                 mainFlowPane.getChildren().add(productListItemMap.get(product.getName()));
+                productListItemMap.get(product.getName()).flipCardToFront();                                       //  flippar på kortet så att framsidan alltid visas när man uppdaterar sidan
                 productListItemMap.get(product.getName()).changeFavIcon();
             }
         }
@@ -287,6 +305,7 @@ public class ProductSearchController implements Initializable {
 
         for (Product product : filteredProductList) {
             ProductListItem listItem = productListItemMap.get(product.getName());   //vi extraherar productListem från vår "Map". Detta gör det möjligt att inte behöva göra nya ProductListItems varje gång vi uppdaterar vyn
+            listItem.flipCardToFront();                                                     //  flippar på kortet så att framsidan alltid visas när man uppdaterar sidan
             mainFlowPane.getChildren().add(listItem);
             listItem.changeFavIcon();
         }
@@ -347,6 +366,7 @@ public class ProductSearchController implements Initializable {
             paymentWizard.customerInfoPaneToFront();
             checkoutButton.textProperty().setValue("Till Sortiment");   //ändrar text på button
             searchBar.setVisible(false);
+            homeButton.setDisable(true);
             isCheckoutMode = true;
             checkoutButtonOnHover();
 
@@ -359,6 +379,7 @@ public class ProductSearchController implements Initializable {
             step2.setVisible(false);
             step3.setVisible(false);
             searchBar.setVisible(true);
+            homeButton.setDisable(false);
             isCheckoutMode = false;
             checkoutButtonOnHover();
         }

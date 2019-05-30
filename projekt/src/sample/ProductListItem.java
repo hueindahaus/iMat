@@ -34,7 +34,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
 
     ShoppingItem shoppingItem;
     ProductSearchController parentController;
-    int currentAmount = 1;
+    double currentAmount = 1;
 
     @FXML
     private AnchorPane cardBack;
@@ -55,6 +55,8 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     private TextArea cardIngredients;
     @FXML
     private ImageView favouriteIcon;
+    @FXML
+    private ImageView subButton;
 
     Image checkmark = new Image("images/cart48.png");
 
@@ -93,7 +95,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
                 if(input.isEmpty()){                    //om strängen är empty ska vi sätta 1 som default värde
                     currentAmount = 1;
                 } else {                                //annars ska vi extrahera ut endast siffrorna i textfield och sätta currentAmount till vad som står
-                    currentAmount = extractDigits(input);
+                    currentAmount = handleInput(input);
                 }
                 displayToTextField();                     //display:ar t.ex. "1 kg"
             }
@@ -103,28 +105,28 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue){
-                    Platform.runLater(new Runnable() {      // Gör det möjligt att selecta allt när textrutan får fokus (förstår mig inte helt på denna)
-                        public void run() {
-                            inputAmount.selectAll();
-                        }
-                    });
+                    inputAmount.clear();
+                }  else if(!newValue) {
+                   displayToTextField();
                 }
             }
         });
+
+       
 
         //listItemImage.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> flipCardToBack());  //lägger till en listener till bilden på kortet
 
 
         transitionToCartIcon = new Timeline(                                                                       //del 1 av animation när man lägger till en produkt i varukorgen
-                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.imageProperty(), checkmark)),
-                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.opacityProperty(), 0)),
-                new KeyFrame(Duration.seconds(2), new KeyValue(listItemImage.opacityProperty(), 1))
+                new KeyFrame(Duration.millis(0.5), new KeyValue(listItemImage.imageProperty(), checkmark)),
+                new KeyFrame(Duration.millis(0.5), new KeyValue(listItemImage.opacityProperty(), 0)),
+                new KeyFrame(Duration.seconds(1), new KeyValue(listItemImage.opacityProperty(), 1))
         );
 
         transitionToImage = new Timeline(                                                                           //del 2 av animation när man lägger till en produkt i varukorgen
-                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.opacityProperty(), 0)),
-                new KeyFrame(Duration.seconds(2), new KeyValue(listItemImage.opacityProperty(), 1)),
-                new KeyFrame(Duration.millis(1), new KeyValue(listItemImage.imageProperty(), IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct())))
+                new KeyFrame(Duration.millis(0.5), new KeyValue(listItemImage.opacityProperty(), 0)),
+                new KeyFrame(Duration.seconds(1), new KeyValue(listItemImage.opacityProperty(), 1)),
+                new KeyFrame(Duration.millis(0.5), new KeyValue(listItemImage.imageProperty(), IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct())))
         );
 
         transition = new SequentialTransition(transitionToCartIcon,transitionToImage);      //lägger ihop de 2 olika timelines till en en timeline är de spelas efter varandra
@@ -141,6 +143,13 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
                 changeFavIcon();
             }
         });  //lägger till en listener till bilden på kortet
+
+        listItemImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                flipCardToBack();
+            }
+        });
 
         changeFavIcon();
     }
@@ -164,15 +173,16 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         cardDescription.appendText(desc.toString());
     }
 
-    private int extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en int
+    private double extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en int
         StringBuilder builder = new StringBuilder();
-        for(int i=0; i < string.length(); i++){
+
+        for (int i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
-            if(Character.isDigit(c)){
+            if (Character.isDigit(c) || c == '.') {
                 builder.append(c);
             }
         }
-        return Integer.valueOf(builder.toString());
+            return Double.valueOf(builder.toString());
     }
 
 
@@ -191,23 +201,75 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     }
 
     private void displayToTextField(){
-        inputAmount.textProperty().setValue(String.valueOf(currentAmount) + " " + shoppingItem.getProduct().getUnitSuffix()); //sätter texten i inputrutan till t.ex. "1 kg"
+        disableSubButtonIfLowestAmount();
+
+
+        double amount = currentAmount;
+        String output = "";
+        String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
+
+        if(unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk")){
+            output = String.valueOf((int)amount) + " " + unitSuffix;
+        } else {
+            output = String.valueOf(currentAmount) + " " + unitSuffix;
+        }
+
+        inputAmount.textProperty().setValue(output); //sätter texten i inputrutan till t.ex. "1 kg"
     }
 
     @FXML
     private void onClickAddToCart(){      //när man trycker på varukorgsknappen i ett ProductListItem
         parentController.getCart().addToCart(shoppingItem,currentAmount);
+        resetAmount();
         transition.play();
+    }
 
+    private void resetAmount(){
+        currentAmount = 1;
+        displayToTextField();
+    }
+
+    private void disableSubButtonIfLowestAmount(){
+        if(currentAmount < 2){
+            subButton.setDisable(true);
+            subButton.setOpacity(0.5);
+        } else {
+            subButton.setDisable(false);
+            subButton.setOpacity(1);
+        }
     }
 
     @FXML
-    private void flipCardToBack(){  //metod som flippar kort
+    protected void flipCardToBack(){  //metod som flippar kort
         cardBack.toFront();
     }
 
     @FXML
-    private void flipCardToFront(){  //metd som flippar tillbaka
+    protected void flipCardToFront(){  //metod som flippar tillbaka
         cardFront.toFront();
     }
+
+
+    private double handleInput(String value){       //metod som tar hänsyn till om det är förp,st eller kg som produkten säljs i. Den avrundar om det är kr/st eller kr/förp
+
+        double amount = extractDigits(value);
+
+        String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
+
+        if((unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk"))){
+            amount = Math.round(amount);
+        } else if(unitSuffix.equals("kg") || unitSuffix.equals("l")){
+            if (amount < 0.1){
+                amount = 0.1;
+            }
+        }
+
+
+        if(amount > 0){
+            return amount;
+        } else {
+            return 1;
+        }
+    }
+
 }

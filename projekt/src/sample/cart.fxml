@@ -10,9 +10,9 @@
    <children>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="700.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css" AnchorPane.topAnchor="0.0">
          <content>
-            <FlowPane fx:id="flowPane" prefHeight="700.0" prefWidth="260.0" styleClass="borderless">
+            <FlowPane fx:id="flowPane" alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="700.0" prefWidth="260.0" styleClass="borderless">
                <padding>
-                  <Insets bottom="8.0" left="8.0" top="8.0" />
+                  <Insets bottom="8.0" top="8.0" />
                </padding></FlowPane>
          </content>
       </ScrollPane>

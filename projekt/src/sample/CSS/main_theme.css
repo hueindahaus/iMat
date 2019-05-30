@@ -147,6 +147,13 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
 }
 
+
+#coming-soon-pane{
+    -fx-background-color: -white;
+    -fx-border-width: 1px;
+    -fx-border-color: #cccccc;
+}
+
 .lightestBlue{ -fx-background-color: #D0ECEF; }
 .lightBlue{ -fx-background-color: #99E9F2; }
 .darkerBlue{ -fx-background-color: #32A6A6; }

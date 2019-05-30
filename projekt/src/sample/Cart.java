@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,9 @@ public class Cart extends AnchorPane {
 
     @FXML
     private Label sumLabel;
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
 
     private static Cart singleton;
     ProductSearchController parentController;
@@ -52,7 +56,7 @@ public class Cart extends AnchorPane {
 
         this.parentController = parentController;
 
-        scrollPane.setPrefViewportWidth(260);       //sätter viewportdith så att ScrollBar i ScrollPane hamnar utanför det synliga området
+        scrollPane.setPrefViewportWidth(260);       //sätter viewportwidth så att ScrollBar i ScrollPane hamnar utanför det synliga området
         scrollPane.setMinViewportWidth(260);
 
         scrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {         //disablar horizontell scroll
@@ -102,11 +106,11 @@ public class Cart extends AnchorPane {
             cartListItem.updateTextField();
             sum += item.getTotal();
         }
-        sumLabel.setText("Summa: " + sum + " kr");
+        sumLabel.setText("Summa: " + decimalFormat.format(sum) + " kr");
     }
 
 
-    public void addToCart(ShoppingItem shoppingItem, int amount){        //lägger till ett ShoppingItem i ShoppingCart eller så lägger vi bara på antalet av en produkt - denna metoden körs när vi trycker på varukorgsknappen i ett ProductListItem
+    public void addToCart(ShoppingItem shoppingItem, double amount){        //lägger till ett ShoppingItem i ShoppingCart eller så lägger vi bara på antalet av en produkt - denna metoden körs när vi trycker på varukorgsknappen i ett ProductListItem
         if(shoppingCart.getItems().contains(shoppingItem)){
             shoppingItem.setAmount(shoppingItem.getAmount() + amount);      //om produkten redan finns i varukorgen så ska vi bara addera amount när vi "lägger till flera" av en produkt
         } else {

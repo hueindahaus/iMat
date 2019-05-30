@@ -127,3 +127,19 @@
 .card-button-error :hover{
     -fx-border-color: -secondary-light;
 }
+
+
+.combo-box-small{
+    -fx-font-family: "Roboto-Regular";
+    -fx-font-size: 36px;
+    -fx-background-color: -white;
+    -fx-border-width: 1px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.combo-box-error{
+    -fx-border-width: 3px;
+    -fx-border-color: #FF0000;
+}

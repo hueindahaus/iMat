@@ -36,7 +36,15 @@ public class OrderOverviewItem extends AnchorPane {
         this.shoppingItem = shoppingItem;
 
         image.setImage(IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct()));
-        title.setText(String.valueOf((int)shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnitSuffix() +  " x " + shoppingItem.getProduct().getName());
+
+        if(shoppingItem.getProduct().getUnitSuffix().equals("förp") || shoppingItem.getProduct().getUnitSuffix().equals("st") || shoppingItem.getProduct().getUnitSuffix().equals("burk")) {
+            title.setText(String.valueOf((int)shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnitSuffix() + " x " + shoppingItem.getProduct().getName());
+        } else {
+            title.setText(String.valueOf(shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnitSuffix() + " x " + shoppingItem.getProduct().getName());
+
+        }
+
+
         price.setText(String.valueOf((int)shoppingItem.getTotal() + " kr"));
     }
 

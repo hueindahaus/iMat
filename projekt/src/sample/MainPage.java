@@ -37,12 +37,14 @@ public class MainPage extends AnchorPane {
         weekOffers.getChildren().add(productListItemMap.get("Kaffe"));
         weekOffers.getChildren().add(productListItemMap.get("Västerbotten"));
         weekOffers.getChildren().add(productListItemMap.get("Fanta flaska"));
+        productListItemMap.get("Kaffe").flipCardToFront();
+        productListItemMap.get("Västerbotten").flipCardToFront();
+        productListItemMap.get("Fanta flaska").flipCardToFront();
 
         mostBought.getChildren().clear();
         IMatDataHandler dataHandler = IMatDataHandler.getInstance();
         if(dataHandler.getOrders().size() > 0){
             List<Product> mostBoughtProducts = getMostBought(dataHandler.getOrders());
-            System.out.println(mostBoughtProducts.size());
             for(int i = 0; i < mostBoughtProducts.size(); i++){
                 //mostBought.getChildren().add(new ProductListItem(new ShoppingItem(mostBoughtProducts.get(i),1),parent));    //problem eftersom att vi skapar nya Shoppingitems
                 mostBought.getChildren().add(new ProductListItem(   parent.getShoppingItemMap().get(mostBoughtProducts.get(i).getName()),   parent));
@@ -67,11 +69,9 @@ public class MainPage extends AnchorPane {
        // products.forEach(e -> System.out.println("Name : "  +  e.getName() + " Nr: " + productIntegerMap.get(e)));
         sortProducts(productIntegerMap,products);
         if(products.size() >= 3) {
-            System.out.println("many");
             return products.subList(0, 3);
         }
         else {
-            System.out.println("few");
             return products.subList(0, products.size() - 1);
         }
     }
@@ -81,7 +81,7 @@ public class MainPage extends AnchorPane {
         boolean swapped;
         do{
             swapped = false;
-            for(int i = 1; i < n-1; i++){
+            for(int i = 1; i <= n-1; i++){
                 if(productIntegerMap.get(products.get(i - 1)) < productIntegerMap.get(products.get(i))){
                     swapped = true;
                     Product tmp = products.get(i);
