@@ -160,7 +160,7 @@
             </ScrollPane>
             <AnchorPane fx:id="cartAnchorPane" layoutX="1180.0" layoutY="80.0" prefHeight="820.0" prefWidth="260.0">
                <children>
-                  <Button fx:id="checkoutButton" layoutY="740.0" mnemonicParsing="false" onMouseReleased="#checkoutModeSwitch" prefHeight="80.0" prefWidth="260.0" styleClass="to-payment-button" text="Till Betalning" textFill="WHITE">
+                  <Button fx:id="checkoutButton" layoutY="740.0" mnemonicParsing="false" onMouseReleased="#checkoutModeSwitch" prefHeight="80.0" prefWidth="260.0" styleClass="to-checkout-button" text="Till Betalning" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>

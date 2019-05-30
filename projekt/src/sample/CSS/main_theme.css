@@ -88,28 +88,8 @@
     -fx-text-fill: -white;
 }
 
-.to-payment-button{
-    -fx-background-color: -secondary;
-    -fx-border-radius: 0px;
-    -fx-background-radius: 0px;
-    -fx-font-size: 18px;
-    -fx-font-family: 'Roboto-Regular';
-    -fx-text-fill: -white;
-}
 
-.to-payment-button:hover{
-    -fx-background-color: -secondary-light;
-    -fx-text-fill: -black;
-}
 
-.to-payment-button:pressed{
-    -fx-background-color: -secondary-dark;
-    -fx-text-fill: -white;
-}
-
-.to-payment-button:disabled{
-    -fx-text-fill: -black;
-}
 
 .leftAnchorPane{
     -fx-background-color: -primary;
@@ -131,14 +111,14 @@
     -fx-border-width: 0px;
     -fx-background-color: -secondary;
     -fx-font-family: "Roboto-regular";
-    -fx-font-size: 18px;
+    -fx-font-size: 24px;
     -fx-text-fill: -black;
 }
 
 
-.buy-button: hover{
+.buy-button:hover{
     -fx-background-color: -secondary-light;
-    -fx-font-size: 24px;
+    -fx-font-size: 28px;
 }
 
 
@@ -157,6 +137,44 @@
     -fx-border-width: 1px;
     -fx-border-color: #cccccc;
 }
+
+
+.to-checkout-button{
+    -fx-background-color: -secondary;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-font-size: 24px;
+    -fx-font-family: 'Roboto-Regular';
+    -fx-text-fill: -white;
+}
+
+
+.to-checkout-button:hover{
+    -fx-background-color: -secondary-light;
+    -fx-text-fill: -black;
+}
+
+.to-checkout-button:disabled{
+    -fx-text-fill: -black;
+}
+
+
+.to-stock-button{
+    -fx-background-color: -error-color;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-font-size: 24px;
+    -fx-font-family: 'Roboto-Regular';
+    -fx-text-fill: -white;
+}
+
+.to-stock-button:hover{
+    -fx-background-color: -error-color-light;
+    -fx-text-fill: -black;
+}
+
+
+
 
 .lightestBlue{ -fx-background-color: #D0ECEF; }
 .lightBlue{ -fx-background-color: #99E9F2; }

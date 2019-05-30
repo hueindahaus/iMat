@@ -10,8 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,12 +22,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.*;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
@@ -238,16 +234,6 @@ public class ProductSearchController implements Initializable {
         mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
 
 
-        checkoutButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue) {
-                    checkoutButtonOnHover();
-                } else {
-                    checkoutButtonWithoutHover();
-                }
-            }
-        });
 
 
     }
@@ -368,8 +354,6 @@ public class ProductSearchController implements Initializable {
             searchBar.setVisible(false);
             homeButton.setDisable(true);
             isCheckoutMode = true;
-            checkoutButtonOnHover();
-
         } else {
             //paymentAnchorPane.toBack();
             showWizard.setAutoReverse(true);
@@ -381,41 +365,21 @@ public class ProductSearchController implements Initializable {
             searchBar.setVisible(true);
             homeButton.setDisable(false);
             isCheckoutMode = false;
-            checkoutButtonOnHover();
         }
+        checkoutButtonSwitch();
     }
 
 
-    protected void checkoutButtonOnHover() {        //bytar färgtema på knappen som tar en till/från varukorgen när hover är aktiv
-        if (!isCheckoutMode) {
-            checkoutButton.setStyle(
-                    "-fx-background-color: -secondary-light;\n" +
-                            "    -fx-text-fill: -black;");
-        } else if (isCheckoutMode) {
-            checkoutButton.setStyle(
-                    "-fx-background-color: -error-color-light;\n" +
-                            "-fx-text-fill: -black;");
-        }
-    }
 
 
-    protected void checkoutButtonWithoutHover() {       //bytar färgtema på knappen som tar en till/från varukorgen när hover inte är aktiv
+    protected void checkoutButtonSwitch() {       //bytar färgtema på knappen som tar en till/från varukorgen när hover inte är aktiv
         if (!isCheckoutMode) {
-            checkoutButton.setStyle("" +
-                    "-fx-background-color: -secondary;\n" +
-                    "    -fx-border-radius: 0px;\n" +
-                    "    -fx-background-radius: 0px;\n" +
-                    "    -fx-font-size: 18px;\n" +
-                    "    -fx-font-family: 'Roboto-Regular';\n" +
-                    "    -fx-text-fill: -white;");
+            checkoutButton.getStyleClass().remove("to-stock-button");
+            checkoutButton.getStyleClass().add("to-checkout-button");
+
         } else if (isCheckoutMode) {
-            checkoutButton.setStyle("" +
-                    "-fx-background-color: -error-color;\n" +
-                    "    -fx-border-radius: 0px;\n" +
-                    "    -fx-background-radius: 0px;\n" +
-                    "    -fx-font-size: 18px;\n" +
-                    "    -fx-font-family: 'Roboto-Regular';\n" +
-                    "    -fx-text-fill: -white;");
+            checkoutButton.getStyleClass().add("to-checkout-button");
+            checkoutButton.getStyleClass().add("to-stock-button");
         }
     }
 
