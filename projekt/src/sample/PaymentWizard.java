@@ -70,9 +70,9 @@ public class PaymentWizard extends StackPane {
         datePicker.setDayCellFactory(picker -> new DateCell() {             //disable:ar alla datum som har varit i datepicker
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                LocalDate today = LocalDate.now().plusDays(2);
+                LocalDate day = LocalDate.now().plusDays(2);
 
-                setDisable(empty || date.compareTo(today) < 0 );
+                setDisable(empty || date.compareTo(day) < 0 );
             }
         });
 

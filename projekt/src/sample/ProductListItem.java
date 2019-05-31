@@ -222,6 +222,8 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         parentController.getCart().addToCart(shoppingItem,currentAmount);
         resetAmount();
         transition.play();
+
+        parentController.flashCartButton.play();
     }
 
     private void resetAmount(){

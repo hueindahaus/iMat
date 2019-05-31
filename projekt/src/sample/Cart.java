@@ -102,7 +102,7 @@ public class Cart extends AnchorPane {
         double sum = 0;
         for(ShoppingItem item : shoppingCart.getItems()){
             CartListItem cartListItem = cartListItemMap.get(item.getProduct().getName());
-            flowPane.getChildren().add(cartListItem);
+            flowPane.getChildren().add(0,cartListItem);
             cartListItem.updateTextField();
             sum += item.getTotal();
         }

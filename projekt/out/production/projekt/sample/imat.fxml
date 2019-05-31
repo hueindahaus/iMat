@@ -33,18 +33,6 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></TextField>
-                  <ImageView fx:id="cartButton" fitHeight="50.0" fitWidth="50.0" layoutX="1206.0" layoutY="15.0" onMousePressed="#toggleCart" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/cart48white.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label fx:id="cartLabel" layoutX="1266.0" onMousePressed="#toggleCart" prefHeight="80.0" prefWidth="148.0" styleClass="cartlabel" text="Varukorg" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Label>
                   <ImageView fx:id="homeButton" fitHeight="80.0" fitWidth="80.0" layoutX="90.0" layoutY="4.0" onMouseEntered="#setLogoToColored" onMouseExited="#setLogoToWhite" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/imatLogo.png" />
@@ -68,6 +56,24 @@
                         <Image url="@../images/step3.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="cartButton" layoutX="1210.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#toggleCart" prefHeight="50.0" prefWidth="200.0" styleClass="cart-button" text="Varukorg">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fx:id="cartIcon" fitHeight="30.0" fitWidth="30.0" onMousePressed="#toggleCart" pickOnBounds="true" preserveRatio="true" translateX="-6.0">
+                           <image>
+                              <Image url="@../images/cartIconPrimary.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="260.0" styleClass="leftAnchorPane" stylesheets="@CSS/main_theme.css">
@@ -135,15 +141,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </RadioButton>
-               </children>
-            </AnchorPane>
-            <AnchorPane id="coming-soon-pane" fx:id="comingSoonPane" layoutX="260.0" layoutY="80.0" prefHeight="820.0" prefWidth="920.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="230.0" layoutY="260.0" prefHeight="100.0" prefWidth="460.0" rotate="-15.0" style="-fx-background-color: 263238;" text="Coming soon!">
-                     <font>
-                        <Font name="Roboto" size="66.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
             <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="260.0" layoutY="80.0" prefHeight="820.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">

@@ -26,15 +26,16 @@
 }
 
 
-.cartlabel{
-    -fx-font-family: 'Roboto-Regular';
-    -fx-font-size: 24px;
-    -fx-text-fill: -white;
+.cart-button{
+    -fx-background-color: -white;
+    -fx-text-fill: -primary;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
 }
 
-
-.cartlabel:hover{
-    -fx-text-fill: -secondary-light;
+.cart-button:hover{
+    -fx-background-color: -primary-light;
+    -fx-text-fill: -white;
 }
 
 .mediumlabel{

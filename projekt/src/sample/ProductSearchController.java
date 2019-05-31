@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -22,6 +23,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.*;
@@ -53,13 +55,9 @@ public class ProductSearchController implements Initializable {
     @FXML
     private TextField searchBar;        //Själva textrutan(sökrutan)
     @FXML
-    private ImageView cartButton;       //knappen för att gömma/visa varukorgen
-    @FXML
-    private Label cartLabel;            //Texten "Varukorg" uppe o högre hörnet
+    private Button cartButton;            //knappen "Varukorg"
     @FXML
     private AnchorPane paymentAnchorPane;   //Anchorpane för alla betalningsvyerna
-    @FXML
-    private AnchorPane comingSoonPane;          //Rutan för inköpslistor, (för nuvarande en coming soon-etikett)
     @FXML
     private Button checkoutButton;       //Knappen i nedre högra hörnet för att ta sig till betalning/avsluta betalning
     @FXML
@@ -68,18 +66,24 @@ public class ProductSearchController implements Initializable {
     public ImageView step2;
     @FXML
     public ImageView step3;
+    @FXML
+    private ImageView cartIcon;
+
+    Image whiteCartImage = new Image("images/cartIconWhite.png");
+    Image primaryCartImage = new Image("images/cartIconPrimary.png");
 
 
 
     double x, y;
 
-    private boolean cartIsHidden = false;
+    protected boolean cartIsHidden = false;
     private boolean isCheckoutMode = false;
 
     Timeline hideCart;
     Timeline showCart;
     Timeline showWizard;
     Timeline hideWizard;
+    SequentialTransition flashCartButton;
 
     PaymentWizard paymentWizard = new PaymentWizard(this);
 
@@ -184,16 +188,7 @@ public class ProductSearchController implements Initializable {
             }
         });
 
-        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {     //gör så att comingSoonPane endast visas när den är togglad  OBS om man togglar den och sedan trycker på loggan så försvinner den ej. Detta är åtgärdat i metoden som behandlar klick på loggan
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                if(newValue.getToggleGroup().getSelectedToggle().equals(listButton)){
-                    comingSoonPane.toFront();
-                } else {
-                    comingSoonPane.toBack();
-                }
-            }
-        });
+
 
 
 
@@ -201,18 +196,26 @@ public class ProductSearchController implements Initializable {
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartAnchorPane.layoutXProperty(), 1440)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainScrollPane.prefWidthProperty(), 1440)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 1180)),
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(comingSoonPane.prefWidthProperty(), 1180)),
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1354)),
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1440))
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1360)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.prefWidthProperty(),50))
         );
         showCart = new Timeline(                                                                                         //animation för när man tar fram varukorgen
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(cartAnchorPane.layoutXProperty(), 1180)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainScrollPane.prefWidthProperty(), 920)),
                 new KeyFrame(Duration.seconds(0.5), new KeyValue(mainFlowPane.prefWidthProperty(), 920)),
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(comingSoonPane.prefWidthProperty(), 920)),
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1206)),
-                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartLabel.layoutXProperty(), 1266))
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.layoutXProperty(), 1210)),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(cartButton.prefWidthProperty(),200))
         );
+
+
+
+
+        Timeline cartButtonFlashGreen = new Timeline(new KeyFrame(Duration.seconds(0.1), new KeyValue(cartButton.styleProperty(), "-fx-background-color: -secondary")));
+        Timeline cartButtonBackToNormal = new Timeline(new KeyFrame(Duration.seconds(1), new KeyValue(cartButton.styleProperty(), "")));
+        flashCartButton = new SequentialTransition(cartButtonFlashGreen,cartButtonBackToNormal);
+
+
+
 
         paymentAnchorPane.translateXProperty().setValue(-1310);
 
@@ -234,8 +237,20 @@ public class ProductSearchController implements Initializable {
         mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
 
 
+        cartButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if(newValue){
+                cartIcon.setImage(whiteCartImage);
+            } else {
+                cartIcon.setImage(primaryCartImage);
+            }
+            }
+        });
 
 
+
+        implementAllToolTips();
     }
 
 
@@ -251,10 +266,18 @@ public class ProductSearchController implements Initializable {
             mainFlowPane.getChildren().add(new ChangeUserInfoWindow());
         });
         homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            comingSoonPane.toBack();
             removeToggleFromSidePanel();                //tar bort togglen(om den finns) i knapparna på vänstra sidan
             mainFlowPane.getChildren().clear();
             mainFlowPane.getChildren().add(new MainPage(productListItemMap, this));
+        });
+
+
+        listButton.setOnMouseClicked(new EventHandler<MouseEvent>() {           // visar "coming soon-sidan" som är tänkt att bli en sida för sparade inköpslistor
+            @Override
+            public void handle(MouseEvent event) {
+                mainFlowPane.getChildren().clear();
+                mainFlowPane.getChildren().add(ShoppingListPage.getInstance());
+            }
         });
     }
 
@@ -303,6 +326,7 @@ public class ProductSearchController implements Initializable {
         categoryFlowPane.getChildren().clear();
         for (ProductCategory category : ProductCategory.values()) {        //loopar genom alla kategorier som är enum
             CategoryListItem categoryListItem = new CategoryListItem(category, this);
+            installTooltipOnNode(categoryListItem.categoryButton, "Klicka för att se " + categoryListItem.tranlateCategoryName(categoryListItem.getCategory()));
             categoryFlowPane.getChildren().add(categoryListItem);
         }
     }
@@ -353,6 +377,8 @@ public class ProductSearchController implements Initializable {
             checkoutButton.textProperty().setValue("Till Sortiment");   //ändrar text på button
             searchBar.setVisible(false);
             homeButton.setDisable(true);
+            cartButton.setDisable(true);
+            cartButton.setOpacity(1);
             isCheckoutMode = true;
         } else {
             //paymentAnchorPane.toBack();
@@ -364,6 +390,7 @@ public class ProductSearchController implements Initializable {
             step3.setVisible(false);
             searchBar.setVisible(true);
             homeButton.setDisable(false);
+            cartButton.setDisable(false);
             isCheckoutMode = false;
         }
         checkoutButtonSwitch();
@@ -406,4 +433,22 @@ public class ProductSearchController implements Initializable {
         return isCheckoutMode;
     }
 
+
+    private void implementAllToolTips(){
+        installTooltipOnNode(cartButton,"Klicka för att visa/gömma varukorgen");
+        installTooltipOnNode(checkoutButton, "Klicka för att komma till kassan");
+        installTooltipOnNode(homeButton, "Klicka för att komma till startsidan");
+        installTooltipOnNode(historyButton, "Klicka för att komma till köphistorik");
+        installTooltipOnNode(userButton, "Klicka för att komma till användaruppgifter");
+        installTooltipOnNode(listButton, "Klicka för att komma till inköpslistor");
+        installTooltipOnNode(favorit, "Klicka för att komma till favoriter");
+        installTooltipOnNode(searchBar, "Skriv i sökrutan för att hitta det du letar efter");
+    }
+
+
+    private void installTooltipOnNode(Node node,String message){
+        Tooltip tooltip = new Tooltip(message);
+        tooltip.setFont(new Font("Roboto-Regular",18));
+        Tooltip.install(node,tooltip);
+    }
 }

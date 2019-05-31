@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
@@ -32,6 +33,7 @@ public class ChangeUserInfoWindow extends AnchorPane {
     @FXML private ImageView errorPostCodeIcon;
     @FXML private ImageView errorPhoneIcon;
     @FXML private ImageView errorMobileIcon;
+    @FXML private Label saveMessage;
 
     Map<TextField, ImageView> errorIconMap = new HashMap<TextField,ImageView>();
 
@@ -116,6 +118,8 @@ public class ChangeUserInfoWindow extends AnchorPane {
             customer.setMobilePhoneNumber(mobilChange.getText());
             setGreenBorder(mobilChange);
         }
+
+
 
 
     }
@@ -214,7 +218,8 @@ public class ChangeUserInfoWindow extends AnchorPane {
     }
 
     private void setGreenBorder(TextField textField){
-        textField.setStyle("-fx-border-width: 3px;  -fx-border-color: #4f5b62;");
+        textField.setStyle("-fx-border-width: 3px;  -fx-border-color: #7cb342;");
+        saveMessage.setVisible(true);
     }
 
 
