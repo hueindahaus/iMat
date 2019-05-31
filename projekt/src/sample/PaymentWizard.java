@@ -159,6 +159,7 @@ public class PaymentWizard extends StackPane {
         fillValidMonthComboBox();
         fillValidYearBox();
 
+        implementAllToolTips();
 
 
     }
@@ -657,6 +658,44 @@ public class PaymentWizard extends StackPane {
     }
 
 
+
+
+
+    //------------------------------------------------------------------------------------------------------------------ sätter tooltip på buttons
+
+    @FXML
+    private Button backToDeliveryButton;
+    @FXML
+    private Button confirmOrderButton;
+    @FXML
+    private Button goToPaymentButton;
+    @FXML
+    private Button backToUserInfoButton;
+    @FXML
+    private Button goToDeliveryInfoButton;
+    @FXML
+    private Button goToStoreButton;
+
+
+
+
+    private void implementAllToolTips(){
+        installTooltipOnNode(backToDeliveryButton, "Klicka för att gå tillbaka till leveransinformation");
+        installTooltipOnNode(confirmOrderButton, "Klicka för att slutföra köpet!");
+        installTooltipOnNode(goToPaymentButton, "Klicka för att fortsätta till betalningsinformation");
+        installTooltipOnNode(backToUserInfoButton, "Klicka för att gå tillbaka till användarinformation");
+        installTooltipOnNode(goToDeliveryInfoButton, "Klicka för att fortsätta till leveransinformation");
+        installTooltipOnNode(goToStoreButton, "Klicka för att komma tillbaka till sortimentet");
+    }
+
+
+
+
+    private void installTooltipOnNode(Node node, String message){
+        Tooltip tooltip = new Tooltip(message);
+        tooltip.setFont(new Font("Roboto-Regular",18));
+        Tooltip.install(node,tooltip);
+    }
 
 
 

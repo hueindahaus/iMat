@@ -2,12 +2,15 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Font;
 import se.chalmers.cse.dat216.project.Order;
 
 import java.io.IOException;
@@ -48,6 +51,7 @@ public class HistoryItem extends AnchorPane {
 
         this.order = order;
         isExpanded = false;
+        implementAllToolTips();
     }
 
     @FXML
@@ -96,5 +100,19 @@ public class HistoryItem extends AnchorPane {
             default:
                 return "odefinerad månad";
         }
+    }
+
+
+    private void implementAllToolTips(){
+        installTooltipOnNode(expandButton, "Klicka för att se hela ordern");
+    }
+
+
+
+
+    private void installTooltipOnNode(Node node, String message){
+        Tooltip tooltip = new Tooltip(message);
+        tooltip.setFont(new Font("Roboto-Regular",18));
+        Tooltip.install(node,tooltip);
     }
 }

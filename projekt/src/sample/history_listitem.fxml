@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane alignment="TOP_CENTER" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders">
          <children>
@@ -51,7 +51,10 @@
             </AnchorPane>
             <AnchorPane fx:id="cardFront" prefHeight="280.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
                <children>
-                  <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image" />
+                  <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
                   <Label fx:id="listItemTitle" alignment="CENTER" layoutX="20.0" layoutY="180.0" onMouseClicked="#flipCardToBack" prefHeight="30.0" prefWidth="200.0" styleClass="label1" text="Title">
                      <font>
                         <Font name="Helvetica Neue" size="18.0" />
@@ -61,7 +64,7 @@
                      </cursor>
                   </Label>
                   <Label fx:id="priceAndUnit" alignment="CENTER" layoutX="20.0" layoutY="200.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" styleClass="label2" text="Label" />
-                  <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="cartButton">
+                  <Button fx:id="addToCartButton" layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="cartButton">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,8 +83,11 @@
                      <image>
                         <Image url="@../icons/baseline_favorite_border_black_18dp.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="14.0" layoutY="14.0" onMousePressed="#flipCardToBack" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="moreInfoIcon" fitHeight="30.0" fitWidth="34.0" layoutX="14.0" layoutY="14.0" onMousePressed="#flipCardToBack" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/outline_info_black_18dp.png" />
                      </image>

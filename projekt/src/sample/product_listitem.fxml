@@ -52,7 +52,10 @@
             </AnchorPane>
             <AnchorPane fx:id="cardFront" prefHeight="280.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" styleClass="cardbase">
                <children>
-                  <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image" />
+                  <ImageView fx:id="listItemImage" fitHeight="180.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
                   <Label fx:id="listItemTitle" alignment="CENTER" layoutX="20.0" layoutY="180.0" onMouseClicked="#flipCardToBack" prefHeight="30.0" prefWidth="200.0" styleClass="label1" text="Title">
                      <font>
                         <Font name="Helvetica Neue" size="18.0" />
@@ -71,7 +74,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="34.0" fitWidth="34.0" onMouseClicked="#addOne" pickOnBounds="true" preserveRatio="true" x="106.0" y="232.0">
+                  <ImageView fx:id="addButton" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#addOne" pickOnBounds="true" preserveRatio="true" x="106.0" y="232.0">
                      <image>
                         <Image url="@../icons/baseline_add_circle_black_18dp.png" />
                      </image>
@@ -79,7 +82,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Button layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="cartButton">
+                  <Button fx:id="addToCartButton" layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="cartButton">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -102,7 +105,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="14.0" layoutY="14.0" onMousePressed="#flipCardToBack" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="moreInfoIcon" fitHeight="30.0" fitWidth="34.0" layoutX="14.0" layoutY="14.0" onMousePressed="#flipCardToBack" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/outline_info_black_18dp.png" />
                      </image>

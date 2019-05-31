@@ -7,12 +7,16 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -46,6 +50,10 @@ public class HistoryListItem extends AnchorPane {       //TODO att fixa så att 
     private ImageView favouriteIcon;
     @FXML
     private Label amountLabel;
+    @FXML
+    private ImageView moreInfoIcon;
+    @FXML
+    private Button addToCartButton;
 
     Image checkmark = new Image("images/cart48.png");
 
@@ -105,6 +113,8 @@ public class HistoryListItem extends AnchorPane {       //TODO att fixa så att 
         });  //lägger till en listener till bilden på kortet
 
         changeFavIcon();
+
+        implementAllToolTips();
     }
     
     public void changeFavIcon(){
@@ -142,4 +152,22 @@ public class HistoryListItem extends AnchorPane {       //TODO att fixa så att 
     private void flipCardToFront(){  //metd som flippar tillbaka
         cardFront.toFront();
     }
+
+
+    private void implementAllToolTips(){
+        installTooltipOnNode(favouriteIcon, "Klicka för att lägga till i favoriter");
+        installTooltipOnNode(moreInfoIcon, "Klicka för att visa mer produktinformation");
+        installTooltipOnNode(addToCartButton, "Klicka för att lägga till antalet i varukorgen");
+        installTooltipOnNode(listItemTitle, "Klicka för att visa mer produktinformation");
+    }
+
+
+
+
+    private void installTooltipOnNode(Node node, String message){
+        Tooltip tooltip = new Tooltip(message);
+        tooltip.setFont(new Font("Roboto-Regular",18));
+        Tooltip.install(node,tooltip);
+    }
+
 }

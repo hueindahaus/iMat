@@ -11,8 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
@@ -57,6 +60,13 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     private ImageView favouriteIcon;
     @FXML
     private ImageView subButton;
+    @FXML
+    private ImageView moreInfoIcon;
+    @FXML
+    private ImageView addButton;
+    @FXML
+    private Button addToCartButton;
+
 
     Image checkmark = new Image("images/cart48.png");
 
@@ -150,6 +160,8 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
                 flipCardToBack();
             }
         });
+
+        implementAllToolTips();
 
         changeFavIcon();
     }
@@ -272,6 +284,25 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         } else {
             return 1;
         }
+    }
+
+    private void implementAllToolTips(){
+        installTooltipOnNode(favouriteIcon, "Klicka för att lägga till i favoriter");
+        installTooltipOnNode(listItemTitle, "Klicka för att visa mer produktinformation");
+        installTooltipOnNode(moreInfoIcon, "Klicka för att visa mer Produktinformation");
+        installTooltipOnNode(subButton, "Klicka för att minska antal att lägga till");
+        installTooltipOnNode(addButton, "Klicka för att öka antal att lägga till");
+        installTooltipOnNode(addToCartButton, "Klicka för att lägga till valt antal i varukorgen");
+        installTooltipOnNode(inputAmount, "Skriv antal av varan som du vill lägga till");
+    }
+
+
+
+
+    private void installTooltipOnNode(Node node, String message){
+        Tooltip tooltip = new Tooltip(message);
+        tooltip.setFont(new Font("Roboto-Regular",18));
+        Tooltip.install(node,tooltip);
     }
 
 }
