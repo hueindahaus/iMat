@@ -115,6 +115,7 @@ public class Cart extends AnchorPane {
             shoppingItem.setAmount(shoppingItem.getAmount() + amount);      //om produkten redan finns i varukorgen så ska vi bara addera amount när vi "lägger till flera" av en produkt
         } else {
             shoppingCart.addItem(shoppingItem);
+            cartListItemMap.get(shoppingItem.getProduct().getName()).slideIn.play();
             shoppingItem.setAmount(amount);     //om produkten inte finns i varukorgen ska lägga till den i ShoppingCart och även sätta antalet som vi har valt
         }
         updateFlowPane();

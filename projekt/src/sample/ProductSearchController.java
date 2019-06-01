@@ -68,6 +68,12 @@ public class ProductSearchController implements Initializable {
     public ImageView step3;
     @FXML
     private ImageView cartIcon;
+    @FXML
+    private ImageView userInfoIcon;
+    @FXML
+    private ImageView historyIcon;
+    @FXML
+    private ImageView listIcon;
 
     Image whiteCartImage = new Image("images/cartIconWhite.png");
     Image primaryCartImage = new Image("images/cartIconPrimary.png");
@@ -84,6 +90,12 @@ public class ProductSearchController implements Initializable {
     Timeline showWizard;
     Timeline hideWizard;
     SequentialTransition flashCartButton;
+    Image historyIconToggled = new Image("icons/history_white.png");
+    Image listIconToggled = new Image("icons/list_white.png");
+    Image personalIconToggled = new Image("icons/person_white.png");
+    Image historyIconNotToggled = new Image("icons/history_black.png");
+    Image listIconNotToggled = new Image("icons/list_black.png");
+    Image personalIconNotToggled = new Image("icons/person_black.png");
 
     PaymentWizard paymentWizard = new PaymentWizard(this);
 
@@ -279,6 +291,44 @@ public class ProductSearchController implements Initializable {
                 mainFlowPane.getChildren().add(ShoppingListPage.getInstance());
             }
         });
+
+
+
+        listButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    listIcon.setImage(listIconToggled);
+                } else {
+                    listIcon.setImage(listIconNotToggled);
+                }
+            }
+        });
+
+        userButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    userInfoIcon.setImage(personalIconToggled);
+                } else {
+                    userInfoIcon.setImage(personalIconNotToggled);
+                }
+            }
+        });
+
+        historyButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    historyIcon.setImage(historyIconToggled);
+                } else {
+                    historyIcon.setImage(historyIconNotToggled);
+                }
+            }
+        });
+
+
+
     }
 
     private void fixRadioButtonStyle(RadioButton button) {

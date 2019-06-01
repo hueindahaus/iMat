@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,8 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -24,6 +29,8 @@ public class CartListItem extends AnchorPane {
     ShoppingItem shoppingItem;
     ProductSearchController parentController;
 
+    Timeline slideIn;
+
 
     @FXML
     ImageView image;
@@ -35,6 +42,16 @@ public class CartListItem extends AnchorPane {
     private Label price;
     @FXML
     private ImageView clearIcon;
+    @FXML
+    private ImageView decButton;
+    @FXML
+    private ImageView incButton;
+
+    Image incButtonImage = new Image("icons/inc_button.png");
+    Image incButtonImageGreen = new Image("icons/inc_button_green.png");
+    Image decButtonImage = new Image("icons/dec_button.png");
+    Image decButtonImageRed = new Image("icons/dec_button_red.png");
+
 
     private DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
@@ -54,6 +71,8 @@ public class CartListItem extends AnchorPane {
         image.setImage(IMatDataHandler.getInstance().getFXImage(shoppingItem.getProduct()));
         title.setText(shoppingItem.getProduct().getName());
         price.setText(shoppingItem.getTotal() + " kr");
+
+        translateXProperty().setValue(260);
 
 
         textField.setOnAction(new EventHandler<ActionEvent>() {       //actionhandler som agerar när man trycker enter i en textfield
@@ -81,7 +100,32 @@ public class CartListItem extends AnchorPane {
         });
 
 
+        decButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    decButton.setImage(decButtonImageRed);
+                } else {
+                    decButton.setImage(decButtonImage);
+                }
+            }
+        });
 
+        incButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    incButton.setImage(incButtonImageGreen);
+                } else {
+                    incButton.setImage(incButtonImage);
+                }
+            }
+        });
+
+
+    slideIn = new Timeline(
+            new KeyFrame(Duration.seconds(0.2), new KeyValue(this.translateXProperty(), 0))     //animation som slide:ar in varan i varukorgen. (Denna kallas i klassen Cart, i addToCart-metoden)
+    );
 
 
     }

@@ -93,9 +93,9 @@
                   </Label>
                   <RadioButton fx:id="userButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Användaruppgifter">
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="userInfoIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/baseline_person_black_18dp.png" />
+                              <Image url="@../icons/person_black.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -106,9 +106,9 @@
                   <RadioButton fx:id="historyButton" alignment="BASELINE_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Historik">
 
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="historyIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/baseline_access_time_black_18dp.png" />
+                              <Image url="@../icons/history_black.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -119,9 +119,9 @@
                   <RadioButton fx:id="listButton" alignment="BASELINE_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" styleClass="sidebutton" text="Inköpslistor">
 
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="listIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/baseline_list_black_18dp.png" />
+                              <Image url="@../icons/list_black.png" />
                            </image>
                         </ImageView>
                      </graphic>

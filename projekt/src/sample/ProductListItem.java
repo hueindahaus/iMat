@@ -69,6 +69,11 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
 
 
     Image checkmark = new Image("images/cart48.png");
+    Image incButtonImage = new Image("icons/inc_button.png");
+    Image incButtonImageGreen = new Image("icons/inc_button_green.png");
+    Image decButtonImage = new Image("icons/dec_button.png");
+    Image decButtonImageRed = new Image("icons/dec_button_red.png");
+
 
 
 
@@ -142,7 +147,27 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         transition = new SequentialTransition(transitionToCartIcon,transitionToImage);      //lägger ihop de 2 olika timelines till en en timeline är de spelas efter varandra
 
 
+        subButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    subButton.setImage(decButtonImageRed);
+                } else {
+                    subButton.setImage(decButtonImage);
+                }
+            }
+        });
 
+        addButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue){
+                    addButton.setImage(incButtonImageGreen);
+                } else {
+                    addButton.setImage(incButtonImage);
+                }
+            }
+        });
 
 
         favouriteIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -172,11 +197,19 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
     }
     
     public void changeFavIcon(){
-        if(!IMatDataHandler.getInstance().isFavorite(shoppingItem.getProduct()))
+        if(!IMatDataHandler.getInstance().isFavorite(shoppingItem.getProduct())) {
             favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_border_black_18dp.png").toExternalForm()));
-        else
+            favouriteIcon.setFitHeight(36);
+            favouriteIcon.setFitWidth(36);
+            favouriteIcon.setTranslateX(0);
+            favouriteIcon.setTranslateX(0);
+        } else {
             favouriteIcon.setImage(new Image(getClass().getResource("../icons/baseline_favorite_black_18dp.png").toExternalForm()));
-
+            favouriteIcon.setFitHeight(42);
+            favouriteIcon.setFitWidth(42);
+            favouriteIcon.setTranslateX(-3);
+            favouriteIcon.setTranslateY(-3);
+        }
     }
 
     private void populateBack(){

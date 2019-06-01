@@ -68,7 +68,7 @@
                   <Label fx:id="priceAndUnit" alignment="CENTER" layoutX="20.0" layoutY="200.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" styleClass="label2" text="Label" />
                   <ImageView fx:id="subButton" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#subtractOne" pickOnBounds="true" preserveRatio="true" x="12.0" y="232.0">
                      <image>
-                        <Image url="@../icons/baseline_remove_circle_black_18dp.png" />
+                        <Image url="@../icons/dec_button.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -76,7 +76,7 @@
                   </ImageView>
                   <ImageView fx:id="addButton" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#addOne" pickOnBounds="true" preserveRatio="true" x="106.0" y="232.0">
                      <image>
-                        <Image url="@../icons/baseline_add_circle_black_18dp.png" />
+                        <Image url="@../icons/inc_button.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
