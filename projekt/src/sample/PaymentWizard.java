@@ -80,7 +80,7 @@ public class PaymentWizard extends StackPane {
         linkElementWithErrorIcon();
 
 
-
+/*
         visacardButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -101,6 +101,7 @@ public class PaymentWizard extends StackPane {
                 errorMeasureIfCardNotSelected();
             }
         });
+        */
 
 
         cvcTextField.textProperty().addListener(new ChangeListener<String>() {
@@ -236,18 +237,18 @@ public class PaymentWizard extends StackPane {
 
 
     private void fillValidMonthComboBox(){
-        validMonthComboBox.getItems().add("12");
-        validMonthComboBox.getItems().add("11");
-        validMonthComboBox.getItems().add("10");
-        validMonthComboBox.getItems().add("09");
-        validMonthComboBox.getItems().add("08");
-        validMonthComboBox.getItems().add("07");
-        validMonthComboBox.getItems().add("06");
-        validMonthComboBox.getItems().add("05");
-        validMonthComboBox.getItems().add("04");
-        validMonthComboBox.getItems().add("03");
-        validMonthComboBox.getItems().add("02");
-        validMonthComboBox.getItems().add("01");
+        validMonthComboBox.getItems().add(new Integer(12));
+        validMonthComboBox.getItems().add(new Integer(11));
+        validMonthComboBox.getItems().add(new Integer(10));
+        validMonthComboBox.getItems().add(new Integer(9));
+        validMonthComboBox.getItems().add(new Integer(8));
+        validMonthComboBox.getItems().add(new Integer(7));
+        validMonthComboBox.getItems().add(new Integer(6));
+        validMonthComboBox.getItems().add(new Integer(5));
+        validMonthComboBox.getItems().add(new Integer(4));
+        validMonthComboBox.getItems().add(new Integer(3));
+        validMonthComboBox.getItems().add(new Integer(2));
+        validMonthComboBox.getItems().add(new Integer(1));
         validMonthComboBox.visibleRowCountProperty().setValue(12);
     }
 
@@ -256,7 +257,7 @@ public class PaymentWizard extends StackPane {
         for(int i = currentYear+10; i > currentYear; i--){
             String year = String.valueOf(i);
             year = String.valueOf(year.charAt(2)) + String.valueOf(year.charAt(3));
-            validYearComboBox.getItems().add(year);
+            validYearComboBox.getItems().add(Integer.valueOf(year));
         }
     }
 
@@ -273,20 +274,6 @@ public class PaymentWizard extends StackPane {
 
 
 
-    private String extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en sträng
-        if(!string.isEmpty()) {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < string.length(); i++) {
-                char c = string.charAt(i);
-                if (Character.isDigit(c)) {
-                    builder.append(c);
-                }
-            }
-            return builder.toString();
-        } else {
-            return "";
-        }
-    }
 
     @FXML
     public void customerInfoPaneToFront(){
@@ -305,7 +292,6 @@ public class PaymentWizard extends StackPane {
             autofillDeliveryInfo();
             deliveryInfoPane.toFront();
             customerInfoErrorLabel.setVisible(false);
-
             parentController.step1.setVisible(false);
             parentController.step2.setVisible(true);
             parentController.step3.setVisible(false);
@@ -319,9 +305,10 @@ public class PaymentWizard extends StackPane {
     public void paymentInfoPaneToFront(){
         if(isDeliveryInfoComplete()) {
             setDeliveryInfoValues();
+            autofillPaymentInfo();
+            resetCVC();
             paymentInfoPane.toFront();
             deliveryInfoErrorLabel.setVisible(false);
-
             parentController.step1.setVisible(false);
             parentController.step2.setVisible(false);
             parentController.step3.setVisible(true);
@@ -335,8 +322,13 @@ public class PaymentWizard extends StackPane {
     @FXML
     public void overviewPaneToFront(){
         if(isPaymentInfoComplete()) {
-            //setPaymentInfoValues();
-            resetPaymentInfoValues();
+
+            if(savePaymentInfoCheckBox.isSelected()){
+                savePaymentInfoValues();
+            } else {
+                dontSavePaymentInfoValues();
+            }
+            //clearPaymentPage();
             overviewPane.toFront();
             fillOrderFlowPane();
             isInReceiptMode = true;
@@ -348,8 +340,6 @@ public class PaymentWizard extends StackPane {
             paymentInfoErrorLabel.setVisible(true);
         }
         errorMeasurePaymentInfo();
-
-        //setErrorIconVisibleValidMonthOrValidYear();     //speciellt eftersom att en Error-Icon används för två olika TextField
     }
 
 
@@ -438,15 +428,34 @@ public class PaymentWizard extends StackPane {
     @FXML private TextField cardnumberTextField3;
     @FXML private TextField cardnumberTextField4;
     @FXML private TextField cvcTextField;
+    @FXML private CheckBox savePaymentInfoCheckBox;
     @FXML private Label paymentInfoErrorLabel;
 
-    public void setPaymentInfoValues(){
+    public void savePaymentInfoValues(){
         creditCard.setHoldersName(cardHolderNameTextField.getText());
-        creditCard.setValidMonth(Integer.valueOf((String)validMonthComboBox.selectionModelProperty().get()));
-        creditCard.setValidYear(Integer.valueOf((String)validYearComboBox.selectionModelProperty().get()));
-        creditCard.setCardNumber(cardHolderNameTextField.getText());
+        creditCard.setValidMonth((Integer)validMonthComboBox.getValue());
+        creditCard.setValidYear((Integer)validYearComboBox.getValue());
+        saveCardNumber();
         creditCard.setVerificationCode(Integer.valueOf(cvcTextField.getText()));
         creditCard.setCardType(getCreditCardType());
+    }
+
+    private void dontSavePaymentInfoValues(){
+        creditCard.setHoldersName("");
+        creditCard.setValidMonth(0);
+        creditCard.setValidYear(0);
+        creditCard.setCardType("");
+        creditCard.setCardNumber("");
+    }
+
+    private void saveCardNumber(){
+        StringBuilder number = new StringBuilder();
+        number.append(cardnumberTextField1.getText());
+        number.append(cardnumberTextField2.getText());
+        number.append(cardnumberTextField3.getText());
+        number.append(cardnumberTextField4.getText());
+
+        creditCard.setCardNumber(number.toString());
     }
 
     private String getCreditCardType(){
@@ -475,18 +484,70 @@ public class PaymentWizard extends StackPane {
         //endast test för att kolla om ordersystemet funkar  System.out.println(IMatDataHandler.getInstance().getOrders().get(0).getItems().get(0).getProduct().getName());
     }
 
-    private void resetPaymentInfoValues(){
-        mastercardButton.setSelected(false);
-        visacardButton.setSelected(false);
-        americanExpressButton.setSelected(false);
-        cardHolderNameTextField.setText("");
-        validMonthComboBox.getSelectionModel().clearSelection();
-        validYearComboBox.getSelectionModel().clearSelection();
-        cardnumberTextField1.setText("");
-        cardnumberTextField2.setText("");
-        cardnumberTextField3.setText("");
-        cardnumberTextField4.setText("");
-        cvcTextField.setText("");
+
+
+    private void autofillPaymentInfo(){
+        fillCreditCardNumberTextField();
+        cardHolderNameTextField.setText(creditCard.getHoldersName());
+        fillValidMonthAndYearTextFields();
+        fillCardType();
+        savePaymentInfoCheckBox.setSelected(true);
+
+    }
+
+    private void fillCardType(){
+        if(!creditCard.getCardType().isEmpty()){
+
+            if(creditCard.getCardType().equals("Mastercard")){
+                mastercardButton.setSelected(true);
+            } else if (creditCard.getCardType().equals("Visa")){
+                visacardButton.setSelected(true);
+            } else if(creditCard.getCardType().equals("American Express")) {
+                americanExpressButton.setSelected(true);
+            }
+        } else {
+            mastercardButton.setSelected(false);
+            visacardButton.setSelected(false);
+            americanExpressButton.setSelected(false);
+        }
+    }
+
+    private void fillValidMonthAndYearTextFields(){
+        if(creditCard.getValidMonth() != 0 && creditCard.getValidYear() != 0){
+            validMonthComboBox.setValue(creditCard.getValidMonth());
+            validYearComboBox.setValue(creditCard.getValidYear());
+        } else {
+            validMonthComboBox.getSelectionModel().clearSelection();
+            validYearComboBox.getSelectionModel().clearSelection();
+        }
+    }
+
+    private void fillCreditCardNumberTextField(){
+        if(!creditCard.getCardNumber().isEmpty()) {
+            int length = creditCard.getCardNumber().length();
+
+            if (length >= 4){
+                cardnumberTextField1.setText(creditCard.getCardNumber().substring(0, 4));
+            }
+            if (length >= 8){
+                cardnumberTextField2.setText(creditCard.getCardNumber().substring(4, 8));
+            }
+            if (length >= 12){
+                cardnumberTextField3.setText(creditCard.getCardNumber().substring(8, 12));
+            }
+            if (length >= 16){
+                cardnumberTextField4.setText(creditCard.getCardNumber().substring(12, 16));
+            }
+        } else {
+            cardnumberTextField1.clear();
+            cardnumberTextField2.clear();
+            cardnumberTextField3.clear();
+            cardnumberTextField4.clear();
+        }
+    }
+
+    private void resetCVC(){
+        cvcTextField.clear();
     }
 
 
