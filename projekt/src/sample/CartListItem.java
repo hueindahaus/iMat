@@ -80,6 +80,10 @@ public class CartListItem extends AnchorPane {
             }
         });
 
+
+
+
+
     }
 
     public ShoppingItem getShoppingItem(){
@@ -95,7 +99,7 @@ public class CartListItem extends AnchorPane {
         String output = "";
         String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
 
-        if(unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk")){
+        if(unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk") || unitSuffix.equals("påse")){
             output = String.valueOf((int)amount) + " " + unitSuffix;
         } else {
             output = String.valueOf(amount) + " " + unitSuffix;
@@ -141,9 +145,9 @@ public class CartListItem extends AnchorPane {
 
         String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
 
-        if((unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk"))){
+        if((unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk") || unitSuffix.equals("påse"))){
             amount = Math.round(amount);
-        } else if(unitSuffix.equals("kg") || unitSuffix.equals("l")){
+        } else{
             if (amount < 0.1){
                 amount = 0.1;
             }

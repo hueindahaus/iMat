@@ -140,6 +140,11 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         );
 
         transition = new SequentialTransition(transitionToCartIcon,transitionToImage);      //lägger ihop de 2 olika timelines till en en timeline är de spelas efter varandra
+
+
+
+
+
         favouriteIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -220,7 +225,7 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
         String output = "";
         String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
 
-        if(unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk")){
+        if(unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk") || unitSuffix.equals("påse")){
             output = String.valueOf((int)amount) + " " + unitSuffix;
         } else {
             output = String.valueOf(currentAmount) + " " + unitSuffix;
@@ -270,9 +275,9 @@ public class ProductListItem extends AnchorPane {       //TODO att fixa så att 
 
         String unitSuffix = shoppingItem.getProduct().getUnitSuffix();
 
-        if((unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk"))){
+        if((unitSuffix.equals("förp") || unitSuffix.equals("st") || unitSuffix.equals("burk") || unitSuffix.equals("påse"))){
             amount = Math.round(amount);
-        } else if(unitSuffix.equals("kg") || unitSuffix.equals("l")){
+        } else {
             if (amount < 0.1){
                 amount = 0.1;
             }

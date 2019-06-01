@@ -20,9 +20,15 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1180.0" type="StackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane fx:id="paymentInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
+      <AnchorPane fx:id="overviewPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
-            <Button fx:id="confirmOrderBurron" layoutX="792.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#overviewPaneToFront" prefHeight="60.0" prefWidth="260.0" styleClass="buy-button" text="Slutför köp">
+            <Label layoutX="362.0" layoutY="100.0" styleClass="regular-label" text="Tack för att du väljer IMat! " />
+            <ScrollPane hbarPolicy="NEVER" layoutX="140.0" layoutY="160.0" prefHeight="450.0" prefWidth="450.0">
+               <content>
+                  <FlowPane fx:id="orderFlowPane" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: FFFFFF;" />
+               </content>
+            </ScrollPane>
+            <Button fx:id="goToStoreButton" layoutX="470.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#checkoutComplete" prefHeight="60.0" prefWidth="240.0" styleClass="nav-button" text="Till butiken">
                <font>
                   <Font name="Roboto" size="36.0" />
                </font>
@@ -30,164 +36,50 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="backToDeliveryButton" layoutX="170.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#deliveryInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Tillbaka">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <ToggleButton fx:id="mastercardButton" layoutX="570.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="110.0" styleClass="card-button">
-               <graphic>
-                  <ImageView fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/mastercard.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <toggleGroup>
-                  <ToggleGroup fx:id="type" />
-               </toggleGroup>
-            </ToggleButton>
-            <ToggleButton fx:id="visacardButton" layoutX="455.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="104.0" styleClass="card-button" toggleGroup="$type">
-               <graphic>
-                  <ImageView fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/visa2.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </ToggleButton>
-            <ToggleButton fx:id="americanExpressButton" layoutX="690.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="110.0" styleClass="card-button" toggleGroup="$type">
-               <graphic>
-                  <ImageView fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/amex.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </ToggleButton>
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Innehavare:" />
-            <TextField fx:id="cardHolderNameTextField" layoutX="455.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Sven Svensson">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="460.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Giltigt t.o.m:" />
-            <Line endX="-44.71175765991211" endY="4.204615592956543" layoutX="761.0" layoutY="493.0" rotate="-60.0" startX="-100.0" strokeWidth="3.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Kortnummer:" />
-            <TextField fx:id="cardnumberTextField" layoutX="455.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="XXXX-XXXX-XXXX-XXXX">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="CVC:" />
-            <TextField fx:id="cvcTextField" layoutX="455.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="110.0" promptText="XXX">
-               <font>
-                  <Font name="Roboto" size="36.0" />
-               </font>
-            </TextField>
-            <Label fx:id="paymentInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="410.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på varningssymbolen för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+            <Label layoutX="620.0" layoutY="240.0" styleClass="regular-label" text="Orderinformation" />
+            <Label fx:id="overviewNameLabel" layoutX="760.0" layoutY="300.0" prefWidth="300.0" text="namn">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="errorCardNumberIcon" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorHolderNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorValidMonth" fitHeight="66.0" fitWidth="66.0" layoutX="930.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorCvcIcon" fitHeight="66.0" fitWidth="66.0" layoutX="575.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorValidYearFront" fitHeight="66.0" fitWidth="66.0" layoutX="1000.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Korttyp:" />
-            <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Betalning">
-               <font>
-                  <Font name="Roboto" size="48.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="errorCardTypeIcon" fitHeight="66.0" fitWidth="66.0" layoutX="810.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ComboBox fx:id="validMonthComboBox" layoutX="455.0" layoutY="460.0" prefHeight="66.0" prefWidth="200.0" promptText="MM" styleClass="combo-box-small" />
-            <ComboBox fx:id="validYearComboBox" layoutX="720.0" layoutY="460.0" prefHeight="66.0" prefWidth="200.0" promptText="ÅÅ" styleClass="combo-box-small" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="deliveryInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
-         <children>
-            <Label fx:id="deliveryInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="420.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på varningssymbolen för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+            <Label fx:id="overviewDeliveryPlaceLabel" layoutX="760.0" layoutY="330.0" prefWidth="300.0" text="leveransaddress &amp; postnummer">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="goToPaymentButton" layoutX="836.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#paymentInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Nästa">
+            <Label fx:id="overviewOrdernumberLabel" layoutX="760.0" layoutY="360.0" prefWidth="300.0" text="ordernummer:">
                <font>
-                  <Font name="Roboto" size="36.0" />
+                  <Font name="Roboto" size="18.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="backToUserInfoButton" layoutX="170.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#customerInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Tillbaka">
+            </Label>
+            <Label fx:id="overviewTimeLabel" layoutX="760.0" layoutY="390.0" prefWidth="300.0" text="tid">
                <font>
-                  <Font name="Roboto" size="36.0" />
+                  <Font name="Roboto" size="18.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Leveransadress:" />
-            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="420.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Leveransdag:" />
-            <TextField fx:id="postAddressTextField" layoutX="455.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Stationsvägen 1">
+            </Label>
+            <Label fx:id="totalPriceLabel" alignment="CENTER_RIGHT" layoutX="390.0" layoutY="630.0" prefWidth="200.0" text="totala priset">
                <font>
-                  <Font name="Roboto" size="36.0" />
+                  <Font name="Roboto" size="18.0" />
                </font>
-            </TextField>
-            <DatePicker fx:id="datePicker" editable="false" layoutX="455.0" layoutY="420.0" prefHeight="66.0" prefWidth="480.0" promptText="tryck på knappen--&gt;" />
-            <Label alignment="CENTER_RIGHT" layoutX="170.0" layoutY="340.0" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Postnummer:" />
-            <TextField fx:id="postCodeTextField" layoutX="455.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="123 45">
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="300.0" prefWidth="160.0" text="Mottagare:">
                <font>
-                  <Font name="Roboto" size="36.0" />
+                  <Font name="Roboto" size="18.0" />
                </font>
-            </TextField>
-            <ImageView fx:id="errorPostAdressIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorPostCodeIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="errorDeliveryDayIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Leverans">
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="330.0" prefWidth="160.0" text="Leveransadress:">
                <font>
-                  <Font name="Roboto" size="48.0" />
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="360.0" prefWidth="160.0" text="Ordernummer:">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="390.0" prefWidth="160.0" text="Ordertid:">
+               <font>
+                  <Font name="Roboto" size="18.0" />
                </font>
             </Label>
          </children>
@@ -280,15 +172,14 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="overviewPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
+      <AnchorPane fx:id="deliveryInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
          <children>
-            <Label layoutX="362.0" layoutY="100.0" styleClass="regular-label" text="Tack för att du väljer IMat! " />
-            <ScrollPane hbarPolicy="NEVER" layoutX="140.0" layoutY="160.0" prefHeight="450.0" prefWidth="450.0">
-               <content>
-                  <FlowPane fx:id="orderFlowPane" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: FFFFFF;" />
-               </content>
-            </ScrollPane>
-            <Button fx:id="goToStoreButton" layoutX="470.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#checkoutComplete" prefHeight="60.0" prefWidth="240.0" styleClass="nav-button" text="Till butiken">
+            <Label fx:id="deliveryInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="420.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på varningssymbolen för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="goToPaymentButton" layoutX="836.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#paymentInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Nästa">
                <font>
                   <Font name="Roboto" size="36.0" />
                </font>
@@ -296,52 +187,176 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="620.0" layoutY="240.0" styleClass="regular-label" text="Orderinformation" />
-            <Label fx:id="overviewNameLabel" layoutX="760.0" layoutY="300.0" prefWidth="300.0" text="namn">
+            <Button fx:id="backToUserInfoButton" layoutX="170.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#customerInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Tillbaka">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Leveransadress:" />
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="420.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Leveransdag:" />
+            <TextField fx:id="postAddressTextField" layoutX="455.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Stationsvägen 1">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <DatePicker fx:id="datePicker" editable="false" layoutX="455.0" layoutY="420.0" prefHeight="66.0" prefWidth="480.0" promptText="tryck på knappen--&gt;" />
+            <Label alignment="CENTER_RIGHT" layoutX="170.0" layoutY="340.0" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Postnummer:" />
+            <TextField fx:id="postCodeTextField" layoutX="455.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="123 45">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="errorPostAdressIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorPostCodeIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorDeliveryDayIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Leverans">
+               <font>
+                  <Font name="Roboto" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paymentInfoPane" prefHeight="820.0" prefWidth="1180.0" style="-fx-background-color: FFFFFF;" styleClass="with-border">
+         <children>
+            <Button fx:id="confirmOrderBurron" layoutX="792.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#overviewPaneToFront" prefHeight="60.0" prefWidth="260.0" styleClass="buy-button" text="Slutför köp">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="backToDeliveryButton" layoutX="170.0" layoutY="720.0" mnemonicParsing="false" onMouseClicked="#deliveryInfoPaneToFront" prefHeight="60.0" prefWidth="174.0" styleClass="nav-button" text="Tillbaka">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ToggleButton fx:id="mastercardButton" layoutX="570.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="110.0" styleClass="card-button">
+               <graphic>
+                  <ImageView fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/mastercard.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <toggleGroup>
+                  <ToggleGroup fx:id="type" />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="visacardButton" layoutX="455.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="104.0" styleClass="card-button" toggleGroup="$type">
+               <graphic>
+                  <ImageView fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/visa2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="americanExpressButton" layoutX="690.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="110.0" styleClass="card-button" toggleGroup="$type">
+               <graphic>
+                  <ImageView fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/amex.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Innehavare:" />
+            <TextField fx:id="cardHolderNameTextField" layoutX="455.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="480.0" promptText="Sven Svensson">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="460.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Giltigt t.o.m:" />
+            <Line endX="-44.71175765991211" endY="4.204615592956543" layoutX="761.0" layoutY="493.0" rotate="-60.0" startX="-100.0" strokeWidth="3.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Kortnummer:" />
+            <TextField fx:id="cardnumberTextField1" layoutX="455.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
+               <font>
+                  <Font name="Roboto" size="32.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="CVC:" />
+            <TextField fx:id="cvcTextField" layoutX="455.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="110.0" promptText="XXX">
+               <font>
+                  <Font name="Roboto" size="36.0" />
+               </font>
+            </TextField>
+            <Label fx:id="paymentInfoErrorLabel" layoutX="380.0" layoutY="700.0" prefHeight="80.0" prefWidth="410.0" text="Fyll i samtliga uppgifter korrekt innan du fortsätter! Håll pekaren på varningssymbolen för mer information!" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="overviewDeliveryPlaceLabel" layoutX="760.0" layoutY="330.0" prefWidth="300.0" text="leveransaddress &amp; postnummer">
+            <ImageView fx:id="errorCardNumberIcon" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorHolderNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorValidMonth" fitHeight="66.0" fitWidth="66.0" layoutX="930.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorCvcIcon" fitHeight="66.0" fitWidth="66.0" layoutX="575.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorValidYearFront" fitHeight="66.0" fitWidth="66.0" layoutX="1000.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Korttyp:" />
+            <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Betalning">
                <font>
-                  <Font name="Roboto" size="18.0" />
+                  <Font name="Roboto" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="overviewOrdernumberLabel" layoutX="760.0" layoutY="360.0" prefWidth="300.0" text="ordernummer:">
+            <ImageView fx:id="errorCardTypeIcon" fitHeight="66.0" fitWidth="66.0" layoutX="810.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/baseline_error_black_48dp.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="validMonthComboBox" layoutX="455.0" layoutY="460.0" prefHeight="66.0" prefWidth="200.0" promptText="MM" styleClass="combo-box-small" />
+            <ComboBox fx:id="validYearComboBox" layoutX="720.0" layoutY="460.0" prefHeight="66.0" prefWidth="200.0" promptText="ÅÅ" styleClass="combo-box-small" />
+            <TextField fx:id="cardnumberTextField2" layoutX="578.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
                <font>
-                  <Font name="Roboto" size="18.0" />
+                  <Font name="Roboto" size="32.0" />
                </font>
-            </Label>
-            <Label fx:id="overviewTimeLabel" layoutX="760.0" layoutY="390.0" prefWidth="300.0" text="tid">
+            </TextField>
+            <TextField fx:id="cardnumberTextField3" layoutX="701.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
                <font>
-                  <Font name="Roboto" size="18.0" />
+                  <Font name="Roboto" size="32.0" />
                </font>
-            </Label>
-            <Label fx:id="totalPriceLabel" alignment="CENTER_RIGHT" layoutX="390.0" layoutY="630.0" prefWidth="200.0" text="totala priset">
+            </TextField>
+            <TextField fx:id="cardnumberTextField4" layoutX="824.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
                <font>
-                  <Font name="Roboto" size="18.0" />
+                  <Font name="Roboto" size="32.0" />
                </font>
-            </Label>
-            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="300.0" prefWidth="160.0" text="Mottagare:">
-               <font>
-                  <Font name="Roboto" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="330.0" prefWidth="160.0" text="Leveransadress:">
-               <font>
-                  <Font name="Roboto" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="360.0" prefWidth="160.0" text="Ordernummer:">
-               <font>
-                  <Font name="Roboto" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_RIGHT" layoutX="580.0" layoutY="390.0" prefWidth="160.0" text="Ordertid:">
-               <font>
-                  <Font name="Roboto" size="18.0" />
-               </font>
-            </Label>
+            </TextField>
          </children>
       </AnchorPane>
    </children>

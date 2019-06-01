@@ -123,23 +123,7 @@ public class PaymentWizard extends StackPane {
             }
         });
 
-        cardnumberTextField.textProperty().addListener(new ChangeListener<String>() {       //fixar formatet på kredikort  TODO OBSSSS  skickar runtime exception när man tar bort en siffra så att ett bindestreck automatiskt försvinner (Programmet fungerar ändå)
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.length() < 20){
-                    cardnumberTextField.setText(toCreditcardFormat(newValue));     //skapar illegalargumentexception när man tar bort ett bindestreck
-                    /*
-                    Platform.runLater(() -> {
-                        String inputInCardformat = toCreditcardFormat(newValue);
-                        cardnumberTextField.setText(inputInCardformat);
-                        cardnumberTextField.positionCaret(inputInCardformat.length());
-                    });
-                    */
-                }   else {
-                    cardnumberTextField.setText(oldValue);
-                }
-            }
-        });
+
 
         validMonthComboBox.selectionModelProperty().addListener(new ChangeListener() {
             @Override
@@ -156,6 +140,27 @@ public class PaymentWizard extends StackPane {
         });
 
 
+
+        linkTextFields(cardnumberTextField1,cardnumberTextField2);
+        linkTextFields(cardnumberTextField2, cardnumberTextField3);
+        linkTextFields(cardnumberTextField3, cardnumberTextField4);
+        linkTextFieldsBackwards(cardnumberTextField1, cardnumberTextField2);
+        linkTextFieldsBackwards(cardnumberTextField2,cardnumberTextField3);
+        linkTextFieldsBackwards(cardnumberTextField3, cardnumberTextField4);
+        implementAllowedAmountOfCharsInTextField(cardnumberTextField1);
+        implementAllowedAmountOfCharsInTextField(cardnumberTextField2);
+        implementAllowedAmountOfCharsInTextField(cardnumberTextField3);
+        implementAllowedAmountOfCharsInTextField(cardnumberTextField4);
+        registerCaretListener(cardnumberTextField1);
+        registerCaretListener(cardnumberTextField2);
+        registerCaretListener(cardnumberTextField3);
+        registerCaretListener(cardnumberTextField4);
+
+
+
+
+
+
         fillValidMonthComboBox();
         fillValidYearBox();
 
@@ -163,6 +168,72 @@ public class PaymentWizard extends StackPane {
 
 
     }
+
+
+    private void implementAllowedAmountOfCharsInTextField(TextField textField){
+        textField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() > 4){
+                    textField.setText(oldValue);
+                }
+            }
+        });
+    }
+
+    private void linkTextFields(TextField tf1, TextField tf2) {
+        tf1.textProperty().addListener((obs, oldText, newText) -> {
+
+            if (newText.length() >= 4 && oldText.length() < 4) {
+                tf2.requestFocus();
+            }
+        });
+    }
+
+    private void linkTextFieldsBackwards(TextField tf1, TextField tf2){
+        tf2.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if((newValue.length() == 0) && oldValue.length() > 0){
+                    tf1.requestFocus();
+                }
+            }
+        });
+    }
+
+    private void registerCaretListener(TextField textField){
+        textField.caretPositionProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if((int)newValue != textField.getText().length()){
+                    textField.positionCaret(textField.getText().length());
+                }
+            }
+        });
+
+        textField.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                textField.positionCaret(textField.getText().length());
+            }
+        });
+    }
+
+
+
+
+
+    private boolean containsDigitsOnly(String string){        //metod som kollar om texten i en textfield endast består av siffror
+        char[] chars = string.toCharArray();
+        for(int i = 0; i < chars.length; i++){
+            if(!Character.isDigit(chars[i])){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 
     private void fillValidMonthComboBox(){
         validMonthComboBox.getItems().add("12");
@@ -200,20 +271,7 @@ public class PaymentWizard extends StackPane {
     }
 
 
-    private String toCreditcardFormat(String str){
-        String numbers = extractDigits(str);
-        StringBuilder sb = new StringBuilder();
-        if(numbers.length() > 0) {
-            for (int i = 0; i < numbers.length(); i++) {
-                if (i == 4 || i == 8 || i == 12 || i == 16) {
-                    sb.append("-");
-                }
-                sb.append(numbers.charAt(i));
-            }
-        }
-        return sb.toString();
 
-    }
 
     private String extractDigits(String string){           //metod som extraherar alla nummer ur en sträng och returnar det som en sträng
         if(!string.isEmpty()) {
@@ -228,7 +286,6 @@ public class PaymentWizard extends StackPane {
         } else {
             return "";
         }
-
     }
 
     @FXML
@@ -376,7 +433,10 @@ public class PaymentWizard extends StackPane {
     @FXML private TextField cardHolderNameTextField;
     @FXML private ComboBox validMonthComboBox;
     @FXML private ComboBox validYearComboBox;
-    @FXML private TextField cardnumberTextField;
+    @FXML private TextField cardnumberTextField1;
+    @FXML private TextField cardnumberTextField2;
+    @FXML private TextField cardnumberTextField3;
+    @FXML private TextField cardnumberTextField4;
     @FXML private TextField cvcTextField;
     @FXML private Label paymentInfoErrorLabel;
 
@@ -404,7 +464,10 @@ public class PaymentWizard extends StackPane {
 
 
     private boolean isPaymentInfoComplete(){            //return:ar true om inga textrutor är tomma och om de textrutor som kräver endast siffror inte har bokstäver i sig. (dessutom måste man ha valt typ av kreditkort)
-        return !getCreditCardType().isEmpty() && !cardHolderNameTextField.getText().isEmpty() && !validMonthComboBox.getSelectionModel().isEmpty() && !validYearComboBox.getSelectionModel().isEmpty() && !cardnumberTextField.getText().isEmpty() && !cvcTextField.getText().isEmpty() && containsDigitsOnly(cvcTextField) && containsDigitsOnly(cardnumberTextField);
+        return !getCreditCardType().isEmpty() && !cardHolderNameTextField.getText().isEmpty() && !validMonthComboBox.getSelectionModel().isEmpty()
+                && !validYearComboBox.getSelectionModel().isEmpty() && !cardnumberTextField1.getText().isEmpty() && !cardnumberTextField2.getText().isEmpty()
+                && !cardnumberTextField3.getText().isEmpty() && !cardnumberTextField4.getText().isEmpty() && !cvcTextField.getText().isEmpty() && containsDigitsOnly(cvcTextField)
+                && containsDigitsOnly(cardnumberTextField1) && containsDigitsOnly(cardnumberTextField2) && containsDigitsOnly(cardnumberTextField3) && containsDigitsOnly(cardnumberTextField4);
     }
 
     public void placeOrder(){
@@ -419,7 +482,10 @@ public class PaymentWizard extends StackPane {
         cardHolderNameTextField.setText("");
         validMonthComboBox.getSelectionModel().clearSelection();
         validYearComboBox.getSelectionModel().clearSelection();
-        cardnumberTextField.setText("");
+        cardnumberTextField1.setText("");
+        cardnumberTextField2.setText("");
+        cardnumberTextField3.setText("");
+        cardnumberTextField4.setText("");
         cvcTextField.setText("");
     }
 
@@ -483,7 +549,10 @@ public class PaymentWizard extends StackPane {
 
     public void errorMeasurePaymentInfo(){
         errorMeasureIfEmpty(cardHolderNameTextField);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField1);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField2);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField3);
+        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField4);
         errorMeasureIfComboBoxNotSelected(validMonthComboBox);
         errorMeasureIfComboBoxNotSelected(validYearComboBox);
         errorMeasureIfOnlyDigitsRequiredOrEmpty(cvcTextField);
@@ -564,7 +633,10 @@ public class PaymentWizard extends StackPane {
         errorMap.put(postAddressTextField, errorPostAdressIcon);
         errorMap.put(postCodeTextField,errorPostCodeIcon);
         errorMap.put(datePicker.getEditor(),errorDeliveryDayIcon);
-        errorMap.put(cardnumberTextField,errorCardNumberIcon);
+        errorMap.put(cardnumberTextField1,errorCardNumberIcon);
+        errorMap.put(cardnumberTextField2,errorCardNumberIcon);
+        errorMap.put(cardnumberTextField3,errorCardNumberIcon);
+        errorMap.put(cardnumberTextField4,errorCardNumberIcon);
         errorMap.put(cardHolderNameTextField,errorHolderNameIcon);
         errorMap.put(cvcTextField,errorCvcIcon);
         errorMap.put(validMonthComboBox, errorValidMonth);
@@ -621,7 +693,7 @@ public class PaymentWizard extends StackPane {
             if (isEmpty(textField)) {
                 messageBuilder.append("Fältet kan inte vara tomt\n");
             }
-            if (textField.equals(homeNumberTextField) || textField.equals(mobileNumberTextField) || textField.equals(postCodeTextField) || textField.equals(cvcTextField) || textField.equals(cardnumberTextField)) {
+            if (textField.equals(homeNumberTextField) || textField.equals(mobileNumberTextField) || textField.equals(postCodeTextField) || textField.equals(cvcTextField) || textField.equals(cardnumberTextField1) || textField.equals(cardnumberTextField2)|| textField.equals(cardnumberTextField3)|| textField.equals(cardnumberTextField4)){
                 if (!containsDigitsOnly(textField)) {
                     messageBuilder.append("Fältet får endast innehålla siffror, bindestreck och mellanslag\n");
                 }
