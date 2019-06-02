@@ -383,7 +383,11 @@ public class PaymentWizard extends StackPane {
 
 
     public boolean isCustomerInfoComplete(){        //returnar true om inga textrutor är tomma om de rutor som endast kräver digits innehåller digits och om email-fältet innehåller "@"
-        return !firstNameTextField.getText().isEmpty() && !lastNameTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && isInEmailForm(emailTextField) && !mobileNumberTextField.getText().isEmpty() && !homeNumberTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && !addressTextField.getText().isEmpty() && containsDigitsOnly(homeNumberTextField) && containsDigitsOnly(mobileNumberTextField);
+        return !firstNameTextField.getText().isEmpty() && !lastNameTextField.getText().isEmpty()
+                && !emailTextField.getText().isEmpty() && isInEmailForm(emailTextField) && !mobileNumberTextField.getText().isEmpty()
+                && !homeNumberTextField.getText().isEmpty() && !emailTextField.getText().isEmpty() && !addressTextField.getText().isEmpty()
+                && containsDigitsOnly(homeNumberTextField) && containsDigitsOnly(mobileNumberTextField)
+                && isComplete(homeNumberTextField,getMinAllowedLength(homeNumberTextField)) && isComplete(mobileNumberTextField,getMinAllowedLength(mobileNumberTextField));
     }
     //------------------------------------------------------------------------------------------------------------------  Deliver Info
 
@@ -412,7 +416,9 @@ public class PaymentWizard extends StackPane {
     }
 
     private boolean isDeliveryInfoComplete(){           //returnerar true om inga textrutor är tomma
-        return !postAddressTextField.getText().isEmpty() && !postCodeTextField.getText().isEmpty() && !datePicker.editorProperty().getValue().getText().isEmpty() && containsDigitsOnly(postCodeTextField);
+        return !postAddressTextField.getText().isEmpty() && !postCodeTextField.getText().isEmpty()
+                && !datePicker.editorProperty().getValue().getText().isEmpty() && containsDigitsOnly(postCodeTextField)
+            && isComplete(postCodeTextField, getMinAllowedLength(postCodeTextField));
     }
 
     //------------------------------------------------------------------------------------------------------------------ Payment Info
@@ -472,11 +478,14 @@ public class PaymentWizard extends StackPane {
 
 
 
-    private boolean isPaymentInfoComplete(){            //return:ar true om inga textrutor är tomma och om de textrutor som kräver endast siffror inte har bokstäver i sig. (dessutom måste man ha valt typ av kreditkort)
+    private boolean isPaymentInfoComplete(){            //return:ar true om inga textrutor är tomma och om de textrutor som kräver endast siffror inte har bokstäver i sig, dessutom så måste de uppnå minimum i antal chars (därutöver måste man ha valt typ av kreditkort)
         return !getCreditCardType().isEmpty() && !cardHolderNameTextField.getText().isEmpty() && !validMonthComboBox.getSelectionModel().isEmpty()
                 && !validYearComboBox.getSelectionModel().isEmpty() && !cardnumberTextField1.getText().isEmpty() && !cardnumberTextField2.getText().isEmpty()
                 && !cardnumberTextField3.getText().isEmpty() && !cardnumberTextField4.getText().isEmpty() && !cvcTextField.getText().isEmpty() && containsDigitsOnly(cvcTextField)
-                && containsDigitsOnly(cardnumberTextField1) && containsDigitsOnly(cardnumberTextField2) && containsDigitsOnly(cardnumberTextField3) && containsDigitsOnly(cardnumberTextField4);
+                && containsDigitsOnly(cardnumberTextField1) && containsDigitsOnly(cardnumberTextField2) && containsDigitsOnly(cardnumberTextField3) && containsDigitsOnly(cardnumberTextField4)
+                && isComplete(cvcTextField,getMinAllowedLength(cvcTextField)) && isComplete(cardnumberTextField1,getMinAllowedLength(cardnumberTextField1))
+                && isComplete(cardnumberTextField2,getMinAllowedLength(cardnumberTextField2)) && isComplete(cardnumberTextField3,getMinAllowedLength(cardnumberTextField3))
+                && isComplete(cardnumberTextField4,getMinAllowedLength(cardnumberTextField4));
     }
 
     public void placeOrder(){
@@ -597,26 +606,26 @@ public class PaymentWizard extends StackPane {
         errorMeasureIfEmpty(firstNameTextField);
         errorMeasureIfEmpty(lastNameTextField);
         errorMeasureIfEmpty(addressTextField);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(homeNumberTextField);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(mobileNumberTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(homeNumberTextField, 6);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(mobileNumberTextField, 10);
         errorMeasureIfNotInEmailForm(emailTextField);
     }
 
     public void errorMeasureDeliveryInfo(){
         errorMeasureIfEmpty(postAddressTextField);
         errorMeasureIfEmpty(datePicker.getEditor());
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(postCodeTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(postCodeTextField,5);
     }
 
     public void errorMeasurePaymentInfo(){
         errorMeasureIfEmpty(cardHolderNameTextField);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField1);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField2);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField3);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(cardnumberTextField4);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(cardnumberTextField1,4);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(cardnumberTextField2,4);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(cardnumberTextField3,4);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(cardnumberTextField4,4);
         errorMeasureIfComboBoxNotSelected(validMonthComboBox);
         errorMeasureIfComboBoxNotSelected(validYearComboBox);
-        errorMeasureIfOnlyDigitsRequiredOrEmpty(cvcTextField);
+        errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(cvcTextField, 3);
         errorMeasureIfCardNotSelected();
     }
 
@@ -642,8 +651,8 @@ public class PaymentWizard extends StackPane {
         }
     }
 
-    public void errorMeasureIfOnlyDigitsRequiredOrEmpty(TextField textField){
-        if(!containsDigitsOnly(textField) || textField.getText().isEmpty()){
+    public void errorMeasureIfOnlyDigitsRequiredOrEmptyOrNotEnoughtChars(TextField textField, int completeLength){
+        if(!containsDigitsOnly(textField) || textField.getText().isEmpty() || !isComplete(textField, completeLength)){
             textField.setStyle("-fx-border-width: 3px; -fx-border-color: #FF0000;");
             setErrorIconVisible(textField,true);
             setErrorMessageOnIcon(textField);
@@ -681,6 +690,9 @@ public class PaymentWizard extends StackPane {
         }
     }
 
+
+
+
     //----------------------------------errorIcons & tooltips
     private Map<Node, ImageView>errorMap = new HashMap<>();
 
@@ -694,10 +706,10 @@ public class PaymentWizard extends StackPane {
         errorMap.put(postAddressTextField, errorPostAdressIcon);
         errorMap.put(postCodeTextField,errorPostCodeIcon);
         errorMap.put(datePicker.getEditor(),errorDeliveryDayIcon);
-        errorMap.put(cardnumberTextField1,errorCardNumberIcon);
-        errorMap.put(cardnumberTextField2,errorCardNumberIcon);
-        errorMap.put(cardnumberTextField3,errorCardNumberIcon);
-        errorMap.put(cardnumberTextField4,errorCardNumberIcon);
+        errorMap.put(cardnumberTextField1,errorCardNumberIcon1);
+        errorMap.put(cardnumberTextField2,errorCardNumberIcon2);
+        errorMap.put(cardnumberTextField3,errorCardNumberIcon3);
+        errorMap.put(cardnumberTextField4,errorCardNumberIcon4);
         errorMap.put(cardHolderNameTextField,errorHolderNameIcon);
         errorMap.put(cvcTextField,errorCvcIcon);
         errorMap.put(validMonthComboBox, errorValidMonth);
@@ -713,7 +725,10 @@ public class PaymentWizard extends StackPane {
     @FXML ImageView errorPostAdressIcon;
     @FXML ImageView errorPostCodeIcon;
     @FXML ImageView errorDeliveryDayIcon;
-    @FXML ImageView errorCardNumberIcon;
+    @FXML ImageView errorCardNumberIcon1;
+    @FXML ImageView errorCardNumberIcon2;
+    @FXML ImageView errorCardNumberIcon3;
+    @FXML ImageView errorCardNumberIcon4;
     @FXML ImageView errorHolderNameIcon;
     @FXML ImageView errorCvcIcon;
     @FXML ImageView errorValidYearFront;
@@ -754,11 +769,16 @@ public class PaymentWizard extends StackPane {
             if (isEmpty(textField)) {
                 messageBuilder.append("Fältet kan inte vara tomt\n");
             }
-            if (textField.equals(homeNumberTextField) || textField.equals(mobileNumberTextField) || textField.equals(postCodeTextField) || textField.equals(cvcTextField) || textField.equals(cardnumberTextField1) || textField.equals(cardnumberTextField2)|| textField.equals(cardnumberTextField3)|| textField.equals(cardnumberTextField4)){
+            if (textField.equals(homeNumberTextField) || textField.equals(mobileNumberTextField) || textField.equals(postCodeTextField) || textField.equals(cvcTextField) || textField.equals(cardnumberTextField1) || textField.equals(cardnumberTextField2)|| textField.equals(cardnumberTextField3)|| textField.equals(cardnumberTextField4)) {
                 if (!containsDigitsOnly(textField)) {
                     messageBuilder.append("Fältet får endast innehålla siffror, bindestreck och mellanslag\n");
                 }
+
+                if(!isComplete(textField,getMinAllowedLength(textField))){
+                    messageBuilder.append("Fältet måste innehålla minst " + String.valueOf(getMinAllowedLength(textField)) + " siffror\n");
+                }
             }
+
             if (textField.equals(emailTextField)) {
                 if (!isInEmailForm(textField)) {
                     messageBuilder.append("Fältet måste ha formen: email@email.com\n");
@@ -788,6 +808,27 @@ public class PaymentWizard extends StackPane {
 
     private boolean isInEmailForm(TextField textField){
         return textField.getText().contains("@") && textField.getText().contains(".");
+    }
+
+    private boolean isComplete(TextField textfield, int completeLength){
+        return textfield.getText().length() >= completeLength;
+    }
+
+
+    private int getMinAllowedLength(TextField textField){
+        if(textField.equals(cvcTextField)){
+            return 3;
+        } else if(textField.equals(cardnumberTextField1) || textField.equals(cardnumberTextField2) || textField.equals(cardnumberTextField3) || textField.equals(cardnumberTextField4)){
+            return 4;
+        } else if(textField.equals(homeNumberTextField)){
+            return 6;
+        } else if(textField.equals(mobileNumberTextField)){
+            return 10;
+        } else if(textField.equals(postCodeTextField)){
+            return 5;
+        } else {
+            return 0;
+        }
     }
 
 
