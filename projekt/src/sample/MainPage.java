@@ -23,7 +23,7 @@ public class MainPage extends AnchorPane {
     private FlowPane weekOffers;
 
     public MainPage (Map<String, ProductListItem> productListItemMap,ProductSearchController parent){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/mainPage.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

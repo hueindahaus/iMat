@@ -64,7 +64,7 @@ public class HistoryListItem extends AnchorPane {       //TODO att fixa så att 
 
 
     public HistoryListItem(ShoppingItem oldShoppingItem, ShoppingItem shoppingItem, ProductSearchController parentController) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("history_listitem.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/history_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

@@ -1,11 +1,8 @@
 package sample;
 
 
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,20 +11,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import se.chalmers.cse.dat216.project.*;
 
-import javax.swing.*;
-import javax.tools.Tool;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +43,7 @@ public class PaymentWizard extends StackPane {
 
 
     public PaymentWizard(ProductSearchController parentController){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("payment_wizard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/payment_wizard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -187,6 +178,13 @@ public class PaymentWizard extends StackPane {
 
             if (newText.length() >= 4 && oldText.length() < 4) {
                 tf2.requestFocus();
+            }
+
+            if(newText.length() >=4 && oldText.length() == 4){
+                char c = newText.charAt(4);
+                tf2.setText(String.valueOf(c));
+                tf2.requestFocus();
+                tf2.positionCaret(1);
             }
         });
     }

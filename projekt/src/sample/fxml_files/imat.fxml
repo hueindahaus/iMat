@@ -16,26 +16,26 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="@CSS/main_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
+<StackPane maxHeight="1080.0" maxWidth="1920.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="@../CSS/main_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProductSearchController">
    <children>
       <AnchorPane fx:id="paymentAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1180.0" translateX="-130.0" translateY="40.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0">
          <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="1440.0" styleClass="Header" stylesheets="@CSS/Header.css">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="1440.0" styleClass="Header" stylesheets="@../CSS/Header.css">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="1180.0" opacity="0.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/good-food-box.jpg" />
+                        <Image url="@../../images/good-food-box.jpg" />
                      </image>
                   </ImageView>
                   <Rectangle fill="DODGERBLUE" height="80.0" onMouseDragged="#dragHeader" onMousePressed="#pressHeader" opacity="0.0" stroke="#8d8d8d" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #263238;" width="1180.0" />
-                  <TextField fx:id="searchBar" layoutX="260.0" layoutY="15.0" prefHeight="50.0" prefWidth="600.0" promptText="Sök vara" styleClass="text-field" stylesheets="@CSS/Search_bar.css">
+                  <TextField fx:id="searchBar" layoutX="260.0" layoutY="15.0" prefHeight="50.0" prefWidth="600.0" promptText="Sök vara" styleClass="text-field" stylesheets="@../CSS/Search_bar.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></TextField>
                   <ImageView fx:id="homeButton" fitHeight="80.0" fitWidth="80.0" layoutX="80.0" layoutY="4.0" onMouseEntered="#setLogoToColored" onMouseExited="#setLogoToWhite" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/imatLogo.png" />
+                        <Image url="@../../icons/imatLogo.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -43,17 +43,17 @@
                   </ImageView>
                   <ImageView fx:id="step1" fitHeight="80.0" fitWidth="500.0" layoutX="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
-                        <Image url="@../images/step1.png" />
+                        <Image url="@../../images/step1.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="step2" fitHeight="80.0" fitWidth="500.0" layoutX="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
-                        <Image url="@../images/step2.png" />
+                        <Image url="@../../images/step2.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="step3" fitHeight="80.0" fitWidth="500.0" layoutX="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
-                        <Image url="@../images/step3.png" />
+                        <Image url="@../../images/step3.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="cartButton" layoutX="1210.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#toggleCart" prefHeight="50.0" prefWidth="200.0" styleClass="cart-button" text="Varukorg">
@@ -66,7 +66,7 @@
                      <graphic>
                         <ImageView fx:id="cartIcon" fitHeight="30.0" fitWidth="30.0" onMousePressed="#toggleCart" pickOnBounds="true" preserveRatio="true" translateX="-6.0">
                            <image>
-                              <Image url="@../images/cartIconPrimary.png" />
+                              <Image url="@../../images/cartIconPrimary.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -76,17 +76,17 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="260.0" styleClass="leftAnchorPane" stylesheets="@CSS/main_theme.css">
+            <AnchorPane layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="260.0" styleClass="leftAnchorPane" stylesheets="@../CSS/main_theme.css">
                <children>
-                  <ScrollPane fx:id="categoryScrollPane" hbarPolicy="NEVER" layoutY="240.0" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/scroll_pane.css">
+                  <ScrollPane fx:id="categoryScrollPane" hbarPolicy="NEVER" layoutY="240.0" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@../CSS/scroll_pane.css">
                      <content>
-                        <FlowPane fx:id="categoryFlowPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@CSS/main_theme.css">
+                        <FlowPane fx:id="categoryFlowPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="580.0" prefWidth="260.0" styleClass="borderless" stylesheets="@../CSS/main_theme.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets></FlowPane>
                      </content>
                   </ScrollPane>
-                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="160.0" prefHeight="80.0" prefWidth="240.0" styleClass="biglabelWhite" stylesheets="@CSS/main_theme.css" text="Sortiment">
+                  <Label contentDisplay="RIGHT" layoutX="20.0" layoutY="160.0" prefHeight="80.0" prefWidth="240.0" styleClass="biglabelWhite" stylesheets="@../CSS/main_theme.css" text="Sortiment">
                      <font>
                         <Font name="Bodoni 72 Oldstyle Book" size="36.0" />
                      </font>
@@ -95,7 +95,7 @@
                      <graphic>
                         <ImageView fx:id="userInfoIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/person_black.png" />
+                              <Image url="@../../icons/person_black.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -108,7 +108,7 @@
                      <graphic>
                         <ImageView fx:id="historyIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/history_black.png" />
+                              <Image url="@../../icons/history_black.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -121,7 +121,7 @@
                      <graphic>
                         <ImageView fx:id="listIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/list_black.png" />
+                              <Image url="@../../icons/list_black.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -133,7 +133,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/baseline_favorite_black_18dp.png" />
+                              <Image url="@../../icons/baseline_favorite_black_18dp.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -143,9 +143,9 @@
                   </RadioButton>
                </children>
             </AnchorPane>
-            <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="260.0" layoutY="80.0" prefHeight="820.0" prefWidth="920.0" stylesheets="@CSS/scroll_pane.css">
+            <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="260.0" layoutY="80.0" prefHeight="820.0" prefWidth="920.0" stylesheets="@../CSS/scroll_pane.css">
                <content>
-                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="820.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@CSS/main_theme.css">
+                  <FlowPane fx:id="mainFlowPane" alignment="TOP_CENTER" layoutY="20.0" prefHeight="820.0" prefWidth="920.0" rowValignment="TOP" styleClass="main" stylesheets="@../CSS/main_theme.css">
                      <padding>
                         <Insets bottom="20.0" top="20.0" />
                      </padding></FlowPane>

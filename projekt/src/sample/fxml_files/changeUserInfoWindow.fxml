@@ -37,22 +37,22 @@
       </Button>
       <ImageView fx:id="errorMailIcon" fitHeight="35.0" fitWidth="35.0" layoutX="640.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../icons/baseline_error_black_48dp.png" />
+            <Image url="@../../icons/baseline_error_black_48dp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="errorPostCodeIcon" fitHeight="35.0" fitWidth="35.0" layoutX="540.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../icons/baseline_error_black_48dp.png" />
+            <Image url="@../../icons/baseline_error_black_48dp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="errorPhoneIcon" fitHeight="35.0" fitWidth="35.0" layoutX="640.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../icons/baseline_error_black_48dp.png" />
+            <Image url="@../../icons/baseline_error_black_48dp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="errorMobileIcon" fitHeight="35.0" fitWidth="35.0" layoutX="640.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../icons/baseline_error_black_48dp.png" />
+            <Image url="@../../icons/baseline_error_black_48dp.png" />
          </image>
       </ImageView>
       <Label fx:id="saveMessage" alignment="CENTER" layoutX="220.0" layoutY="625.0" minHeight="40.0" prefWidth="400.0" text="Uppgifter med gröna fält är sparade!" textFill="#7cb342" visible="false">
@@ -62,7 +62,7 @@
       </Label>
    </children>
    <stylesheets>
-      <URL value="@CSS/main_theme.css" />
-      <URL value="@CSS/product.css" />
+      <URL value="@../CSS/main_theme.css" />
+      <URL value="@../CSS/product.css" />
    </stylesheets>
 </fx:root>

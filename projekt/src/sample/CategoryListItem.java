@@ -3,9 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
 import java.io.IOException;
@@ -20,7 +18,7 @@ public class CategoryListItem extends AnchorPane {
     private ProductCategory category;
 
     public CategoryListItem(ProductCategory category,ProductSearchController parentController ) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("category_listitem.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/category_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

@@ -138,32 +138,32 @@
             </Label>
             <ImageView fx:id="errorFirstNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorLastNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorPhoneIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorMobileIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorEmailIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorAdressIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Användaruppgifter">
@@ -212,17 +212,17 @@
             </TextField>
             <ImageView fx:id="errorPostAdressIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorPostCodeIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorDeliveryDayIcon" fitHeight="66.0" fitWidth="66.0" layoutX="950.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" layoutX="290.0" layoutY="90.0" prefHeight="48.0" prefWidth="600.0" text="Leverans">
@@ -254,7 +254,7 @@
                <graphic>
                   <ImageView fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/mastercard.png" />
+                        <Image url="@../../images/mastercard.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -266,7 +266,7 @@
                <graphic>
                   <ImageView fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/visa2.png" />
+                        <Image url="@../../images/visa2.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -275,7 +275,7 @@
                <graphic>
                   <ImageView fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/amex.png" />
+                        <Image url="@../../images/amex.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -289,9 +289,9 @@
             <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="460.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Giltigt t.o.m:" />
             <Line endX="-44.71175765991211" endY="4.204615592956543" layoutX="761.0" layoutY="493.0" rotate="-60.0" startX="-100.0" strokeWidth="3.0" />
             <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Kortnummer:" />
-            <TextField fx:id="cardnumberTextField1" layoutX="455.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
+            <TextField fx:id="cardnumberTextField1" layoutX="455.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0" text="1234">
                <font>
-                  <Font name="Roboto" size="32.0" />
+                  <Font name="Roboto" size="30.0" />
                </font>
             </TextField>
             <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="CVC:" />
@@ -307,27 +307,27 @@
             </Label>
             <ImageView fx:id="errorCardNumberIcon1" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorHolderNameIcon" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorValidMonth" fitHeight="66.0" fitWidth="66.0" layoutX="930.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorCvcIcon" fitHeight="66.0" fitWidth="66.0" layoutX="575.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorValidYearFront" fitHeight="66.0" fitWidth="66.0" layoutX="1000.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER_RIGHT" layoutX="165.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="280.0" styleClass="regular-label" text="Korttyp:" />
@@ -338,24 +338,24 @@
             </Label>
             <ImageView fx:id="errorCardTypeIcon" fitHeight="66.0" fitWidth="66.0" layoutX="810.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ComboBox fx:id="validMonthComboBox" layoutX="455.0" layoutY="460.0" prefHeight="66.0" prefWidth="200.0" promptText="MM" styleClass="combo-box-small" />
             <ComboBox fx:id="validYearComboBox" layoutX="720.0" layoutY="460.0" prefHeight="66.0" prefWidth="200.0" promptText="ÅÅ" styleClass="combo-box-small" />
             <TextField fx:id="cardnumberTextField2" layoutX="578.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
                <font>
-                  <Font name="Roboto" size="32.0" />
+                  <Font name="Roboto" size="30.0" />
                </font>
             </TextField>
             <TextField fx:id="cardnumberTextField3" layoutX="701.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
                <font>
-                  <Font name="Roboto" size="32.0" />
+                  <Font name="Roboto" size="30.0" />
                </font>
             </TextField>
             <TextField fx:id="cardnumberTextField4" layoutX="824.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="111.0">
                <font>
-                  <Font name="Roboto" size="32.0" />
+                  <Font name="Roboto" size="30.0" />
                </font>
             </TextField>
             <CheckBox fx:id="savePaymentInfoCheckBox" layoutX="455.0" layoutY="608.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="600.0" selected="true" text="Spara uppgifter till nästa gång">
@@ -365,24 +365,24 @@
             </CheckBox>
             <ImageView fx:id="errorCardNumberIcon2" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorCardNumberIcon3" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
             <ImageView fx:id="errorCardNumberIcon4" fitHeight="66.0" fitWidth="66.0" layoutX="940.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../icons/baseline_error_black_48dp.png" />
+                  <Image url="@../../icons/baseline_error_black_48dp.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
    </children>
    <stylesheets>
-      <URL value="@CSS/payment_wizard.css" />
-      <URL value="@CSS/main_theme.css" />
+      <URL value="@../CSS/payment_wizard.css" />
+      <URL value="@../CSS/main_theme.css" />
    </stylesheets>
 </fx:root>

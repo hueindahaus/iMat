@@ -43,7 +43,7 @@ public class Cart extends AnchorPane {
 
 
     private Cart(ProductSearchController parentController){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/cart.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

@@ -40,7 +40,7 @@ public class ChangeUserInfoWindow extends AnchorPane {
     @FXML private Button saveButton;
 
     public ChangeUserInfoWindow(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("changeUserInfoWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/changeUserInfoWindow.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

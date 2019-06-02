@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders" stylesheets="@../CSS/product.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane alignment="TOP_CENTER" prefHeight="280.0" prefWidth="240.0" styleClass="rounded-borders">
          <children>
@@ -42,7 +41,7 @@
                   </TabPane>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="196.0" layoutY="186.0" onMouseClicked="#flipCardToFront" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/baseline_arrow_right_alt_black_18dp.png" />
+                        <Image url="@../../icons/baseline_arrow_right_alt_black_18dp.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -64,29 +63,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <TextField fx:id="inputAmount" layoutX="46.0" layoutY="232.0" prefHeight="34.0" prefWidth="60.0" styleClass="inputTextField" />
                   <Label fx:id="priceAndUnit" alignment="CENTER" layoutX="20.0" layoutY="200.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" styleClass="label2" text="Label" />
-                  <ImageView fx:id="subButton" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#subtractOne" pickOnBounds="true" preserveRatio="true" x="12.0" y="232.0">
-                     <image>
-                        <Image url="@../icons/dec_button.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="addButton" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#addOne" pickOnBounds="true" preserveRatio="true" x="106.0" y="232.0">
-                     <image>
-                        <Image url="@../icons/inc_button.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
                   <Button fx:id="addToCartButton" layoutX="160.0" layoutY="232.0" mnemonicParsing="false" onMousePressed="#onClickAddToCart" prefHeight="34.0" prefWidth="68.0" styleClass="cartButton">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/baseline_shopping_cart_black_18dp.png" />
+                              <Image url="@../../icons/baseline_shopping_cart_black_18dp.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -99,7 +81,7 @@
                   </Button>
                   <ImageView fx:id="favouriteIcon" fitHeight="36.0" fitWidth="36.0" layoutX="190.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/baseline_favorite_border_black_18dp.png" />
+                        <Image url="@../../icons/baseline_favorite_border_black_18dp.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -107,12 +89,13 @@
                   </ImageView>
                   <ImageView fx:id="moreInfoIcon" fitHeight="30.0" fitWidth="34.0" layoutX="14.0" layoutY="14.0" onMousePressed="#flipCardToBack" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/outline_info_black_18dp.png" />
+                        <Image url="@../../icons/outline_info_black_18dp.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <Label fx:id="amountLabel" alignment="CENTER" layoutX="-1.0" layoutY="241.0" prefHeight="17.0" prefWidth="138.0" styleClass="inputTextField" text="Label" />
                </children>
             </AnchorPane>
          </children>

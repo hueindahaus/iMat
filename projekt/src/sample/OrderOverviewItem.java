@@ -23,7 +23,7 @@ public class OrderOverviewItem extends AnchorPane {
 
 
     public OrderOverviewItem(ShoppingItem shoppingItem){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("order_overviewitem.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml_files/order_overviewitem.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 

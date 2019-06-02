@@ -11,7 +11,7 @@ public class ShoppingListPage extends AnchorPane {
 
     private ShoppingListPage(){
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("shopping_list_page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/shopping_list_page.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

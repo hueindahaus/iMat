@@ -34,7 +34,7 @@ public class HistoryItem extends AnchorPane {
     private Order order;
 
     public HistoryItem(Map<String, ProductListItem> productListItemMap, Order order, ProductSearchController parent){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("history_item.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/history_item.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

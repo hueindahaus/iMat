@@ -3,7 +3,6 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -17,10 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -56,7 +53,7 @@ public class CartListItem extends AnchorPane {
     private DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public CartListItem(ShoppingItem shoppingItem, ProductSearchController parentController, Cart cart){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart_listitem.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_files/cart_listitem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

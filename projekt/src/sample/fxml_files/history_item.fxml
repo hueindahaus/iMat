@@ -24,7 +24,7 @@
       </ScrollPane>
       <ImageView fx:id="expandButton" fitHeight="36.0" fitWidth="36.0" layoutX="830.0" layoutY="10.0" onMouseClicked="#changeHistorySize" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/baseline_expand_more_black_18dp.png" />
+            <Image url="@../../icons/baseline_expand_more_black_18dp.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -32,7 +32,7 @@
       </ImageView>
    </children>
    <stylesheets>
-      <URL value="@CSS/main_theme.css" />
-      <URL value="@CSS/product.css" />
+      <URL value="@../CSS/main_theme.css" />
+      <URL value="@../CSS/product.css" />
    </stylesheets>
 </fx:root>

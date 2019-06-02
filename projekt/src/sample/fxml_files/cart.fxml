@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="260.0" style="-fx-background-color: #FFFFFF;" stylesheets="@CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="260.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="700.0" prefWidth="260.0" stylesheets="@CSS/scroll_pane.css" AnchorPane.topAnchor="0.0">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="700.0" prefWidth="260.0" stylesheets="@../CSS/scroll_pane.css" AnchorPane.topAnchor="0.0">
          <content>
             <FlowPane fx:id="flowPane" alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="700.0" prefWidth="260.0" styleClass="borderless">
                <padding>

@@ -7,11 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root id="cart-item" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="244.0" stylesheets="@CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="cart-item" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="244.0" stylesheets="@../CSS/main_theme.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="decButton" fitHeight="34.0" fitWidth="28.0" layoutX="3.0" layoutY="95.0" onMousePressed="#subtractOneFromAmount" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/dec_button.png" />
+            <Image url="@../../icons/dec_button.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -20,7 +20,7 @@
       <ImageView fx:id="image" fitHeight="79.0" fitWidth="85.0" layoutX="19.0" layoutY="12.0" pickOnBounds="true" />
       <ImageView fx:id="incButton" fitHeight="28.0" fitWidth="28.0" layoutX="91.0" layoutY="95.0" onMousePressed="#addOneToAmount" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/inc_button.png" />
+            <Image url="@../../icons/inc_button.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -31,7 +31,7 @@
       <Label fx:id="price" alignment="CENTER" layoutX="129.0" layoutY="94.0" prefHeight="27.0" prefWidth="106.0" styleClass="mediumlabel" text="pris" />
       <ImageView fx:id="clearIcon" fitHeight="28.0" fitWidth="28.0" layoutX="208.0" layoutY="6.0" onMouseClicked="#clearItem" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icons/baseline_clear_black_18dp.png" />
+            <Image url="@../../icons/baseline_clear_black_18dp.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
